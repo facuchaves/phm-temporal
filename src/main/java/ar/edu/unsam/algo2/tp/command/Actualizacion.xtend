@@ -15,4 +15,4 @@ class Actualizacion extends Command{
 		repositorios.forEach[ updateAll ]
 	}
 	
-}
+} 
