@@ -1,0 +1,11 @@
+.classpath
+.project
+.settings/
+src/main/generated-sources
+src/test/generated-sources
+target
+.metadata/
+src/main/xtend-gen
+bin
+xtend-gen
+RemoteSystemsTempFiles

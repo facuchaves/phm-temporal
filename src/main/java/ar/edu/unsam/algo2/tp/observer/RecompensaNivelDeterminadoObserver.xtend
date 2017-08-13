@@ -1,0 +1,34 @@
+package ar.edu.unsam.algo2.tp.observer
+
+import ar.edu.unsam.algo2.tp.Entrenador
+import ar.edu.unsam.algo2.tp.Item
+import java.util.HashMap
+import java.util.Map
+import org.eclipse.xtend.lib.annotations.Accessors
+
+@Accessors
+class RecompensaNivelDeterminadoObserver implements CustomObserver{
+	
+	Map<Item,Integer> recompensas = new HashMap
+	int nivel
+	double dineroRecompensa
+	
+	override notificar(Entrenador entrenador) {
+		if(entrenador.nivel == nivel){
+			entrenador.ganarDinero(dineroRecompensa)
+			
+			for (Map.Entry<Item, Integer> entry : recompensas.entrySet()){
+				
+				for( var i = 0 ; i < entry.value ; i++ ){
+					
+					entrenador.agregarItem(entry.key)
+				
+				}
+			
+			}
+			
+		}
+	}
+	
+	
+}
