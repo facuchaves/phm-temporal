@@ -5,6 +5,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unsam.algo2.tp.mail.Mail
 import org.uqbar.commons.model.annotations.Observable
 
+
+
 interface CustomObserver {
 
 	

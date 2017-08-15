@@ -4,8 +4,14 @@ import java.util.List
 
 class AdministacionDelSistema implements AdministacionDelSistemaI{
 	
+	List<Command> comandos = newArrayList
+	
 	override run(List<Command> comandos) {
 		comandos.forEach[ execute ]
+	}
+	
+	def void agregarComando(Command _comando){
+		comandos.add(_comando)
 	}
 	
 }

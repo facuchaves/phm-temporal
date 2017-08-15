@@ -13,11 +13,18 @@ import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.tables.Table
+import ar.edu.unsam.algo2.tp.observer.NotificarNivelMasAltoObserver
+import org.uqbar.arena.widgets.tables.Column
+import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
 
 class AgregarAccionesWindow extends Window<ModeloAcciones> {
 
-	new(WindowOwner owner, ModeloAcciones model) {
+	var AdministacionDelSistema administrador
+
+	new(WindowOwner owner, ModeloAcciones model, AdministacionDelSistema _administrador) {
 		super(owner, model)
+		administrador = _administrador
 	}
 
 	override createContents(Panel mainPanel) {
@@ -28,29 +35,62 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 		new Label(top).text = "Descripcion"
 		new TextBox(top) => [
 			value <=> "accionesNivel.nombreCommand"
-			width = 200
+			width = 400
 		]
 
 		val Panel panelInferior = new Panel(mainPanel)
 		panelInferior.layout = new HorizontalLayout()
-		
+
 		val Panel panelInferiorIzquierdo = new Panel(panelInferior)
-		//Agregar la grilla
-		new Label(panelInferiorIzquierdo).text="Izquierda"
-		
+
+		new Label(panelInferiorIzquierdo).text = "Acciones"
+		val tabla = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
+			typeof(NotificarNivelMasAltoObserver)) => [
+			items <=> "accionesNivel.customObservers"
+			numberVisibleRows = 10
+
+		]
+
+		new Column<NotificarNivelMasAltoObserver>(tabla) => [
+			fixedSize = 240
+			title = "Accion"
+			bindContentsToProperty("descripcion")
+		]
+
 		val Panel panelInferiorDerecho = new Panel(panelInferior)
 		new Label(panelInferiorDerecho).text = "Acciones"
 		new Selector<CustomObserver>(panelInferiorDerecho) => [
 			allowNull = false
-
+			width = 200
 			val itemsProperty = items <=> "acciones"
 			itemsProperty.adapter = new PropertyAdapter(typeof(CustomObserver), "descripcion")
 			value <=> "seleccionAccion"
 		]
-		
-		new Button(panelInferiorDerecho)=>[
-			caption="Agregar"
+
+		val Panel panelInferioDerechoInterior = new Panel(panelInferiorDerecho)
+		panelInferioDerechoInterior.layout = new HorizontalLayout()
+
+		new Button(panelInferioDerechoInterior) => [
+			caption = "Agregar Accion"
 			onClick(|this.modelObject.addAccion())
+		]
+
+		new Button(panelInferioDerechoInterior) => [
+			caption = "Eliminar Accion"
+			onClick(|this.modelObject.removeAccion())
+		]
+
+		val Panel panelAceptarCancelar = new Panel(mainPanel)
+		panelAceptarCancelar.layout = new HorizontalLayout
+		panelAceptarCancelar.width = 400
+
+		new Button(panelAceptarCancelar) => [
+			caption = "Aceptar"
+			onClick[this.modelObject.AgregarComando(administrador) this.close]
+		]
+		new Button(panelAceptarCancelar) => [
+			caption = "Cancelar"
+			onClick[this.close]
 		]
 
 	}

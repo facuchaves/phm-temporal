@@ -21,16 +21,22 @@ class AgregarAcciones extends Command {
 		this.customObservers = customObservers
 	}
 
-	def agregarAccionIndividual(CustomObserver _customObservers) {
-		customObservers.add(_customObservers)
-	}
-
 	override execute() {
 		RepositorioEntrenador.instance.entrenadores.forEach[entrenador|entrenador.agregarObservers(customObservers)]
 	}
 
 	def getnombreCommand() {
 		nombreCommand
+	}
+
+	def agregarAccionIndividual(CustomObserver _customObservers) {
+		customObservers.add(_customObservers)
+	}
+
+	def eliminarAccionIndividual(CustomObserver _customObservers) {
+		if (customObservers.contains(_customObservers)) {
+			customObservers.remove(_customObservers)
+		}
 	}
 
 }
