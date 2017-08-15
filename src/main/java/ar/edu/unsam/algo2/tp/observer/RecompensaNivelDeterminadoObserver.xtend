@@ -6,6 +6,9 @@ import java.util.HashMap
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
+import org.uqbar.commons.model.annotations.Observable
+
+@Observable
 @Accessors
 class RecompensaNivelDeterminadoObserver implements CustomObserver{
 	
@@ -30,5 +33,8 @@ class RecompensaNivelDeterminadoObserver implements CustomObserver{
 		}
 	}
 	
+		override descripcion(){
+		"Recompensa"
+	}
 	
 }

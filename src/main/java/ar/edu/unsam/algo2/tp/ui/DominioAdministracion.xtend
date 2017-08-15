@@ -11,6 +11,8 @@ class DominioAdministracion {
 	List<Opcion> opciones = newArrayList
 	
 	new(AdministradorApplication app) {
+		opciones.add(new Opcion("Agregar Acciones", [ | new AgregarAccionesWindow(app, new ModeloAcciones).open ]))
+		//opciones.add(new Opcion("Eliminar Acciones", [ | new PoblarAreaWindows(app, new Encuesta).open ]))
 		opciones.add(new Opcion("Poblar area", [ | new PoblarAreaWindows(app, new Encuesta).open ]))
 	}
 	

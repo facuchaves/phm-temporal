@@ -5,7 +5,9 @@ import ar.edu.unsam.algo2.tp.Entrenador
 import ar.edu.unsam.algo2.tp.mail.Mail
 import ar.edu.unsam.algo2.tp.mail.MailSender
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
+@Observable
 @Accessors
 class NotificarSuperaNivelObserver extends NotificarMail{
 	
@@ -28,6 +30,10 @@ class NotificarSuperaNivelObserver extends NotificarMail{
 	
 	override notificarMail(Mail email) {
 		mailSender.send(email)	
+	}
+	
+		override descripcion(){
+		"Notificar nivel supera"
 	}
 	
 }

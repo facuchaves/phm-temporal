@@ -3,7 +3,9 @@ package ar.edu.unsam.algo2.tp.observer
 import ar.edu.unsam.algo2.tp.Entrenador
 import ar.edu.unsam.algo2.tp.mail.MailSender
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
+@Observable
 @Accessors
 class NotificarNivelMultiploDe5Observer implements CustomObserver{
 	
@@ -15,6 +17,10 @@ class NotificarNivelMultiploDe5Observer implements CustomObserver{
 			forEach[ entrenadorRepo | entrenadorRepo.agregarNotificacion("El entrenador" + entrenador.nombre + "alcanzo el nivel " + entrenador.nivel)
 			 ]
 		}
+	}
+	
+		override descripcion(){
+		"Notificar nivel multiplo 5"
 	}
 	
 }
