@@ -11,6 +11,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class PoblarArea extends Command {
 
+	String descripcion
 	// Área geográfica: Área rectangular que representa la zona a poblar.
 	Rectangulo rectangulo
 	

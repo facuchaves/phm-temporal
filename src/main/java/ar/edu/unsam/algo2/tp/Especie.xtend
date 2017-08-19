@@ -88,6 +88,11 @@ class Especie implements Entidad {
 		Validador.validarEnteroRequerido(numero , "Numero")
 		Validador.validarEnteroRequerido(velocidad , "Velocidad")
 	}
+	
+	override toString() {
+		nombre
+	}
+	
 }
 
 @Accessors
@@ -115,5 +120,5 @@ class Tipo {
 	def boolean esResistente(List<Tipo> tipos) {
 		tipos.exists[tipo|esResistente.contains(tipo)]
 	}
-
+	
 }

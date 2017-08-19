@@ -1,95 +1,63 @@
 package ar.edu.unsam.algo2.tp.ui
 
-import java.awt.Panel
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.windows.SimpleWindow
+import ar.edu.unsam.algo2.tp.Especie
+import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
+import ar.edu.unsam.algo2.tp.ui.utils.ComponentsUtils
+import ar.edu.unsam.algo2.tp.ui.utils.ListWithSelectComponent
+import ar.edu.unsam.algo2.tp.ui.viewModel.ModeloPoblarArea
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
-class PoblarAreaWindows extends SimpleWindow<Encuesta> {
+class PoblarAreaWindows extends Window<ModeloPoblarArea> {
 	
-	new(WindowOwner parent, Encuesta model) {
+	var AdministacionDelSistema administrador
+	
+	new(WindowOwner parent, ModeloPoblarArea model, AdministacionDelSistema _administrador) {
 		super(parent, model)
+		administrador = _administrador
 	}
 	
-	override protected addActions(org.uqbar.arena.widgets.Panel actionsPanel) {
-	}
 	
-	override protected createFormPanel(org.uqbar.arena.widgets.Panel mainPanel) {
+	override createContents(Panel mainPanel) {
 		this.title = "Poblar Area"
-//		
-//		mainPanel.layout = new ColumnLayout(2)
-//		
-//		var Panel topLeftPanel0 = new Panel(mainPanel)
-//		var Panel topLeftPanel = new Panel(mainPanel)
-//		topLeftPanel.setLayout(new VerticalLayout())
-//		
-//		buildTextBoxWithLabelHorizontal( topLeftPanel , "Descripcion" , "zonaVotacion")
-//		buildTextBoxWithLabelHorizontal( topLeftPanel , "Nivel Max" , "zonaVotacion")
-//		buildTextBoxWithLabelHorizontal( topLeftPanel , "Densidad" , "zonaVotacion")
-//		
-//		var Panel topRightPanel = new Panel(topLeftPanel0)
-//		topRightPanel.setLayout(new HorizontalLayout())
-//		
-//		buildTextBoxWithLabelHorizontal( topRightPanel , "Nivel Min" , "zonaVotacion")
-//		
-//		var Panel bottomLeftPanel = new Panel(mainPanel)
-//		bottomLeftPanel.setLayout(new HorizontalLayout())
-//		
-//		new Label(bottomLeftPanel).text = "Especies"
-//		new List(bottomLeftPanel) => [
-//			items <=> "zonas"
-//			value <=> "zonaVotacion"
-//			width = 220
-//			height = 220
-//		]
-//
-//		var Panel bottomRightPanel = new Panel(mainPanel)
-//		bottomRightPanel.setLayout(new VerticalLayout())
-//		
-//		new Selector<Candidato>(bottomRightPanel) => [
-//			allowNull = false
-//			items <=> "zonas"
-//			value <=> "zonaVotacion"
-//		]
-//		
-//		var especieButtonsPanel = new Panel(bottomRightPanel)
-//		especieButtonsPanel.setLayout(new HorizontalLayout())
-//		
-//		new Button(especieButtonsPanel) => [
-//			caption = "Agregar especie"
-//		]
-//		
-//		new Button(especieButtonsPanel) => [
-//			caption = "Eliminar especie"
-//		]
-//				
-//		var buttonsPanel = new Panel(mainPanel);
-//		buttonsPanel.setLayout(new HorizontalLayout());
-//		
-//		new Button(buttonsPanel) => [
-//			caption = "Aceptar"
-//			alignRight
-//		]
-//		
-//		new Button(buttonsPanel) => [
-//			caption = "Cancelar"
-//			alignRight
-//		]
+		
+		mainPanel.layout = new ColumnLayout(2)
+		
+		var Panel topLeftPanel = new Panel(mainPanel)
+		topLeftPanel.setLayout(new VerticalLayout())
+		
+		ComponentsUtils.buildTextBoxWithLabelHorizontal( topLeftPanel , "Descripción : " , "descripcion")
+		ComponentsUtils.buildNumericFieldWithLabelHorizontal( topLeftPanel , "Nivel Max : " , "nivelMaximo")
+		ComponentsUtils.buildNumericFieldWithLabelHorizontal( topLeftPanel , "Densidad : " , "densidad")
+		
+		var Panel topRightPanel = new Panel(mainPanel)
+		topRightPanel.setLayout(new VerticalLayout())
+		
+		ComponentsUtils.buildNumericFieldWithLabelHorizontal( topRightPanel , "Nivel Min : " , "nivelMinimo")
+		ComponentsUtils.buildSelectWithLabelHorizontal(topRightPanel, "Area : " , "areas" , "areaSeleccionada" )
+		
+		var ListWithSelectComponent<Especie> listWithSelectComponent = new ListWithSelectComponent<Especie>(mainPanel, "Especie" , this.modelObject )				
+		listWithSelectComponent.render()
+		
+		var buttonsPanel = new Panel(mainPanel);
+		buttonsPanel.setLayout(new HorizontalLayout());
+		
+		new Button(buttonsPanel) => [
+			caption = "Aceptar"
+			alignRight
+			onClick([|this.modelObject.AgregarComando(administrador) this.close])
+		]
+		
+		new Button(buttonsPanel) => [
+			caption = "Cancelar"
+			alignRight
+			onClick([|this.close])
+		]
 	}
-	
-	/**
-	 * Crea un textbox con un label
-	 */
-//	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText , String textBoxValue) {
-//		var Panel subPanel = new Panel(panel)
-//		subPanel.setLayout(new HorizontalLayout())
-//		
-//		new Label(panel).text = labelText
-//		new TextBox(panel) => [
-//			value <=> textBoxValue
-//		]
-//	}
-//	
 	
 }
