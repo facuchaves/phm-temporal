@@ -5,7 +5,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Rectangulo {
-	
+	String nombre
 	Point punto1
 	Point punto2
 	
@@ -43,6 +43,10 @@ class Rectangulo {
 	
 	def boolean estaDentroDelRectangulo(Point punto){
 		return ( XMinimo <= punto.x ) && ( punto.x <= XMaximo ) && ( YMinimo <= punto.y ) && ( punto.y <= YMaximo )    
+	}
+	
+	override toString() {
+		nombre
 	}
 	
 }

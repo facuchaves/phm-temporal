@@ -1,9 +1,10 @@
 package ar.edu.unsam.algo2.tp.ui
 
+import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
+import ar.edu.unsam.algo2.tp.ui.viewModel.ModeloPoblarArea
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
 
 import ar.edu.unsam.algo2.tp.observer.CustomObserver
 import ar.edu.unsam.algo2.tp.command.AgregarAcciones
@@ -22,9 +23,15 @@ class DominioAdministracion {
 	
 	
 	new(AdministradorApplication app) {
+
 		opciones.add(new Opcion("Agregar Acciones", [|new AgregarAccionesWindow(app, this).open]))
 		// opciones.add(new Opcion("Eliminar Acciones", [ | new PoblarAreaWindows(app, new Encuesta).open ]))
-		opciones.add(new Opcion("Poblar area", [|new PoblarAreaWindows(app, new Encuesta).open]))
+//		opciones.add(new Opcion("Poblar area", [|new PoblarAreaWindows(app, new Encuesta).open]))
+
+//		opciones.add(new Opcion("Agregar Acciones", [ | new AgregarAccionesWindow(app, new ModeloAcciones, administrador).open ]))
+		//opciones.add(new Opcion("Eliminar Acciones", [ | new PoblarAreaWindows(app, new Encuesta).open ]))
+		opciones.add(new Opcion("Poblar area", [ | new PoblarAreaWindows(app, new ModeloPoblarArea , administrador).open ]))
+
 	}
 
 	
