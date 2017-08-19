@@ -9,6 +9,7 @@ import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.geodds.Point
 
+
 @Accessors
 class Entrenador implements Entidad{
 

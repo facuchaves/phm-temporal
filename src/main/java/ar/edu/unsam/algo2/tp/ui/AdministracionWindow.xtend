@@ -13,6 +13,7 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import ar.edu.unsam.algo2.tp.command.Command
 
 class AdministracionWindow extends Window<DominioAdministracion> {
 
@@ -22,54 +23,56 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 
 	override createContents(Panel mainPanel) {
 		this.title = "Administracion"
-		
+
 		mainPanel.layout = new ColumnLayout(2)
-		
+
 		var Panel leftPanel = new Panel(mainPanel)
 		leftPanel.setLayout(new VerticalLayout())
-		
-		val table = new Table<Proceso>(leftPanel , typeof (Proceso)) => [
+
+		val table = new Table<Command>(leftPanel, typeof(Command)) => [
 			items <=> "procesos"
 			numberVisibleRows = 10
+
 		]
-		
-		new Column<Proceso>(table) => [
+
+		new Column<Command>(table) => [
 			title = "Nombre"
 			fixedSize = 150
-			bindContentsToProperty("nombre")
+			bindContentsToProperty("nombreComando")
+
 		]
-		
-		new Column<Proceso>(table) => [
+
+		new Column<Command>(table) => [
 			title = "Ultima ejecucion"
 			fixedSize = 150
-			bindContentsToProperty("fecha")
+			bindContentsToProperty("ultimaEjecucion")
 		]
-		
+
 		var Panel subPanelButton = new Panel(leftPanel)
 		subPanelButton.layout = new HorizontalLayout
-		
+
 		new Button(subPanelButton) => [
 			caption = "Ejecutar"
 		]
-		
+
 		new Button(subPanelButton) => [
 			caption = "Editar"
 		]
-		
+
 		new Button(subPanelButton) => [
 			caption = "Eliminar"
 		]
-		
+
 		val Panel rightPanel = new Panel(mainPanel)
 		rightPanel.setLayout(new VerticalLayout())
-		
+
 		this.modelObject.getOpciones().forEach [ opcion |
-			new Button(rightPanel) => [ 
+			new Button(rightPanel) => [
 				caption = opcion.descripcion
 				onClick(opcion.action)
 			]
-		]	
-		
+		]
+
 //		new Button(rightPanel) => [
 //			caption = "Agregar acciones"
 //		]
@@ -90,16 +93,15 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 //		new Button(rightPanel) => [
 //			caption = "Multiple"
 //		]
-		
 	}
 
 	/**
 	 * Crea un textbox con un label
 	 */
-	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText , String textBoxValue) {
+	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
 		var Panel subPanel = new Panel(panel)
 		subPanel.setLayout(new HorizontalLayout())
-		
+
 		new Label(subPanel).text = labelText
 		new TextBox(subPanel) => [
 			value <=> textBoxValue

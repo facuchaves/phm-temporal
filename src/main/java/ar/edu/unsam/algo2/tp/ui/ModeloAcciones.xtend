@@ -17,7 +17,8 @@ class ModeloAcciones {
 
 	var CustomObserver seleccionAccion
 	var AgregarAcciones accionesNivel = new AgregarAcciones()
-
+	var CustomObserver seleccionEliminar
+	
 	def getAcciones() {
 		var notificarNivelmasAlto = new NotificarNivelMasAltoObserver()
 		var notificarNivelMultiplo = new NotificarNivelMultiploDe5Observer()
@@ -31,10 +32,12 @@ class ModeloAcciones {
 	}
 
 	def void removeAccion() {
-		accionesNivel.eliminarAccionIndividual(seleccionAccion)
+		accionesNivel.eliminarAccionIndividual(seleccionEliminar)
 	}
 	
 	def void AgregarComando(AdministacionDelSistema administrador){
 		administrador.agregarComando(this.accionesNivel)
 	}
+	
+	
 }

@@ -14,4 +14,15 @@ class AdministacionDelSistema implements AdministacionDelSistemaI{
 		comandos.add(_comando)
 	}
 	
+	def List<Command> listaComandos(){
+		comandos
+	}
+	
+	override runIndividual(Command comando) {
+		comando.execute()
+	}
+	
+	
+	
+	
 }

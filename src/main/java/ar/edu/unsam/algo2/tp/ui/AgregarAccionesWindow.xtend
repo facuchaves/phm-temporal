@@ -1,7 +1,6 @@
 package ar.edu.unsam.algo2.tp.ui
 
 import org.uqbar.arena.windows.Window
-import ar.edu.unsam.algo2.tp.command.AgregarAcciones
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
@@ -10,7 +9,6 @@ import ar.edu.unsam.algo2.tp.observer.CustomObserver
 import org.uqbar.arena.widgets.Selector
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.bindings.PropertyAdapter
-import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.tables.Table
@@ -18,13 +16,13 @@ import ar.edu.unsam.algo2.tp.observer.NotificarNivelMasAltoObserver
 import org.uqbar.arena.widgets.tables.Column
 import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
 
-class AgregarAccionesWindow extends Window<ModeloAcciones> {
 
-	var AdministacionDelSistema administrador
+class AgregarAccionesWindow extends Window<DominioAdministracion> {
 
-	new(WindowOwner owner, ModeloAcciones model, AdministacionDelSistema _administrador) {
+	 
+	
+	new(WindowOwner owner, DominioAdministracion model) {
 		super(owner, model)
-		administrador = _administrador
 	}
 
 	override createContents(Panel mainPanel) {
@@ -34,7 +32,7 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 		top.layout = new HorizontalLayout()
 		new Label(top).text = "Descripcion"
 		new TextBox(top) => [
-			value <=> "accionesNivel.nombreCommand"
+			value <=> "accionesNivel.nombreComando"
 			width = 400
 		]
 
@@ -44,11 +42,12 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 		val Panel panelInferiorIzquierdo = new Panel(panelInferior)
 
 		new Label(panelInferiorIzquierdo).text = "Acciones"
-		val tabla = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
+
+		var tabla = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
 			typeof(NotificarNivelMasAltoObserver)) => [
 			items <=> "accionesNivel.customObservers"
 			numberVisibleRows = 10
-
+			value <=> "seleccionEliminar"
 		]
 
 		new Column<NotificarNivelMasAltoObserver>(tabla) => [
@@ -58,6 +57,7 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 		]
 
 		val Panel panelInferiorDerecho = new Panel(panelInferior)
+		
 		new Label(panelInferiorDerecho).text = "Acciones"
 		new Selector<CustomObserver>(panelInferiorDerecho) => [
 			allowNull = false
@@ -86,7 +86,7 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 
 		new Button(panelAceptarCancelar) => [
 			caption = "Aceptar"
-			onClick[this.modelObject.AgregarComando(administrador) this.close]
+			onClick[this.modelObject.AgregarComando() this.close() ]
 		]
 		new Button(panelAceptarCancelar) => [
 			caption = "Cancelar"
@@ -94,5 +94,7 @@ class AgregarAccionesWindow extends Window<ModeloAcciones> {
 		]
 
 	}
+	
+	
 
 }

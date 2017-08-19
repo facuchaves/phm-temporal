@@ -5,5 +5,5 @@ import java.util.List
 interface AdministacionDelSistemaI {
 	
 	def void run(List<Command> comandos)
-	
+	def void runIndividual(Command comando)
 }

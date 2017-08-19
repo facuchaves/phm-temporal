@@ -6,13 +6,15 @@ import java.util.List
 
 import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.Calendar
+import java.time.LocalDateTime
 
 @Observable
 @Accessors
 class AgregarAcciones extends Command {
 
 	List<CustomObserver> customObservers = newArrayList
-	var String nombreCommand
+	
 
 	new() {
 	}
@@ -22,12 +24,11 @@ class AgregarAcciones extends Command {
 	}
 
 	override execute() {
+		super.execute
 		RepositorioEntrenador.instance.entrenadores.forEach[entrenador|entrenador.agregarObservers(customObservers)]
 	}
 
-	def getnombreCommand() {
-		nombreCommand
-	}
+	
 
 	def agregarAccionIndividual(CustomObserver _customObservers) {
 		customObservers.add(_customObservers)
@@ -38,5 +39,6 @@ class AgregarAcciones extends Command {
 			customObservers.remove(_customObservers)
 		}
 	}
-
+	
+	
 }
