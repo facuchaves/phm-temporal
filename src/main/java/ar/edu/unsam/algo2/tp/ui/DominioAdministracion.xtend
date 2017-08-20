@@ -27,7 +27,7 @@ class DominioAdministracion {
 		
 	new(AdministradorApplication app) {
 
-		opciones.add(new Opcion("Agregar Acciones", [| this.abrirAcciones(new AgregarAccionesWindow(app, new DominioAcciones(accionesNivel))) ]))
+		opciones.add(new Opcion("Agregar Acciones", [| this.IniciarAcciones() this.abrirAcciones(  new AgregarAccionesWindow(app, new DominioAcciones(accionesNivel))) ]))
 	
 		opciones.add(new Opcion("Poblar area", [ | new PoblarAreaWindows(app, new ModeloPoblarArea , administrador).open ]))
 
@@ -35,15 +35,15 @@ class DominioAdministracion {
 
 	@Dependencies("accionesNivel")
 	def getProcesos() {
-		comandos
+		administrador.listaComandos
 	}
 
 	def void AgregarComando() {
-		comandos.add(this.accionesNivel)
+		administrador.agregarComando(this.accionesNivel)
 	}
 	def abrirAcciones(Dialog<?> dialog){
-		dialog.onAccept[|this.AgregarComando() accionesNivel=new AgregarAcciones() ]
-		dialog.onCancel[this.IniciarAcciones()]
+		dialog.onAccept[|this.AgregarComando()  this.IniciarAcciones() ]
+		dialog.onCancel[ this.IniciarAcciones()]
 		dialog.open
 	}
 	def void IniciarAcciones(){

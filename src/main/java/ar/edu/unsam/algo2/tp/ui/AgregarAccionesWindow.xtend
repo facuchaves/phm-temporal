@@ -41,14 +41,14 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 
 		new Label(panelInferiorIzquierdo).text = "Acciones"
 
-		var tabla = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
+		var tablaAcciones = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
 			typeof(NotificarNivelMasAltoObserver)) => [
 			items <=> "accionesNivel.customObservers"
 			numberVisibleRows = 10
 			value <=> "seleccionEliminar"
 		]
 
-		new Column<NotificarNivelMasAltoObserver>(tabla) => [
+		new Column<NotificarNivelMasAltoObserver>(tablaAcciones) => [
 			fixedSize = 240
 			title = "Accion"
 			bindContentsToProperty("descripcion")
@@ -81,15 +81,7 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 		val Panel panelAceptarCancelar = new Panel(mainPanel)
 		panelAceptarCancelar.layout = new HorizontalLayout
 		panelAceptarCancelar.width = 400
-//
-//		new Button(panelAceptarCancelar) => [
-//			caption = "Aceptar"
-//			onClick[this.AgregarComando() this.close() ]
-//		]
-//		new Button(panelAceptarCancelar) => [
-//			caption = "Cancelar"
-//			onClick[this.close]
-//		]
+
 	}
 
 	override protected void addActions(Panel actions) {
