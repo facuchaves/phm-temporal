@@ -1,6 +1,5 @@
 package ar.edu.unsam.algo2.tp.ui
 
-import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
@@ -14,18 +13,17 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.tables.Table
 import ar.edu.unsam.algo2.tp.observer.NotificarNivelMasAltoObserver
 import org.uqbar.arena.widgets.tables.Column
-import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
 
+import org.uqbar.arena.aop.windows.TransactionalDialog
 
-class AgregarAccionesWindow extends Window<DominioAdministracion> {
+class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 
-	 
-	
-	new(WindowOwner owner, DominioAdministracion model) {
+	new(WindowOwner owner, DominioAcciones model) {
 		super(owner, model)
+
 	}
 
-	override createContents(Panel mainPanel) {
+	override protected createFormPanel(Panel mainPanel) {
 		this.title = "Agregar Acciones"
 
 		val Panel top = new Panel(mainPanel)
@@ -57,7 +55,7 @@ class AgregarAccionesWindow extends Window<DominioAdministracion> {
 		]
 
 		val Panel panelInferiorDerecho = new Panel(panelInferior)
-		
+
 		new Label(panelInferiorDerecho).text = "Acciones"
 		new Selector<CustomObserver>(panelInferiorDerecho) => [
 			allowNull = false
@@ -83,18 +81,31 @@ class AgregarAccionesWindow extends Window<DominioAdministracion> {
 		val Panel panelAceptarCancelar = new Panel(mainPanel)
 		panelAceptarCancelar.layout = new HorizontalLayout
 		panelAceptarCancelar.width = 400
-
-		new Button(panelAceptarCancelar) => [
-			caption = "Aceptar"
-			onClick[this.modelObject.AgregarComando() this.close() ]
-		]
-		new Button(panelAceptarCancelar) => [
-			caption = "Cancelar"
-			onClick[this.close]
-		]
-
+//
+//		new Button(panelAceptarCancelar) => [
+//			caption = "Aceptar"
+//			onClick[this.AgregarComando() this.close() ]
+//		]
+//		new Button(panelAceptarCancelar) => [
+//			caption = "Cancelar"
+//			onClick[this.close]
+//		]
 	}
-	
-	
+
+	override protected void addActions(Panel actions) {
+		new Button(actions) => [
+			caption = "Aceptar"
+			onClick [| this.accept]
+			setAsDefault
+			disableOnError
+		]
+
+		new Button(actions) => [
+			caption = "Cancelar"
+			onClick [|
+				this.cancel
+			]
+		]
+	}
 
 }
