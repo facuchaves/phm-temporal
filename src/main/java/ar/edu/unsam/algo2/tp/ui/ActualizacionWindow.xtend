@@ -1,6 +1,5 @@
 package ar.edu.unsam.algo2.tp.ui
 
-import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.layout.VerticalLayout
@@ -11,11 +10,13 @@ import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.windows.Window
+import org.uqbar.arena.windows.WindowOwner
 
-class ActualizacionWindow extends MainWindow<ActualizacionApplication> {
+class ActualizacionWindow extends Window<DominioRepositorios> {
 
-	new() {
-		super(new ActualizacionApplication)
+	new(WindowOwner owner, DominioRepositorios model) {
+		super(owner, model)
 	}
 
 	override createContents(Panel mainPanel) {
@@ -75,8 +76,13 @@ class ActualizacionWindow extends MainWindow<ActualizacionApplication> {
 		]
 	}
 	
-	def static main(String[] args) {
-		new ActualizacionWindow().startApplication
-	}
+	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
+		var Panel subPanel = new Panel(panel)
+		subPanel.setLayout(new HorizontalLayout())
 
+		new Label(subPanel).text = labelText
+		new TextBox(subPanel) => [
+			value <=> textBoxValue
+		]
+	}
 }
