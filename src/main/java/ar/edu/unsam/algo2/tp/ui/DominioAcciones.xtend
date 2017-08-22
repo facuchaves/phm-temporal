@@ -9,7 +9,7 @@ import ar.edu.unsam.algo2.tp.observer.NotificarSuperaNivelObserver
 import ar.edu.unsam.algo2.tp.observer.RecompensaNivelDeterminadoObserver
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import org.uqbar.commons.model.annotations.Dependencies
+
 
 @Accessors
 @Observable

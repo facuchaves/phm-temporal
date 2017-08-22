@@ -1,7 +1,11 @@
 package ar.edu.unsam.algo2.tp.command
 
 import java.util.List
+import org.uqbar.commons.model.annotations.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Observable
+@Accessors
 class AdministacionDelSistema implements AdministacionDelSistemaI{
 	
 	List<Command> comandos = newArrayList
@@ -22,7 +26,9 @@ class AdministacionDelSistema implements AdministacionDelSistemaI{
 		comando.execute()
 	}
 	
-	
+	def void eliminar(Command comando){
+		comandos.remove(comando)
+	}
 	
 	
 }

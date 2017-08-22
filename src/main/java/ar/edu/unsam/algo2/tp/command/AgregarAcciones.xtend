@@ -6,8 +6,6 @@ import java.util.List
 
 import org.uqbar.commons.model.annotations.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Calendar
-import java.time.LocalDateTime
 
 @Observable
 @Accessors
