@@ -27,25 +27,23 @@ class DominioRepositorios {
 	Especie bulbasaur
 	Especie ivysaur
 	Especie pikachu
-	Especie bulbasaurActualizado
-	Especie bulbasaurActualizadoTipos
-	Especie ivysaurActualizado
 	Especie charmander
 	Especie especieInvalida
 	int idInexistenteEnElRepo = 99
 	
 	RepositorioPokeparada repositorioPokeparada
 	Pokeparada pokeparadaUNSAM
-	Pokeparada pokeparadaObelisco
-	Pokeparada pokeparadaUNSAMActualizada
-	Pokeparada pokeparadaUNSAMActualizadaItem
-	Pokeparada pokeparadaObeliscoActualizada 
+	Pokeparada pokeparadaObelisco 
 	Pokeparada pokeparadaDOT 
 	Pokeparada pokeparadaJardinBotanico
 	//JsonObject pokeparadaUNSAMJson = helper.crearPokeparadaUNSAMJson
 	
 	new(ActualizacionApplication application) {
-		
+//		repositorioEspecie = getNewRepositorioEspecie
+//		repositorioPokeparada = getNewRepositorioPokeparada
+//		
+//		repos.add(repositorioEspecie)
+//		repos.add(repositorioPokeparada)
 	}
 	
 	def getRepositorios(){
@@ -64,8 +62,9 @@ class DominioRepositorios {
 		pokeparadaUNSAM = crearPokeparadaUNSAM
 		pokeparadaObelisco = crearPokeparadaObelisco
 		pokeparadaDOT = crearPokeparadaDOT
-		
-		repositorioEspecie = repositorioEspecie
+		repositorioPokeparada.create(pokeparadaUNSAM)
+		repositorioPokeparada.create(pokeparadaObelisco)
+		repositorioPokeparada.create(pokeparadaDOT)
 		
 		agregarRepositorio(repositorioEspecie)
 		agregarRepositorio(repositorioPokeparada)
@@ -111,6 +110,7 @@ class DominioRepositorios {
 	def getNewRepositorioEspecie() {
 		repositorioEspecie = RepositorioEspecie.instance
 		repositorioEspecie.clean
+		repositorioEspecie.description = "Repo Especie"
 		repositorioEspecie
 	}
 	
@@ -135,13 +135,6 @@ class DominioRepositorios {
 			items = obtenerItemsPorNombre( newArrayList( "pokebola" ,"superball" ,"poción") )
 		]
 	}
-	def crearPokeparadaQueNoEstaEnElRepo() {
-		new Pokeparada() => [
-			ubicacion = new Point( -34.603321 , -58.381123 )
-			nombre = "Pokeparada que no esta en el repositorio"
-			items = obtenerItemsPorNombre( newArrayList("pokebola" , "superball" , "poción") )
-		] 
-	}
 	def initItems() {
 		repositorioPokeparada.agregarItem(new Item(1,"pokebola"))
 		repositorioPokeparada.agregarItem(new Item(1,"superball"))
@@ -152,6 +145,7 @@ class DominioRepositorios {
 	def getNewRepositorioPokeparada() {
 		repositorioPokeparada = RepositorioPokeparada.instance
 		repositorioPokeparada.clean
+		repositorioPokeparada.description = "Repo Especie"
 		repositorioPokeparada
 	}
 	def crearPokeparadaObelisco() {

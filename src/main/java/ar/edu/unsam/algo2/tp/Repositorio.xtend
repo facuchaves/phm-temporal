@@ -10,6 +10,8 @@ abstract class Repositorio<T extends Entidad> {
 	
 	@Accessors JsonService jsonService
 	
+	@Accessors String description
+	
 	protected List<T> objetos = newArrayList();
 	int id = 0;
 
