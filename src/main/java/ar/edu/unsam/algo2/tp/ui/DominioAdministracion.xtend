@@ -22,9 +22,10 @@ class DominioAdministracion {
 
 	List<Opcion> opciones = newArrayList
 	var AdministacionDelSistema administrador = new AdministacionDelSistema()
-		List<Command> comandos = newArrayList
+	List<Command> comandos = newArrayList
 	var AgregarAcciones accionesNivel = new AgregarAcciones()
-		
+	Command procesoSeleccionado
+	
 	new(AdministradorApplication app) {
 
 		opciones.add(new Opcion("Agregar Acciones", [| this.IniciarAcciones() this.abrirAcciones(  new AgregarAccionesWindow(app, new DominioAcciones(accionesNivel))) ]))
@@ -48,6 +49,10 @@ class DominioAdministracion {
 	}
 	def void IniciarAcciones(){
 		accionesNivel=new AgregarAcciones()
+	}
+	
+	def void eliminarProceso(){
+		getProcesos().remove(procesoSeleccionado)
 	}
 }	
 

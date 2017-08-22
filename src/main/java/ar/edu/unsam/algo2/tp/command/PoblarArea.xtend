@@ -7,8 +7,10 @@ import ar.edu.unsam.algo2.tp.RepositorioPokemon
 import java.util.List
 import java.util.Random
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
+@Observable
 class PoblarArea extends Command {
 
 	String descripcion
@@ -24,6 +26,10 @@ class PoblarArea extends Command {
 
 	// Densidad: Cantidad de pokémons a crear por km2.
 	double densidad
+	
+	override getNombreComando() {
+		descripcion
+	}
 	
 	override execute() {
 		

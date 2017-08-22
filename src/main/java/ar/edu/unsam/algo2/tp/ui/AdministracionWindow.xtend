@@ -31,6 +31,7 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 
 		val table = new Table<Command>(leftPanel, typeof(Command)) => [
 			items <=> "procesos"
+			value <=> "procesoSeleccionado"
 			numberVisibleRows = 10
 
 		]
@@ -61,6 +62,7 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 
 		new Button(subPanelButton) => [
 			caption = "Eliminar"
+			onClick([|this.modelObject.eliminarProceso()])
 		]
 
 		val Panel rightPanel = new Panel(mainPanel)
