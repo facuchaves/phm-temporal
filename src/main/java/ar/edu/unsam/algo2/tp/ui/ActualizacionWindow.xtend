@@ -41,7 +41,7 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		
 		new Label(leftPanel).text = "Repositorios: "
 		new List(leftPanel) => [
-            items <=> "repositorios"
+            items <=> "repos"
             value <=> "repoSeleccionado"
             width = 100
             height = 100
@@ -51,7 +51,7 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		rightPanel.layout = new VerticalLayout
         
         new Selector(rightPanel) => [
-        	items <=> "repositorios"
+        	items <=> "repos"
         	value <=> "repoSeleccionado"
         ]
         

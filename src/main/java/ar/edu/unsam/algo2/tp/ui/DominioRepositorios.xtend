@@ -19,7 +19,9 @@ import ar.edu.unsam.algo2.tp.json.JsonParserPokeparada
 @Observable
 class DominioRepositorios {
 	List<Repositorio> repos
-	TestHelper helper = new TestHelper
+	//TestHelper helper = new TestHelper
+	List<Opcion> opciones = newArrayList
+	Repositorio repoSeleccionado
 	
 	RepositorioEspecie repositorioEspecie
 	Especie bulbasaur
@@ -40,66 +42,80 @@ class DominioRepositorios {
 	Pokeparada pokeparadaObeliscoActualizada 
 	Pokeparada pokeparadaDOT 
 	Pokeparada pokeparadaJardinBotanico
-	JsonObject pokeparadaUNSAMJson = helper.crearPokeparadaUNSAMJson
+	//JsonObject pokeparadaUNSAMJson = helper.crearPokeparadaUNSAMJson
 	
 	new(ActualizacionApplication application) {
-		
 		
 	}
 	
 	def getRepositorios(){
-		
-		//Repositorio Especie
-		helper.repositorioEspecie = newRepositorioEspecie
 		initTipos()
-		bulbasaur = helper.crearBulbasaur
-		ivysaur = helper.crearIzysaur
-		bulbasaurActualizado = helper.crearBulbasaur
-		bulbasaurActualizado.nombre = "Bulbasaur actualizado"
-		bulbasaurActualizadoTipos = helper.crearBulbasaur
-		bulbasaurActualizadoTipos.nombre = "Bulbasaur actualizado"
-		bulbasaurActualizadoTipos.tipos = newArrayList(helper.repositorioEspecie.getTipoByNombre("veneno"))
-		ivysaurActualizado = helper.crearIzysaur
-		ivysaurActualizado.nombre = "Ivysaur Actualizado"
-		helper.repositorioEspecie.create(bulbasaur)
-		helper.repositorioEspecie.create(ivysaur)
+		//Repositorio Especie
+		repositorioEspecie = RepositorioEspecie.instance
+		bulbasaur = crearBulbasaur
+		ivysaur = crearIzysaur
+		repositorioEspecie.create(bulbasaur)
+		repositorioEspecie.create(ivysaur)
 		
 		
 		//Repositorio Pokeparada
 		repositorioPokeparada = getNewRepositorioPokeparada
 		initItems()
 		pokeparadaUNSAM = crearPokeparadaUNSAM
-		pokeparadaUNSAMActualizada = crearPokeparadaUNSAM
-		pokeparadaUNSAMActualizada.nombre = "Pokeparada UNSAM Actualizada"
-		pokeparadaUNSAMActualizadaItem = crearPokeparadaUNSAM
-		pokeparadaUNSAMActualizadaItem.nombre = "Pokeparada UNSAM Actualizada"
-		pokeparadaUNSAMActualizadaItem.items = newArrayList( repositorioPokeparada.getItemByNombre("pokebola") )
 		pokeparadaObelisco = crearPokeparadaObelisco
-		pokeparadaObeliscoActualizada = crearPokeparadaObelisco
-		pokeparadaObeliscoActualizada.nombre = "Pokeparada obelisco Actualizada"
 		pokeparadaDOT = crearPokeparadaDOT
-		repositorioPokeparada.create(pokeparadaUNSAM)
-		repositorioPokeparada.create(pokeparadaObelisco)
-		repositorioPokeparada.jsonParserPokeparada = new JsonParserPokeparada
 		
-		repositorioEspecie = helper.repositorioEspecie
+		repositorioEspecie = repositorioEspecie
 		
 		agregarRepositorio(repositorioEspecie)
 		agregarRepositorio(repositorioPokeparada)
 		
-		
+		repos
 	}
 	
 	def initTipos() {
-		helper.repositorioEspecie.agregarTipo(new Tipo("hierba"))
-		helper.repositorioEspecie.agregarTipo(new Tipo("veneno"))
-		helper.repositorioEspecie.agregarTipo(new Tipo("electricidad"))
-		helper.repositorioEspecie.agregarTipo(new Tipo("fuego"))
+		repositorioEspecie.agregarTipo(new Tipo("hierba"))
+		repositorioEspecie.agregarTipo(new Tipo("veneno"))
+		repositorioEspecie.agregarTipo(new Tipo("electricidad"))
+		repositorioEspecie.agregarTipo(new Tipo("fuego"))
 	}
+	
+	def crearBulbasaur() {
+		new Especie() => [
+			numero = 1
+			nombre = "Bulbasaur"
+			puntosAtaque = 10
+			puntosSalud = 15
+			descripcion = "Este pokemon es un Bulbasaur es fácil verle echándose una siesta al sol."
+			tipos = tiposDelTest
+			velocidad = 7
+		]
+	}
+	
+	def crearIzysaur() {
+		new Especie() => [
+			numero = 2
+			nombre = "Ivysaur"
+			puntosAtaque = 15
+			puntosSalud = 20
+			descripcion = "Este pokemon lleva un bulbo en el lomo."
+			tipos = tiposDelTest
+			velocidad = 8
+		]
+	}
+	
+	def getTiposDelTest() {
+		obtenerTiposPorNombres( newArrayList( "hierba" , "veneno") )
+	}
+	
 	def getNewRepositorioEspecie() {
-		helper.repositorioEspecie = RepositorioEspecie.instance
-		helper.repositorioEspecie.clean
-		helper.repositorioEspecie
+		repositorioEspecie = RepositorioEspecie.instance
+		repositorioEspecie.clean
+		repositorioEspecie
+	}
+	
+	def obtenerTiposPorNombres(List<String> nombresDeTipos){
+		nombresDeTipos.map[ nombreDeTipo | repositorioEspecie.getTipoByNombre( nombreDeTipo ) ].toList
 	}
 	
 	def crearPokeparadaDOT() {
