@@ -1,14 +1,17 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Item
-import ar.edu.unsam.algo2.tp.Pokeparada
-import ar.edu.unsam.algo2.tp.RepositorioPokeparada
-import ar.edu.unsam.algo2.tp.exception.DuplicadoExcepcion
-import ar.edu.unsam.algo2.tp.exception.ObjetoNoEncontradoExcepcion
-import ar.edu.unsam.algo2.tp.exception.ValidacionExcepcion
-import ar.edu.unsam.algo2.tp.json.JsonParserPokeparada
+import ar.edu.unsam.algo3.tp.model.Item
+import ar.edu.unsam.algo3.tp.model.Pokeparada
+import ar.edu.unsam.algo3.tp.model.RepositorioPokeparada
+import ar.edu.unsam.algo3.tp.model.exception.DuplicadoExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.ObjetoNoEncontradoExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.ValidacionExcepcion
+import ar.edu.unsam.algo3.tp.model.json.JsonParserPokeparada
+import ar.edu.unsam.algo3.tp.model.serviciosExternos.JsonService
 import com.eclipsesource.json.Json
+import com.eclipsesource.json.JsonArray
 import com.eclipsesource.json.JsonObject
+import com.eclipsesource.json.ParseException
 import java.util.List
 import org.junit.Assert
 import org.junit.Before
@@ -16,8 +19,6 @@ import org.junit.Test
 import org.uqbar.geodds.Point
 
 import static org.mockito.Mockito.*
-import com.eclipsesource.json.JsonArray
-import ar.edu.unsam.algo2.tp.serviciosExternos.JsonService
 
 class RepositorioPokeparadaTest extends TestHelper{
 	
@@ -437,7 +438,7 @@ class RepositorioPokeparadaTest extends TestHelper{
 		)
 	}
 	
-	  @Test(expected=com.eclipsesource.json.ParseException)
+	  @Test(expected=ParseException)
 	def void testUpdateAllPokeparadaInvalida(){
 		var JsonArray pokeparadasCreaYActualizaJSONObject = Json.array.asArray().add(crearPokeparadaQueNoEstaEnElRepoJson)
 		val String pokeparadasActualizarString = pokeparadasCreaYActualizaJSONObject.toString
@@ -445,7 +446,7 @@ class RepositorioPokeparadaTest extends TestHelper{
 		repositorioPokeparada.updateAll
 	}
 	
-	@Test(expected=com.eclipsesource.json.ParseException)
+	@Test(expected=ParseException)
 	def void testUpdateAllPokeparadaInvalidaYActualizaPokeparadaValida(){
 		var JsonArray pokeparadasCreaYActualizaJSONObject = Json.array.asArray().add(crearPokeparadaConCoordenadasMalJson).add(crearPokeparadaDOTJson)
 		pokeparadasCreaYActualizaJSONObject.get(1).asObject.get("itemsDisponibles").asArray.remove(0)
@@ -462,7 +463,7 @@ class RepositorioPokeparadaTest extends TestHelper{
 		)
 	}
 	
-	@Test(expected=com.eclipsesource.json.ParseException)
+	@Test(expected=ParseException)
 	def void testUpdateAllPokeparadaInvalidaYCreaPokeparadaValida(){
 		var JsonArray pokeparadasCreaYActualizaJSONObject = Json.array.asArray().add(crearPokeparadaConCoordenadasMalJson).add(crearPokeparadaDOTJson)
 		val String pokeparadasActualizarString = pokeparadasCreaYActualizaJSONObject.toString

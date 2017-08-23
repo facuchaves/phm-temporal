@@ -1,14 +1,14 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.IngredienteDecorator
-import ar.edu.unsam.algo2.tp.IngredienteValorFijoDecorator
-import ar.edu.unsam.algo2.tp.IngredienteValorPorcentualConEspeciesFuertesDecorator
-import ar.edu.unsam.algo2.tp.IngredienteValorPorcentualDecorator
-import ar.edu.unsam.algo2.tp.MaxPocion
-import ar.edu.unsam.algo2.tp.Pocion
-import ar.edu.unsam.algo2.tp.Pokemon
-import ar.edu.unsam.algo2.tp.Tipo
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.IngredienteDecorator
+import ar.edu.unsam.algo3.tp.model.IngredienteValorFijoDecorator
+import ar.edu.unsam.algo3.tp.model.IngredienteValorPorcentualConEspeciesFuertesDecorator
+import ar.edu.unsam.algo3.tp.model.IngredienteValorPorcentualDecorator
+import ar.edu.unsam.algo3.tp.model.MaxPocion
+import ar.edu.unsam.algo3.tp.model.Pocion
+import ar.edu.unsam.algo3.tp.model.Pokemon
+import ar.edu.unsam.algo3.tp.model.Tipo
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

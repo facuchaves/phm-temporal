@@ -1,10 +1,10 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Entrenador
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.Pokemon
-import ar.edu.unsam.algo2.tp.RepositorioEspecie
-import ar.edu.unsam.algo2.tp.Tipo
+import ar.edu.unsam.algo3.tp.model.Entrenador
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.Pokemon
+import ar.edu.unsam.algo3.tp.model.RepositorioEspecie
+import ar.edu.unsam.algo3.tp.model.Tipo
 import com.eclipsesource.json.Json
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors

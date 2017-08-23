@@ -1,21 +1,20 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.RepositorioEspecie
-import ar.edu.unsam.algo2.tp.Tipo
-import ar.edu.unsam.algo2.tp.exception.DuplicadoExcepcion
-import ar.edu.unsam.algo2.tp.exception.ObjetoNoEncontradoExcepcion
-import ar.edu.unsam.algo2.tp.exception.ValidacionExcepcion
-import ar.edu.unsam.algo2.tp.json.JsonParserEspecie
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.RepositorioEspecie
+import ar.edu.unsam.algo3.tp.model.Tipo
+import ar.edu.unsam.algo3.tp.model.exception.DuplicadoExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.ObjetoNoEncontradoExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.ValidacionExcepcion
+import ar.edu.unsam.algo3.tp.model.json.JsonParserEspecie
+import ar.edu.unsam.algo3.tp.model.serviciosExternos.JsonService
 import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonArray
-import java.util.List
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 import static org.mockito.Mockito.*
-import ar.edu.unsam.algo2.tp.serviciosExternos.JsonService
 
 class RepositorioEspecieTest extends TestHelper {
 

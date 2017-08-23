@@ -1,12 +1,12 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Coleccionista
-import ar.edu.unsam.algo2.tp.Criador
-import ar.edu.unsam.algo2.tp.Entrenador
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.Genero
-import ar.edu.unsam.algo2.tp.Luchador
-import ar.edu.unsam.algo2.tp.Pokemon
+import ar.edu.unsam.algo3.tp.model.Coleccionista
+import ar.edu.unsam.algo3.tp.model.Criador
+import ar.edu.unsam.algo3.tp.model.Entrenador
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.Genero
+import ar.edu.unsam.algo3.tp.model.Luchador
+import ar.edu.unsam.algo3.tp.model.Pokemon
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

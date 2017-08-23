@@ -1,17 +1,17 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Entrenador
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.Pokebola
-import ar.edu.unsam.algo2.tp.Pokeparada
-import ar.edu.unsam.algo2.tp.exception.DistanciaExcepcion
-import ar.edu.unsam.algo2.tp.exception.SinDineroExcepcion
-import ar.edu.unsam.algo2.tp.exception.ValidacionExcepcion
+import ar.edu.unsam.algo3.tp.model.Entrenador
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.Pocion
+import ar.edu.unsam.algo3.tp.model.Pokebola
+import ar.edu.unsam.algo3.tp.model.Pokeparada
+import ar.edu.unsam.algo3.tp.model.exception.DistanciaExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.SinDineroExcepcion
+import ar.edu.unsam.algo3.tp.model.exception.ValidacionExcepcion
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.uqbar.geodds.Point
-import ar.edu.unsam.algo2.tp.Pocion
 
 class PokeparadaTest extends TestHelper {
 

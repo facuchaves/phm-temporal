@@ -1,13 +1,13 @@
 package ar.edu.unsam.algo2.tp.test.json
 
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.Item
-import ar.edu.unsam.algo2.tp.RepositorioEspecie
-import ar.edu.unsam.algo2.tp.RepositorioPokeparada
-import ar.edu.unsam.algo2.tp.Tipo
-import ar.edu.unsam.algo2.tp.json.JsonParserEspecie
-import ar.edu.unsam.algo2.tp.json.JsonParserPokeparada
 import ar.edu.unsam.algo2.tp.test.TestHelper
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.Item
+import ar.edu.unsam.algo3.tp.model.RepositorioEspecie
+import ar.edu.unsam.algo3.tp.model.RepositorioPokeparada
+import ar.edu.unsam.algo3.tp.model.Tipo
+import ar.edu.unsam.algo3.tp.model.json.JsonParserEspecie
+import ar.edu.unsam.algo3.tp.model.json.JsonParserPokeparada
 import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonArray
 import com.eclipsesource.json.JsonObject

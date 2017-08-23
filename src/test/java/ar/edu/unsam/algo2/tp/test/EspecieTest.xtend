@@ -1,8 +1,8 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.Tipo
-import ar.edu.unsam.algo2.tp.exception.ValidacionExcepcion
+import ar.edu.unsam.algo3.tp.model.Especie
+import ar.edu.unsam.algo3.tp.model.Tipo
+import ar.edu.unsam.algo3.tp.model.exception.ValidacionExcepcion
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

@@ -1,9 +1,9 @@
 package ar.edu.unsam.algo2.tp.test
 
-import ar.edu.unsam.algo2.tp.TablaNiveles
+import ar.edu.unsam.algo3.tp.model.TablaNiveles
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert
 
 class TablaNivelesTest {
 	
