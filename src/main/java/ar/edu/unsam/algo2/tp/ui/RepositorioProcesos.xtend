@@ -33,5 +33,10 @@ class RepositorioProcesos {
 	def agregarProceso(Command proceso){
 		procesos.add(proceso)
 	}
+	def eliminarProceso(Command proceso){
+		if (procesos.contains(proceso)){
+			procesos.remove(proceso)
+		}
+	}
 	
 }

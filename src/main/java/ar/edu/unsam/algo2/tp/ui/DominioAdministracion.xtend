@@ -23,20 +23,20 @@ class DominioAdministracion {
 		aplicacion = app
 		opciones.add(new Opcion("Agregar Acciones", [|
 			this.actualizaFlagDependencies()
-			this.abrirAcciones(new AgregarAccionesWindow(app, new DominioAcciones( new AgregarAcciones)))
+			this.abrirAcciones(new AgregarAccionesWindow(app, new DominioAcciones(new AgregarAcciones)))
 		]))
-		opciones.add(new Opcion("Poblar area", [| this.abrirAcciones( new PoblarAreaWindows(app, new ModeloPoblarArea) ) ]))
+		opciones.add(new Opcion("Poblar area", [|this.abrirAcciones(new PoblarAreaWindows(app, new ModeloPoblarArea))]))
 
 	}
 
 	def abrirAcciones(Dialog<?> dialog) {
-		dialog.onAccept[| this.actualizaFlagDependencies()]
+		dialog.onAccept[|this.actualizaFlagDependencies()]
 		dialog.onCancel[this.actualizaFlagDependencies()]
 		dialog.open
 	}
 
 	def void actualizaFlagDependencies() {
-		flagDependencies ++
+		flagDependencies++
 	}
 
 	def void editarComando() {
@@ -44,27 +44,30 @@ class DominioAdministracion {
 	}
 
 	def dispatch editarDialogo(AgregarAcciones _AgregarAcciones) {
-		this.editarAcciones(new AgregarAccionesWindow(aplicacion, new DominioAcciones(_AgregarAcciones)))
-		actualizaFlagDependencies
+		this.editarAcciones(new EditarAccionesWindow(aplicacion, new DominioAcciones(_AgregarAcciones)))
+		this.actualizaFlagDependencies()
 	}
 
 	def dispatch editarDialogo(PoblarArea _PoblarArea) {
 	}
 
 	def editarAcciones(Dialog<?> dialog) {
+		dialog.onAccept[|this.actualizaFlagDependencies()]
+		dialog.onCancel[this.actualizaFlagDependencies()]
 		dialog.open
 	}
 
 	def eliminarComando() {
-//		administrador.eliminar(comandoSeleccionado)
+		repoProcesos.eliminarProceso(comandoSeleccionado)
 		comandoSeleccionado = null
+		actualizaFlagDependencies
 	}
-	
+
 	RepositorioProcesos repoProcesos = RepositorioProcesos.instance
-	
+
 	@Dependencies("flagDependencies")
-	def getProcesosFacu(){
+	def getProcesosFacu() {
 		RepositorioProcesos.instance.procesos
 	}
-	
+
 }

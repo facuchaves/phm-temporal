@@ -65,7 +65,7 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 			value <=> "seleccionAccion"
 		]
 
-		val Panel panelInferioDerechoInterior = new Panel(panelInferiorDerecho)
+		var Panel panelInferioDerechoInterior = new Panel(panelInferiorDerecho)
 		panelInferioDerechoInterior.layout = new HorizontalLayout()
 
 		new Button(panelInferioDerechoInterior) => [

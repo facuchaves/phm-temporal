@@ -45,5 +45,4 @@ class DominioAcciones {
 		RepositorioProcesos.instance.agregarProceso(accion)
 	}
 	
-
 }
