@@ -30,7 +30,7 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 		top.layout = new HorizontalLayout()
 		new Label(top).text = "Descripcion"
 		new TextBox(top) => [
-			value <=> "accionesNivel.nombreComando"
+			value <=> "accion.nombreComando"
 			width = 400
 		]
 
@@ -43,7 +43,7 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 
 		var tablaAcciones = new Table<NotificarNivelMasAltoObserver>(panelInferiorIzquierdo,
 			typeof(NotificarNivelMasAltoObserver)) => [
-			items <=> "accionesNivel.customObservers"
+			items <=> "accion.customObservers"
 			numberVisibleRows = 10
 			value <=> "seleccionEliminar"
 		]
@@ -87,7 +87,7 @@ class AgregarAccionesWindow extends TransactionalDialog<DominioAcciones> {
 	override protected void addActions(Panel actions) {
 		new Button(actions) => [
 			caption = "Aceptar"
-			onClick [| this.accept]
+			onClick [| this.modelObject.agregar this.accept]
 			setAsDefault
 			disableOnError
 		]

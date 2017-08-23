@@ -1,29 +1,26 @@
 package ar.edu.unsam.algo2.tp.ui
 
 import ar.edu.unsam.algo2.tp.Especie
-import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
 import ar.edu.unsam.algo2.tp.ui.utils.ComponentsUtils
 import ar.edu.unsam.algo2.tp.ui.utils.ListWithSelectComponent
 import ar.edu.unsam.algo2.tp.ui.viewModel.ModeloPoblarArea
+import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
-class PoblarAreaWindows extends Window<ModeloPoblarArea> {
+class PoblarAreaWindows extends TransactionalDialog<ModeloPoblarArea> {
 	
-	var AdministacionDelSistema administrador
 	
-	new(WindowOwner parent, ModeloPoblarArea model, AdministacionDelSistema _administrador) {
+	new(WindowOwner parent, ModeloPoblarArea model) {
 		super(parent, model)
-		administrador = _administrador
 	}
 	
 	
-	override createContents(Panel mainPanel) {
+	override createFormPanel(Panel mainPanel) {
 		this.title = "Poblar Area"
 		
 		mainPanel.layout = new ColumnLayout(2)
@@ -50,7 +47,7 @@ class PoblarAreaWindows extends Window<ModeloPoblarArea> {
 		new Button(buttonsPanel) => [
 			caption = "Aceptar"
 			alignRight
-			onClick([|this.modelObject.AgregarComando(administrador) this.close])
+			onClick([|this.modelObject.agregarComando this.accept ])
 		]
 		
 		new Button(buttonsPanel) => [
@@ -59,5 +56,9 @@ class PoblarAreaWindows extends Window<ModeloPoblarArea> {
 			onClick([|this.close])
 		]
 	}
+	
+//	override protected createFormPanel(Panel mainPanel) {
+//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+//	}
 	
 }

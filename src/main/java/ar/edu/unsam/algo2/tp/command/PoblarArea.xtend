@@ -69,5 +69,9 @@ class PoblarArea extends Command {
 	def Especie getRandomEspecie(){
 		return RandomUtils.getRandomElementInList( especies )
 	}
-
+	
+	override toString() {
+		nombreComando
+	}
+	
 }

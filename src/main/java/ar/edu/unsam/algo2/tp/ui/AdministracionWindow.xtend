@@ -31,7 +31,7 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 		leftPanel.layout = new VerticalLayout()
 
 		val table = new Table<Command>(leftPanel, typeof(Command)) => [
-			items <=> "administrador.comandos"
+			items <=> "procesosFacu"
 			numberVisibleRows = 10
 			value <=> "comandoSeleccionado"
 		]

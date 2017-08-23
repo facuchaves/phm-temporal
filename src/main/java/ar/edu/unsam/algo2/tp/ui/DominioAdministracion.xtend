@@ -1,54 +1,42 @@
 package ar.edu.unsam.algo2.tp.ui
 
-import ar.edu.unsam.algo2.tp.command.AdministacionDelSistema
+import ar.edu.unsam.algo2.tp.command.AgregarAcciones
+import ar.edu.unsam.algo2.tp.command.Command
+import ar.edu.unsam.algo2.tp.command.PoblarArea
 import ar.edu.unsam.algo2.tp.ui.viewModel.ModeloPoblarArea
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.Observable
-import ar.edu.unsam.algo2.tp.command.AgregarAcciones
-import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.arena.windows.Dialog
-import ar.edu.unsam.algo2.tp.command.Command
-import ar.edu.unsam.algo2.tp.command.PoblarArea
+import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.annotations.Observable
 
 @Accessors
 @Observable
 class DominioAdministracion {
 
 	List<Opcion> opciones = newArrayList
-	var AdministacionDelSistema administrador = new AdministacionDelSistema()
-	List<Command> comandos = newArrayList
-	var AgregarAcciones accionesNivel = new AgregarAcciones()
+	var Integer flagDependencies = 0
 	var Command comandoSeleccionado
 	var AdministradorApplication aplicacion
 
 	new(AdministradorApplication app) {
 		aplicacion = app
 		opciones.add(new Opcion("Agregar Acciones", [|
-			this.IniciarAcciones()
-			this.abrirAcciones(new AgregarAccionesWindow(app, new DominioAcciones(accionesNivel)))
+			this.actualizaFlagDependencies()
+			this.abrirAcciones(new AgregarAccionesWindow(app, new DominioAcciones( new AgregarAcciones)))
 		]))
-		opciones.add(new Opcion("Poblar area", [|new PoblarAreaWindows(app, new ModeloPoblarArea, administrador).open]))
+		opciones.add(new Opcion("Poblar area", [| this.abrirAcciones( new PoblarAreaWindows(app, new ModeloPoblarArea) ) ]))
 
-	}
-
-	@Dependencies("accionesNivel", "comandoSeleccionado")
-	def getProcesos() {
-		administrador.listaComandos
-	}
-
-	def void AgregarComando() {
-		administrador.agregarComando(this.accionesNivel)
 	}
 
 	def abrirAcciones(Dialog<?> dialog) {
-		dialog.onAccept[|this.AgregarComando() this.IniciarAcciones()]
-		dialog.onCancel[this.IniciarAcciones()]
+		dialog.onAccept[| this.actualizaFlagDependencies()]
+		dialog.onCancel[this.actualizaFlagDependencies()]
 		dialog.open
 	}
 
-	def void IniciarAcciones() {
-		accionesNivel = new AgregarAcciones()
+	def void actualizaFlagDependencies() {
+		flagDependencies ++
 	}
 
 	def void editarComando() {
@@ -57,7 +45,7 @@ class DominioAdministracion {
 
 	def dispatch editarDialogo(AgregarAcciones _AgregarAcciones) {
 		this.editarAcciones(new AgregarAccionesWindow(aplicacion, new DominioAcciones(_AgregarAcciones)))
-		IniciarAcciones
+		actualizaFlagDependencies
 	}
 
 	def dispatch editarDialogo(PoblarArea _PoblarArea) {
@@ -68,8 +56,15 @@ class DominioAdministracion {
 	}
 
 	def eliminarComando() {
-		administrador.eliminar(comandoSeleccionado)
+//		administrador.eliminar(comandoSeleccionado)
 		comandoSeleccionado = null
 	}
-
+	
+	RepositorioProcesos repoProcesos = RepositorioProcesos.instance
+	
+	@Dependencies("flagDependencies")
+	def getProcesosFacu(){
+		RepositorioProcesos.instance.procesos
+	}
+	
 }

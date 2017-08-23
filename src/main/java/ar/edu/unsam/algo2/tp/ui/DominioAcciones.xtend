@@ -15,12 +15,13 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class DominioAcciones {
 
-	var AgregarAcciones accionesNivel = new AgregarAcciones
+	var AgregarAcciones accion
+	
 	var CustomObserver seleccionAccion
 	var CustomObserver seleccionEliminar
 
 	new(AgregarAcciones _A) {
-		accionesNivel = _A
+		accion = _A
 	}
 
 	def getAcciones() {
@@ -32,15 +33,17 @@ class DominioAcciones {
 	}
 	
 	def void addAccion() {
-		accionesNivel.agregarAccionIndividual(seleccionAccion)
+		accion.agregarAccionIndividual(seleccionAccion)
 	}
 
 	def void removeAccion() {
-		accionesNivel.eliminarAccionIndividual(seleccionEliminar)
+		accion.eliminarAccionIndividual(seleccionEliminar)
 	}
 	
 	
-	
+	def agregar(){
+		RepositorioProcesos.instance.agregarProceso(accion)
+	}
 	
 
 }
