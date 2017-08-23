@@ -12,6 +12,9 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
+import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.bindings.PropertyAdapter
+import ar.edu.unsam.algo2.tp.Repositorio
 
 class ActualizacionWindow extends Window<DominioRepositorios> {
 
@@ -28,7 +31,7 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		
 		new Label(horiPanel).text = "Descripción: "
 		new TextBox(horiPanel) => [
-			value <=> "repoSeleccionado"
+			value <=> "nombreRepo"
 			width = 200
 		]
 		
@@ -41,8 +44,9 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		
 		new Label(leftPanel).text = "Repositorios: "
 		new List(leftPanel) => [
-            items <=> "repos"
+			allowNull(false)
             value <=> "repoSeleccionado"
+            items <=> "repositorios"
             width = 100
             height = 100
         ]
@@ -51,7 +55,10 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		rightPanel.layout = new VerticalLayout
         
         new Selector(rightPanel) => [
-        	items <=> "repos"
+        	allowNull(false)
+//        	val bindingItems = items <=> new ObservableProperty(this.modelObject, "repositorios")
+//     		bindingItems.adapter = new PropertyAdapter(typeof(Repositorio), "description")
+     		items <=> "repositorios"
         	value <=> "repoSeleccionado"
         ]
         
@@ -59,6 +66,7 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		underRightPanel.layout = new ColumnLayout(2)
 		new Button(underRightPanel) => [
 			caption = "Agregar Repositorio"
+//			onClick(|this.modelObject.agregarRepositorio())
 		]
 		new Button(underRightPanel) => [
 			caption = "Eliminar Repositorio"
@@ -76,13 +84,13 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		]
 	}
 	
-	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
-		var Panel subPanel = new Panel(panel)
-		subPanel.setLayout(new HorizontalLayout())
-
-		new Label(subPanel).text = labelText
-		new TextBox(subPanel) => [
-			value <=> textBoxValue
-		]
-	}
+//	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
+//		var Panel subPanel = new Panel(panel)
+//		subPanel.setLayout(new HorizontalLayout())
+//
+//		new Label(subPanel).text = labelText
+//		new TextBox(subPanel) => [
+//			value <=> textBoxValue
+//		]
+//	}
 }

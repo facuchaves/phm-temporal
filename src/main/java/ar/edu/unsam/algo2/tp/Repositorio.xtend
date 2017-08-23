@@ -127,5 +127,8 @@ abstract class Repositorio<T extends Entidad> {
 	}
 	
 	def String getJson()
-
+	
+	override toString(){
+		description
+	}
 }
