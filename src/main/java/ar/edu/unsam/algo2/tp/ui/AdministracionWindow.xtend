@@ -1,6 +1,6 @@
 package ar.edu.unsam.algo2.tp.ui
 
-import org.uqbar.arena.layout.ColumnLayout
+
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -14,6 +14,7 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import ar.edu.unsam.algo2.tp.command.Command
+import org.uqbar.arena.bindings.NotNullObservable
 
 class AdministracionWindow extends Window<DominioAdministracion> {
 
@@ -24,16 +25,15 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 	override createContents(Panel mainPanel) {
 		this.title = "Administracion"
 
-		mainPanel.layout = new ColumnLayout(2)
+		mainPanel.layout = new HorizontalLayout
 
 		var Panel leftPanel = new Panel(mainPanel)
-		leftPanel.setLayout(new VerticalLayout())
+		leftPanel.layout = new VerticalLayout()
 
 		val table = new Table<Command>(leftPanel, typeof(Command)) => [
-			items <=> "procesos"
-			value <=> "procesoSeleccionado"
+			items <=> "administrador.comandos"
 			numberVisibleRows = 10
-
+			value <=> "comandoSeleccionado"
 		]
 
 		new Column<Command>(table) => [
@@ -52,49 +52,35 @@ class AdministracionWindow extends Window<DominioAdministracion> {
 		var Panel subPanelButton = new Panel(leftPanel)
 		subPanelButton.layout = new HorizontalLayout
 
+		val comandoSelected = new NotNullObservable("comandoSeleccionado")
 		new Button(subPanelButton) => [
 			caption = "Ejecutar"
+			bindEnabled(comandoSelected)
 		]
 
 		new Button(subPanelButton) => [
 			caption = "Editar"
+			bindEnabled(comandoSelected)
+			onClick[this.modelObject.editarComando()]
 		]
 
 		new Button(subPanelButton) => [
 			caption = "Eliminar"
-			onClick([|this.modelObject.eliminarProceso()])
+			bindEnabled(comandoSelected)
+			onClick[this.modelObject.eliminarComando()]
 		]
 
 		val Panel rightPanel = new Panel(mainPanel)
-		rightPanel.setLayout(new VerticalLayout())
+		rightPanel.layout = new VerticalLayout()
 
 		this.modelObject.getOpciones().forEach [ opcion |
 			new Button(rightPanel) => [
 				caption = opcion.descripcion
 				onClick(opcion.action)
+				enabled
 			]
 		]
 
-//		new Button(rightPanel) => [
-//			caption = "Agregar acciones"
-//		]
-//
-//		new Button(rightPanel) => [
-//			caption = "Remover acciones"
-//		]
-//		
-//		new Button(rightPanel) => [
-//			caption = "Poblar area"
-//			onClick( | modelObject.poblarArea )
-//		]
-//		
-//		new Button(rightPanel) => [
-//			caption = "Actualizar"
-//		]
-//		
-//		new Button(rightPanel) => [
-//			caption = "Multiple"
-//		]
 	}
 
 	/**
