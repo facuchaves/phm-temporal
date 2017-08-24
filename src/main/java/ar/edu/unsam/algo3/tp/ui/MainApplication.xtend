@@ -11,7 +11,7 @@ class MainApplication extends Application {
 	}
 
 	override protected Window<?> createMainWindow() {
-		return new AdministracionWindow(this, new AdministracionModelo(this))
+		return new AdministracionWindow(this, new AdministracionModelo())
 	}
 	
 }

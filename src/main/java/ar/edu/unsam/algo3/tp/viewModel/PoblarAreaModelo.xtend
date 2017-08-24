@@ -13,19 +13,13 @@ import org.uqbar.geodds.Point
 @Observable
 class PoblarAreaModelo extends ModelWithListAndSelect<Especie> {
 	
-	String descripcion
-	
-	// Nivel mínimo y máximo: Los pokémons creados tendrán un nivel dentro de este rango.
-	int nivelMinimo
-	int nivelMaximo
-	 
-	// Densidad: Cantidad de pokémons a crear por km2.
-	double densidad
-	
-	Rectangulo areaSeleccionada
+	PoblarArea poblarAreaCommand
+
 	List<Rectangulo> areas = newArrayList
 	
-	new() {
+	new(PoblarArea poblarArea ) {
+		poblarAreaCommand = poblarArea
+		
 		this.select.add( new Especie() => [
 			numero = 1
 			nombre = "Bulbasaur"
@@ -86,15 +80,7 @@ class PoblarAreaModelo extends ModelWithListAndSelect<Especie> {
 	}
 	
 	def void agregarComando(){
-		var PoblarArea poblarArea = new PoblarArea() => [
-			it.descripcion = descripcion
-			it.nivelMinimo = nivelMinimo
-			it.nivelMaximo = nivelMaximo
-			it.densidad = densidad
-			it.rectangulo = areaSeleccionada
-			
-		]
-		RepositorioProcesos.instance.agregarProceso(poblarArea)
+		RepositorioProcesos.instance.agregarProceso(poblarAreaCommand)
 	}
 	
 }

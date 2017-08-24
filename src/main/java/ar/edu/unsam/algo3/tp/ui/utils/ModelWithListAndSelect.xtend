@@ -1,14 +1,15 @@
 package ar.edu.unsam.algo3.tp.ui.utils
 
+import ar.edu.unsam.algo3.tp.model.command.Command
+import java.util.HashSet
 import java.util.List
 import java.util.Set
-import org.uqbar.commons.model.annotations.Observable
-import java.util.HashSet
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 @Accessors
-abstract class ModelWithListAndSelect<T> {
+abstract class ModelWithListAndSelect<T> extends Command{
 	
 //	def void init()
 	

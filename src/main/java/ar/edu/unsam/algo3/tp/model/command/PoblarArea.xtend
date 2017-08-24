@@ -32,7 +32,7 @@ class PoblarArea extends Command {
 	}
 	
 	override execute() {
-		
+		super.execute
 		var int cantidadPokemones = (rectangulo.area * densidad).intValue
 		
 		var List<Pokemon> pokemones = newArrayList

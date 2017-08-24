@@ -23,8 +23,9 @@ class ListWithSelectComponent<T> {
 	
 	def render(){
 		
-		var Panel bottomLeftPanel = new Panel(panel)
-		bottomLeftPanel.setLayout(new HorizontalLayout())
+		var Panel subPanel = new Panel(panel).layout = new HorizontalLayout
+		
+		var bottomLeftPanel = new Panel(subPanel).layout = new HorizontalLayout
 		
 		new Label(bottomLeftPanel).text = label
 		new List(bottomLeftPanel) => [
@@ -34,8 +35,7 @@ class ListWithSelectComponent<T> {
 			height = 220
 		]
 
-		var Panel bottomRightPanel = new Panel(panel)
-		bottomRightPanel.setLayout(new VerticalLayout())
+		var Panel bottomRightPanel = new Panel(subPanel).layout = new VerticalLayout()
 		
 		new Selector<T>(bottomRightPanel) => [
 			allowNull = false

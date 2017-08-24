@@ -6,6 +6,7 @@ import ar.edu.unsam.algo3.tp.viewModel.AgregarAccionesModelo
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
@@ -19,26 +20,26 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 class AgregarAccionesWindow extends TransactionalDialog<AgregarAccionesModelo> {
 
-	new(WindowOwner owner, AgregarAccionesModelo model) {
-		super(owner, model)
+	new(WindowOwner parent, AgregarAccionesModelo model) {
+		super(parent, model)
 
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
 		this.title = "Agregar Acciones"
 
-		val Panel top = new Panel(mainPanel)
-		top.layout = new HorizontalLayout()
-		new Label(top).text = "Descripcion"
+		var Panel top = new Panel(mainPanel).layout = new HorizontalLayout
+		
+		new Label(top).text = "Descripcion : "
 		new TextBox(top) => [
 			value <=> "accion.nombreComando"
-			width = 400
+			width = 100
 		]
 
 		val Panel panelInferior = new Panel(mainPanel)
 		panelInferior.layout = new HorizontalLayout()
 
-		val Panel panelInferiorIzquierdo = new Panel(panelInferior)
+		val Panel panelInferiorIzquierdo = new Panel(panelInferior).layout = new HorizontalLayout
 
 		new Label(panelInferiorIzquierdo).text = "Acciones"
 
@@ -55,7 +56,7 @@ class AgregarAccionesWindow extends TransactionalDialog<AgregarAccionesModelo> {
 			bindContentsToProperty("descripcion")
 		]
 
-		val Panel panelInferiorDerecho = new Panel(panelInferior)
+		val Panel panelInferiorDerecho = new Panel(panelInferior).layout = new VerticalLayout
 
 		new Label(panelInferiorDerecho).text = "Acciones"
 		new Selector<CustomObserver>(panelInferiorDerecho) => [
@@ -79,10 +80,10 @@ class AgregarAccionesWindow extends TransactionalDialog<AgregarAccionesModelo> {
 			onClick(|this.modelObject.removeAccion())
 		]
 
-		val Panel panelAceptarCancelar = new Panel(mainPanel)
-		panelAceptarCancelar.layout = new HorizontalLayout
-		panelAceptarCancelar.width = 400
-
+//		val Panel panelAceptarCancelar = new Panel(mainPanel)
+//		panelAceptarCancelar.layout = new HorizontalLayout
+//		panelAceptarCancelar.width = 400
+		
 	}
 
 	override protected void addActions(Panel actions) {
@@ -95,9 +96,7 @@ class AgregarAccionesWindow extends TransactionalDialog<AgregarAccionesModelo> {
 
 		new Button(actions) => [
 			caption = "Cancelar"
-			onClick [|
-				this.cancel
-			]
+			onClick [|this.cancel]
 		]
 	}
 

@@ -13,13 +13,14 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class AgregarAccionesModelo {
 
-	var AgregarAcciones accion
+	var AgregarAcciones accion = new AgregarAcciones
+	
+	var String nombre
 	
 	var CustomObserver seleccionAccion
 	var CustomObserver seleccionEliminar
 
-	new(AgregarAcciones _A) {
-		accion = _A
+	new() {
 	}
 
 	def getAcciones() {

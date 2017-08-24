@@ -2,19 +2,21 @@ package ar.edu.unsam.algo3.tp.ui
 
 import ar.edu.unsam.algo3.tp.model.command.Command
 import ar.edu.unsam.algo3.tp.viewModel.AdministracionModelo
+import ar.edu.unsam.algo3.tp.viewModel.AgregarAccionesModelo
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import ar.edu.unsam.algo3.tp.viewModel.PoblarAreaModelo
+import ar.edu.unsam.algo3.tp.model.command.PoblarArea
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -31,9 +33,9 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		leftPanel.layout = new VerticalLayout()
 
 		val table = new Table<Command>(leftPanel, typeof(Command)) => [
-			items <=> "procesosFacu"
+			items <=> "procesos"
 			numberVisibleRows = 10
-			value <=> "comandoSeleccionado"
+			value <=> "procesoSeleccionado"
 		]
 
 		new Column<Command>(table) => [
@@ -52,48 +54,68 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		var Panel subPanelButton = new Panel(leftPanel)
 		subPanelButton.layout = new HorizontalLayout
 
-		val comandoSelected = new NotNullObservable("comandoSeleccionado")
+		val comandoSelected = new NotNullObservable("procesoSeleccionado")
+		
 		new Button(subPanelButton) => [
 			caption = "Ejecutar"
 			bindEnabled(comandoSelected)
+			onClick[this.modelObject.ejecutarProcesoSeleccionado()]
 		]
 
 		new Button(subPanelButton) => [
 			caption = "Editar"
 			bindEnabled(comandoSelected)
-			onClick[this.modelObject.editarComando()]
+			onClick[this.editarPoblarArea()]
 		]
 
 		new Button(subPanelButton) => [
 			caption = "Eliminar"
 			bindEnabled(comandoSelected)
-			onClick[this.modelObject.eliminarComando()]
+			onClick[this.modelObject.eliminarProcesoSeleccionado()]
 		]
 
 		val Panel rightPanel = new Panel(mainPanel)
 		rightPanel.layout = new VerticalLayout()
-
-		this.modelObject.getOpciones().forEach [ opcion |
-			new Button(rightPanel) => [
-				caption = opcion.descripcion
-				onClick(opcion.action)
-				enabled
-			]
+		
+		new Button(rightPanel) => [
+			caption = "Agregar Acciones"
+			onClick([|this.agregarAcciones()])
 		]
-
+		
+		new Button(rightPanel) => [
+			caption = "Poblar Area"
+			onClick([|this.poblarArea()])
+		]
+		
 	}
-
+	
 	/**
-	 * Crea un textbox con un label
+	 * Abre el dialog de agregar acciones
 	 */
-	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
-		var Panel subPanel = new Panel(panel)
-		subPanel.setLayout(new HorizontalLayout())
-
-		new Label(subPanel).text = labelText
-		new TextBox(subPanel) => [
-			value <=> textBoxValue
-		]
+	def agregarAcciones(){
+		openDialog(new AgregarAccionesWindow( this ,  new AgregarAccionesModelo  ) )
+	}
+	
+	/**
+	 * Abre el dialog de poblar area
+	 */
+	def poblarArea(){
+		openDialog( new PoblarAreaWindows( this ) )
+	}
+	
+	/**
+	 * Abre el dialog de editar poblar area
+	 */
+	def editarPoblarArea(){
+		openDialog( new EditarPoblarAreaWindows( this , new PoblarAreaModelo( modelObject.procesoSeleccionado as PoblarArea ) ) )
+	}
+	
+	 /**
+	  * Abre un dialog pasado por parametro
+	  */
+	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[|this.modelObject.actualizaFlagDependencies()]
+		dialog.open
 	}
 
 }
