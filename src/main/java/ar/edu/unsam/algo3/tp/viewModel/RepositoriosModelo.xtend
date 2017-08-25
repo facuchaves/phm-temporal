@@ -15,11 +15,12 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class DominioRepositorios {
 	var List<Repositorio> repositorios
+	var List<Repositorio> repositoriosLista
 	//TestHelper helper = new TestHelper
 //	List<Opcion> opciones = newArrayList
 	var Repositorio repoSeleccionado
-	var String nombreRepo = ""
 	var String nuevoNombreRepo
+	
 	
 	RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance
 	Especie bulbasaur
@@ -44,11 +45,24 @@ class DominioRepositorios {
 //		repos.add(repositorioEspecie)
 //		repos.add(repositorioPokeparada)
 	}
-	@Dependencies("nuevoNombreRepo")
-	def getNombreRepo(){
-		nombreRepo = nuevoNombreRepo
+	@Dependencies("repositoriosLista")
+	def getRepositoriosLista(){
+		repositoriosLista.map[repo | repo.toString]
 	}
-	
+	@Dependencies("repoSeleccionado")
+	def getNombreRepo(){
+		repoSeleccionado.toString
+	}
+	@Dependencies("repoSeleccionado")
+	def agregarRepositorio(){
+		if(!repositoriosLista.contains(repoSeleccionado))
+			repositoriosLista.add(repoSeleccionado)
+	}
+	@Dependencies("repoSeleccionado")
+	def eliminarRepositorio(){
+		if(repositoriosLista.contains(repoSeleccionado))
+			repositoriosLista.remove(repoSeleccionado)
+	}
 	@Dependencies("repoSeleccionado")
 	def getRepositorios(){
 //		initTipos()
@@ -78,11 +92,10 @@ class DominioRepositorios {
 		repositorios.map[repo | repo.toString]
 //		#["Repositorio Pokeparada", "Repositorio Especie"]
 	}
-	
-	@Dependencies("repoSeleccionado")
-	def getRepoSeleccionado(){
-		repoSeleccionado.toString
-	}
+//	@Dependencies("repoSeleccionado")
+//	def getRepoSeleccionado(){
+//		repoSeleccionado.toString
+//	}
 //	def initTipos() {
 //		repositorioEspecie.agregarTipo(new Tipo("hierba"))
 //		repositorioEspecie.agregarTipo(new Tipo("veneno"))
@@ -129,13 +142,6 @@ class DominioRepositorios {
 //		nombresDeTipos.map[ nombreDeTipo | repositorioEspecie.getTipoByNombre( nombreDeTipo ) ].toList
 //	}
 //	
-//	def crearPokeparadaDOT() {
-//		new Pokeparada() => [
-//			ubicacion = new Point( -34.5542418 , -58.491549 )
-//			nombre = "Pokeparada DOT"
-//			items = obtenerItemsPorNombre( newArrayList( "pokebola","superball" , "poción") )
-//		] 
-//	}
 //	def obtenerItemsPorNombre(List<String> nombresDeItems ){
 //		nombresDeItems.map[ nombreDeItem |  repositorioPokeparada.getItemByNombre(nombreDeItem) ].toList
 //	}
@@ -159,6 +165,13 @@ class DominioRepositorios {
 //		repositorioPokeparada.description = "Repo Especie"
 //		repositorioPokeparada
 //	}
+//	def crearPokeparadaDOT() {
+//		new Pokeparada() => [
+//			ubicacion = new Point( -34.5542418 , -58.491549 )
+//			nombre = "Pokeparada DOT"
+//			items = obtenerItemsPorNombre( newArrayList( "pokebola","superball" , "poción") )
+//		] 
+//	}
 //	def crearPokeparadaObelisco() {
 //		new Pokeparada() => [
 //			ubicacion = new Point( -34.603759 , -58.381586 )
@@ -173,11 +186,4 @@ class DominioRepositorios {
 //			items = obtenerItemsPorNombre( newArrayList( "pokebola" , "ultraball" ,"superpoción") )
 //		]
 //	}
-	
-	def agregarRepositorio(Repositorio repo){
-		repositorios.add(repo)
-	}
-	def eliminarRepositorio(Repositorio repo){
-		repositorios.remove(repo)
-	}
 }

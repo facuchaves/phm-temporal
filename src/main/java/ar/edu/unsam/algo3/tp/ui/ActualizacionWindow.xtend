@@ -45,7 +45,7 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		new List(leftPanel) => [
 			allowNull(false)
             value <=> "repoSeleccionado"
-            items <=> "repositorios"
+            items <=> "repositoriosLista"
             width = 100
             height = 100
         ]
@@ -65,21 +65,23 @@ class ActualizacionWindow extends Window<DominioRepositorios> {
 		underRightPanel.layout = new ColumnLayout(2)
 		new Button(underRightPanel) => [
 			caption = "Agregar Repositorio"
-//			onClick(|this.modelObject.agregarRepositorio())
+			onClick(|this.modelObject.agregarRepositorio())
 		]
 		new Button(underRightPanel) => [
 			caption = "Eliminar Repositorio"
+			onClick[]
+			onClick[|this.modelObject.eliminarRepositorio()]
 		]
 		
 		var Panel underPanel = new Panel(mainPanel)
 		underPanel.layout = new ColumnLayout(2)
 		new Button(underPanel) => [
-			alignRight
 			caption = "Cancelar"
+			onClick[]
 		]
 		new Button(underPanel) => [
-			alignLeft
 			caption = "Aceptar"
+			onClick[]
 		]
 	}
 	
