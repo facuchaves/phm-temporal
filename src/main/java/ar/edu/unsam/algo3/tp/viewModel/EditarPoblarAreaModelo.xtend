@@ -31,4 +31,8 @@ class EditarPoblarAreaModelo extends ModelWithListAndSelect<Especie> {
 		RepositorioArea.instance.areas
 	}
 	
+	override getList() {
+		poblarAreaCommand.especies
+	}
+	
 }

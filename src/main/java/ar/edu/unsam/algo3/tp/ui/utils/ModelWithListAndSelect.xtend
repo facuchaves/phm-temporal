@@ -15,7 +15,7 @@ abstract class ModelWithListAndSelect<T> extends Command{
 	
 	T itemToAdd
 	T itemToDelete
-	Set<T> list = new HashSet
+//	Set<T> list = new HashSet
 	protected List<T> select = newArrayList
 	
 	def addToList(){
@@ -25,5 +25,7 @@ abstract class ModelWithListAndSelect<T> extends Command{
 	def removeFromList(){
 		list.remove(itemToDelete)	
 	}
+	
+	def public Set<T> getList()
 	
 }

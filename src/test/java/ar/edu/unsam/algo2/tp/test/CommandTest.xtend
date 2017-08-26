@@ -16,7 +16,8 @@ import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMasAltoObserver
 import ar.edu.unsam.algo3.tp.model.serviciosExternos.JsonService
 import com.eclipsesource.json.Json
 import com.eclipsesource.json.JsonArray
-import java.util.List
+import java.util.HashSet
+import java.util.Set
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -29,7 +30,7 @@ class CommandTest extends TestHelper{
 	RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance
 	Actualizacion actualizacion
 	AgregarAcciones agregarAcciones
-	List<Especie> especiesTest = newArrayList
+	Set<Especie> especiesTest = new HashSet()
 	Rectangulo rectanguloTest
 	PoblarArea poblarArea
 	ComandoMultiple comandoMultiple

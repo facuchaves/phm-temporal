@@ -1,5 +1,6 @@
 package ar.edu.unsam.algo3.tp.ui
 
+import ar.edu.unsam.algo3.tp.model.command.AgregarAcciones
 import ar.edu.unsam.algo3.tp.model.command.Command
 import ar.edu.unsam.algo3.tp.model.command.PoblarArea
 import ar.edu.unsam.algo3.tp.viewModel.AdministracionModelo
@@ -17,9 +18,6 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import ar.edu.unsam.algo3.tp.viewModel.PoblarAreaModelo
-import ar.edu.unsam.algo3.tp.model.command.PoblarArea
-import ar.edu.unsam.algo3.tp.model.command.AgregarAcciones
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 

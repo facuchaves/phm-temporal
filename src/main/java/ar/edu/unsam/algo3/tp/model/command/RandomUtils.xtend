@@ -2,6 +2,7 @@ package ar.edu.unsam.algo3.tp.model.command
 
 import java.util.List
 import java.util.Random
+import java.util.Set
 
 class RandomUtils {
 	
@@ -28,4 +29,7 @@ class RandomUtils {
 		return list.get( RandomUtils.getIntInRange( list.length ) )
 	}
 	
+	def static <T> T getRandomElementInSet(Set<T> list){
+		return list.get( RandomUtils.getIntInRange( list.length ) )
+	}
 }

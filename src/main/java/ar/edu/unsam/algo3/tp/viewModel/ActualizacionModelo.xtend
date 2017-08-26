@@ -9,4 +9,8 @@ import org.uqbar.commons.model.annotations.Observable
 @Observable
 class ActualizacionModelo extends ModelWithListAndSelect<Actualizacion> {
 	
+	override getList() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }
