@@ -17,6 +17,7 @@ import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import ar.edu.unsam.algo3.tp.viewModel.PoblarAreaModelo
 import ar.edu.unsam.algo3.tp.model.command.PoblarArea
+import ar.edu.unsam.algo3.tp.model.command.AgregarAcciones
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -32,7 +33,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		var Panel leftPanel = new Panel(mainPanel)
 		leftPanel.layout = new VerticalLayout()
 
-		val table = new Table<Command>(leftPanel, typeof(Command)) => [
+		var table = new Table<Command>(leftPanel, typeof(Command)) => [
 			items <=> "procesos"
 			numberVisibleRows = 10
 			value <=> "procesoSeleccionado"
@@ -55,7 +56,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		subPanelButton.layout = new HorizontalLayout
 
 		val comandoSelected = new NotNullObservable("procesoSeleccionado")
-		
+
 		new Button(subPanelButton) => [
 			caption = "Ejecutar"
 			bindEnabled(comandoSelected)
@@ -65,7 +66,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		new Button(subPanelButton) => [
 			caption = "Editar"
 			bindEnabled(comandoSelected)
-			onClick[this.editarPoblarArea()]
+			onClick[this.editar()]
 		]
 
 		new Button(subPanelButton) => [
@@ -76,46 +77,56 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 
 		val Panel rightPanel = new Panel(mainPanel)
 		rightPanel.layout = new VerticalLayout()
-		
+
 		new Button(rightPanel) => [
 			caption = "Agregar Acciones"
 			onClick([|this.agregarAcciones()])
 		]
-		
+
 		new Button(rightPanel) => [
 			caption = "Poblar Area"
 			onClick([|this.poblarArea()])
 		]
-		
+
 	}
-	
+
 	/**
 	 * Abre el dialog de agregar acciones
 	 */
-	def agregarAcciones(){
-		openDialog(new AgregarAccionesWindow( this ,  new AgregarAccionesModelo  ) )
+	def agregarAcciones() {
+		openDialog(new AgregarAccionesWindow(this, new AgregarAccionesModelo))
 	}
-	
+
 	/**
 	 * Abre el dialog de poblar area
 	 */
-	def poblarArea(){
-		openDialog( new PoblarAreaWindows( this ) )
+	def poblarArea() {
+		openDialog(new PoblarAreaWindows(this))
 	}
-	
+
 	/**
 	 * Abre el dialog de editar poblar area
 	 */
-	def editarPoblarArea(){
-		openDialog( new EditarPoblarAreaWindows( this , new PoblarAreaModelo( modelObject.procesoSeleccionado as PoblarArea ) ) )
+	def editarPoblarArea() {
 	}
-	
-	 /**
-	  * Abre un dialog pasado por parametro
-	  */
+
+	/**
+	 * Abre un dialog pasado por parametro
+	 */
 	def openDialog(Dialog<?> dialog) {
 		dialog.onAccept[|this.modelObject.actualizaFlagDependencies()]
 		dialog.open
 	}
 
+	def editar() {
+		editarComando(modelObject.procesoSeleccionado)
+	}
+
+	def dispatch editarComando(AgregarAcciones seleccionado) {
+		openDialog(new EditarAccionesWindow(this,  new AgregarAccionesModelo(seleccionado)))
+	}
+
+	def dispatch editarComando(PoblarArea A) {
+		openDialog(new EditarPoblarAreaWindows(this, new PoblarAreaModelo(A as PoblarArea)))
+	}
 }

@@ -22,7 +22,11 @@ class AgregarAccionesModelo {
 
 	new() {
 	}
-
+	
+	new(AgregarAcciones _agregarAcciones) {
+		accion = _agregarAcciones
+	}
+	
 	def getAcciones() {
 		var notificarNivelmasAlto = new NotificarNivelMasAltoObserver()
 		var notificarNivelMultiplo = new NotificarNivelMultiploDe5Observer()
