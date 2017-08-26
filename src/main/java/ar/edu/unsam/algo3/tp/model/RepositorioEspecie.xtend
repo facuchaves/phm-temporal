@@ -5,14 +5,15 @@ import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors 
 class RepositorioEspecie extends Repositorio<Especie> {
 
-	@Accessors JsonParserEspecie jsonParserEspecie
+	JsonParserEspecie jsonParserEspecie
 
 	static var RepositorioEspecie instance
 
-	@Accessors List<Tipo> tipos = new ArrayList()
-
+	List<Tipo> tipos = new ArrayList()
+	
 	private new() {
 	}
 
@@ -43,7 +44,7 @@ class RepositorioEspecie extends Repositorio<Especie> {
 	def agregarTipo(Tipo tipo) {
 		tipos.add(tipo)
 	}
-
+	
 	def Tipo getTipoByNombre(String nombre) {
 		tipos.findFirst[tipo|tipo.nombre.equals(nombre)]
 	}
@@ -67,6 +68,10 @@ class RepositorioEspecie extends Repositorio<Especie> {
 
 	override getJson() {
 		return getJsonService.getJsonEspecie
+	}
+	
+	def getEspecies(){
+		objetos
 	}
 
 }

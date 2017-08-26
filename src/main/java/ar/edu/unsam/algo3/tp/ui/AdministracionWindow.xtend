@@ -1,8 +1,10 @@
 package ar.edu.unsam.algo3.tp.ui
 
 import ar.edu.unsam.algo3.tp.model.command.Command
+import ar.edu.unsam.algo3.tp.model.command.PoblarArea
 import ar.edu.unsam.algo3.tp.viewModel.AdministracionModelo
 import ar.edu.unsam.algo3.tp.viewModel.AgregarAccionesModelo
+import ar.edu.unsam.algo3.tp.viewModel.EditarPoblarAreaModelo
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
@@ -15,8 +17,7 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import ar.edu.unsam.algo3.tp.viewModel.PoblarAreaModelo
-import ar.edu.unsam.algo3.tp.model.command.PoblarArea
+import ar.edu.unsam.algo3.tp.model.command.AgregarAcciones
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -65,7 +66,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		new Button(subPanelButton) => [
 			caption = "Editar"
 			bindEnabled(comandoSelected)
-			onClick[this.editarPoblarArea()]
+			onClick[this.abrirEditar(modelObject.procesoSeleccionado)]
 		]
 
 		new Button(subPanelButton) => [
@@ -103,11 +104,19 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 		openDialog( new PoblarAreaWindows( this ) )
 	}
 	
+	
 	/**
 	 * Abre el dialog de editar poblar area
 	 */
-	def editarPoblarArea(){
-		openDialog( new EditarPoblarAreaWindows( this , new PoblarAreaModelo( modelObject.procesoSeleccionado as PoblarArea ) ) )
+	dispatch def abrirEditar(PoblarArea proceso) {
+		openDialog(new EditarPoblarAreaWindows( this ,  new EditarPoblarAreaModelo(proceso) ) )
+	}
+	
+	/**
+	 * Abre el dialog de agregar acciones
+	 */
+	dispatch def abrirEditar(AgregarAcciones proceso) {
+		//Logica de openDialog
 	}
 	
 	 /**

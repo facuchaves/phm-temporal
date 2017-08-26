@@ -11,10 +11,11 @@ import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
+import ar.edu.unsam.algo3.tp.viewModel.EditarPoblarAreaModelo
 
-class EditarPoblarAreaWindows extends TransactionalDialog<PoblarAreaModelo> {
+class EditarPoblarAreaWindows extends TransactionalDialog<EditarPoblarAreaModelo> {
 	
-	new(WindowOwner parent, PoblarAreaModelo model) {
+	new(WindowOwner parent, EditarPoblarAreaModelo model) {
 		super(parent, model)
 	}
 	
@@ -45,7 +46,7 @@ class EditarPoblarAreaWindows extends TransactionalDialog<PoblarAreaModelo> {
 		new Button(buttonsPanel) => [
 			caption = "Aceptar"
 			alignRight
-			onClick([|this.modelObject.agregarComando this.accept ])
+			onClick([|this.modelObject.doOnAccept this.accept ])
 		]
 		
 		new Button(buttonsPanel) => [

@@ -6,8 +6,12 @@ import org.uqbar.arena.windows.Window
 
 class MainApplication extends Application {
 	
+	new(ActualizacionBootstrap bootstrap) {
+		super(bootstrap)
+	}
+	
 	static def void main(String[] args) { 
-		new MainApplication().start()
+		new MainApplication( new ActualizacionBootstrap).start()
 	}
 
 	override protected Window<?> createMainWindow() {
