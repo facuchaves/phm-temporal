@@ -4,15 +4,13 @@ import ar.edu.unsam.algo3.tp.model.Especie
 import ar.edu.unsam.algo3.tp.ui.utils.ComponentsUtils
 import ar.edu.unsam.algo3.tp.ui.utils.ListWithSelectComponent
 import ar.edu.unsam.algo3.tp.viewModel.EditarPoblarAreaModelo
-import org.uqbar.arena.aop.windows.TransactionalDialog
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
-import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 
-class EditarPoblarAreaWindows extends TransactionalDialog<EditarPoblarAreaModelo> {
+class EditarPoblarAreaWindows extends GeneralWindow<EditarPoblarAreaModelo> {
 	
 	new(WindowOwner parent, EditarPoblarAreaModelo model) {
 		super(parent, model)
@@ -39,21 +37,6 @@ class EditarPoblarAreaWindows extends TransactionalDialog<EditarPoblarAreaModelo
 		var ListWithSelectComponent<Especie> listWithSelectComponent = new ListWithSelectComponent<Especie>(mainPanel, "Especie" , "poblarAreaCommand.especies" , this.modelObject )				
 		listWithSelectComponent.render()
 
-		var buttonsPanel = new Panel(mainPanel);
-		buttonsPanel.setLayout(new HorizontalLayout());
-		
-		new Button(buttonsPanel) => [
-			caption = "Aceptar"
-			alignRight
-			onClick([|this.modelObject.doOnAccept this.accept ])
-			disableOnError	
-		]
-		
-		new Button(buttonsPanel) => [
-			caption = "Cancelar"
-			alignRight
-			onClick([|this.close])
-		]
 	}
 	
 }

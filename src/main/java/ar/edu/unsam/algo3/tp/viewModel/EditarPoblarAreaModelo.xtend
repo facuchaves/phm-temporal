@@ -18,7 +18,7 @@ class EditarPoblarAreaModelo extends ModelWithListAndSelect<Especie> {
 		poblarAreaCommand = poblarArea
 	}
 	
-	def void doOnAccept(){
+	override void doOnAccept(){
 //		RepositorioProcesos.instance.agregarProceso(poblarAreaCommand)
 		println("Edita")
 	}

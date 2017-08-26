@@ -13,4 +13,8 @@ class ActualizacionModelo extends ModelWithListAndSelect<Actualizacion> {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
+	override doOnAccept() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }
