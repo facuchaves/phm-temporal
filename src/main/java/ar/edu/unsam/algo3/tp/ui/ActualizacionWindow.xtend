@@ -14,14 +14,15 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.aop.windows.TransactionalDialog
 
-class ActualizacionWindow extends Window<DominioRepositorios> {
+class ActualizacionWindow extends TransactionalDialog<DominioRepositorios> {
 
 	new(WindowOwner owner, DominioRepositorios model) {
 		super(owner, model)
 	}
 
-	override createContents(Panel mainPanel) {
+	override createFormPanel(Panel mainPanel) {
 		this.title = "Actualizacion"
 		mainPanel.layout = new VerticalLayout
 		
