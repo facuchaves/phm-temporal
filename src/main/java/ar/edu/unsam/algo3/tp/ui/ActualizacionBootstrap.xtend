@@ -14,11 +14,7 @@ import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.geodds.Point
 
 class ActualizacionBootstrap extends CollectionBasedBootstrap {
-//
-//	new() {
-//		ApplicationContext.instance.configureSingleton(typeof(Modelo), new RepoModelos)
-//		ApplicationContext.instance.configureSingleton(typeof(Celular), new RepoCelulares)
-//	}
+	
 	/**
 	 * Inicialización del juego de datos del repositorio
 	 * 

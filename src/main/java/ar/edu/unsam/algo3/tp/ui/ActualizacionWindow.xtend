@@ -1,6 +1,5 @@
 package ar.edu.unsam.algo3.tp.ui
 
-import ar.edu.unsam.algo3.tp.viewModel.DominioRepositorios
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
@@ -15,10 +14,11 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.aop.windows.TransactionalDialog
+import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
 
-class ActualizacionWindow extends TransactionalDialog<DominioRepositorios> {
+class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 
-	new(WindowOwner owner, DominioRepositorios model) {
+	new(WindowOwner owner, RepositoriosModelo model) {
 		super(owner, model)
 	}
 
@@ -29,10 +29,10 @@ class ActualizacionWindow extends TransactionalDialog<DominioRepositorios> {
 		var Panel horiPanel = new Panel(mainPanel)
 		horiPanel.layout = new HorizontalLayout
 		
-		new Label(horiPanel).text = "Descripción: "
+		new Label(horiPanel).text = "Descripción : "
 		new TextBox(horiPanel) => [
 			value <=> "nombreRepo"
-			width = 200
+			width = 100
 		]
 		
 		///Agrego el panel de abajo
@@ -56,8 +56,6 @@ class ActualizacionWindow extends TransactionalDialog<DominioRepositorios> {
         
         new Selector(rightPanel) => [
         	allowNull(false)
-//        	val bindingItems = items <=> new ObservableProperty(this.modelObject, "repositorios")
-//     		bindingItems.adapter = new PropertyAdapter(typeof(Repositorio), "description")
      		items <=> "repositorios"
         	value <=> "repoSeleccionado"
         ]
@@ -76,23 +74,5 @@ class ActualizacionWindow extends TransactionalDialog<DominioRepositorios> {
 		
 		var Panel underPanel = new Panel(mainPanel)
 		underPanel.layout = new ColumnLayout(2)
-		new Button(underPanel) => [
-			caption = "Cancelar"
-			onClick[]
-		]
-		new Button(underPanel) => [
-			caption = "Aceptar"
-			onClick[]
-		]
 	}
-	
-//	def buildTextBoxWithLabelHorizontal(Panel panel, String labelText, String textBoxValue) {
-//		var Panel subPanel = new Panel(panel)
-//		subPanel.setLayout(new HorizontalLayout())
-//
-//		new Label(subPanel).text = labelText
-//		new TextBox(subPanel) => [
-//			value <=> textBoxValue
-//		]
-//	}
 }
