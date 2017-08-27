@@ -29,10 +29,6 @@ class RepositoriosModelo extends ModelWithListAndSelect<Repositorio> {
 		repositoriosLista.map[repo | repo.toString]
 	}
 	@Dependencies("repoSeleccionado")
-	def getNombreRepo(){
-		repoSeleccionado.toString
-	}
-	@Dependencies("repoSeleccionado")
 	def agregarRepositorio(){
 		if(!repositoriosLista.contains(repoSeleccionado))
 			repositoriosLista.add(repoSeleccionado)

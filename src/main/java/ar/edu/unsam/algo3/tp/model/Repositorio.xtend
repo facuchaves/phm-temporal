@@ -5,7 +5,10 @@ import ar.edu.unsam.algo3.tp.model.exception.ObjetoNoEncontradoExcepcion
 import ar.edu.unsam.algo3.tp.model.serviciosExternos.JsonService
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
+@Accessors
+@Observable
 abstract class Repositorio<T extends Entidad> {
 	
 	@Accessors JsonService jsonService

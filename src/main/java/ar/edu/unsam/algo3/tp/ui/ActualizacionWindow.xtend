@@ -5,16 +5,17 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
-
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.aop.windows.TransactionalDialog
 import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
+import org.uqbar.arena.widgets.tables.Table
+import ar.edu.unsam.algo3.tp.model.Repositorio
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.bindings.PropertyAdapter
 
 class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 
@@ -31,7 +32,7 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 		
 		new Label(horiPanel).text = "Descripción : "
 		new TextBox(horiPanel) => [
-			value <=> "nombreRepo"
+			value <=> "repositorioSeleccionado.description"
 			width = 100
 		]
 		
@@ -43,21 +44,27 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 		leftPanel.layout = new ColumnLayout(2)
 		
 		new Label(leftPanel).text = "Repositorios: "
-		new List(leftPanel) => [
-			allowNull(false)
-            value <=> "repoSeleccionado"
-            items <=> "repositoriosLista"
-            width = 100
-            height = 100
-        ]
-        
+		var tablaRepos = new Table<Repositorio>(leftPanel,
+			typeof(Repositorio)) => [
+			items <=> "repositoriosLista"
+			numberVisibleRows = 10
+			value <=> "repoSeleccionado"
+		]
+		
+		new Column<Repositorio>(tablaRepos) => [
+			fixedSize = 240
+			title = "Repositorio"
+			bindContentsToProperty("description")
+		]
+		
         var Panel rightPanel = new Panel(bottomPanel)
 		rightPanel.layout = new VerticalLayout
         
         new Selector(rightPanel) => [
-        	allowNull(false)
-     		items <=> "repositorios"
-        	value <=> "repoSeleccionado"
+        	allowNull = false
+			width = 200
+			val itemsProperty = items <=> "repositorios"
+			itemsProperty.adapter = new PropertyAdapter(typeof(Repositorio), "description")
         ]
         
         var Panel underRightPanel = new Panel(rightPanel)
@@ -74,5 +81,19 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 		
 		var Panel underPanel = new Panel(mainPanel)
 		underPanel.layout = new ColumnLayout(2)
+	}
+	
+	override protected void addActions(Panel actions) {
+		new Button(actions) => [
+			caption = "Aceptar"
+			onClick [| this.modelObject.agregarRepositorio this.accept]
+			setAsDefault
+			disableOnError
+		]
+
+		new Button(actions) => [
+			caption = "Cancelar"
+			onClick [|this.cancel]
+		]
 	}
 }
