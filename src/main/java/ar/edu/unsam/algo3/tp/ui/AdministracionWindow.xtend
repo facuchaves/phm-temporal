@@ -18,6 +18,7 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -87,6 +88,11 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 			caption = "Poblar Area"
 			onClick([|this.poblarArea()])
 		]
+		
+		new Button(rightPanel) => [
+			caption = "Actualizar"
+			onClick([|this.actualizar()])
+		]
 
 	}
 
@@ -102,6 +108,13 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	 */
 	def poblarArea() {
 		openDialog(new PoblarAreaWindows(this))
+	}
+	
+	/**
+	 * Abre el dialog de agregar acciones
+	 */
+	def actualizar() {
+		openDialog(new ActualizacionWindow(this, new RepositoriosModelo))
 	}
 	
 	/**
