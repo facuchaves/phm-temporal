@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.tables.Table
 import ar.edu.unsam.algo3.tp.model.Repositorio
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.PropertyAdapter
+import ar.edu.unsam.algo3.tp.model.Entidad
 
 class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 
@@ -41,11 +42,11 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 		var Panel leftPanel = new Panel(bottomPanel).layout = new HorizontalLayout()
 		
 		new Label(leftPanel).text = "Repositorios: "
-		var tablaRepos = new Table<Repositorio>(leftPanel,
-			typeof(Repositorio)) => [
+		var tablaRepos = new Table<Repositorio<Entidad>>(leftPanel,
+			typeof(Repositorio<Entidad>)) => [
 			items <=> "repositoriosLista"
 			numberVisibleRows = 10
-			value <=> "repoSeleccionado"
+			value <=> "repoSeleccionado.description"
 		]
 		
 		new Column<Repositorio>(tablaRepos) => [
@@ -60,7 +61,7 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
         	allowNull = false
 			width = 200
 			val itemsProperty = items <=> "repositorios"
-			itemsProperty.adapter = new PropertyAdapter(typeof(Repositorio), "description")
+			itemsProperty.adapter = new PropertyAdapter(typeof(RepositoriosModelo), "repositorios.description")
 			value <=> "repoSeleccionado"
         ]
         

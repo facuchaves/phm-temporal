@@ -9,13 +9,14 @@ import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
 import ar.edu.unsam.algo3.tp.ui.ActualizacionBootstrap
 import ar.edu.unsam.algo3.tp.ui.utils.ModelWithListAndSelect
+import ar.edu.unsam.algo3.tp.model.Entidad
 
 @Accessors
 @Observable
-class RepositoriosModelo extends ModelWithListAndSelect<Repositorio> {
+class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
 	var ActualizacionBootstrap boot = new ActualizacionBootstrap
-	var List<Repositorio> repositoriosLista
-	var Repositorio repoSeleccionado
+	var List<Repositorio<Entidad>> repositoriosLista
+	var Repositorio<Entidad> repoSeleccionado
 	var String nuevoNombreRepo
 	
 	new() {
