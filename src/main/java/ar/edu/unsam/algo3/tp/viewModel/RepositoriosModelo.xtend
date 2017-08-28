@@ -17,29 +17,30 @@ class RepositoriosModelo extends ModelWithListAndSelect<Repositorio> {
 	var List<Repositorio> repositoriosLista
 	var Repositorio repoSeleccionado
 	var String nuevoNombreRepo
-	val RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance	
-	val RepositorioPokeparada repositorioPokeparada = RepositorioPokeparada.instance
 	
 	new() {
-		repositorioEspecie.description = "Repo Especie"
-		repositorioPokeparada.description = "Repo Pokeparada"
 	}
 	@Dependencies("repositoriosLista")
 	def getRepositoriosLista(){
 		repositoriosLista.map[repo | repo.toString]
 	}
 	@Dependencies("repoSeleccionado")
+	def getRepositorioSeleccionado(){
+		repoSeleccionado
+	}
 	def agregarRepositorio(){
 		if(!repositoriosLista.contains(repoSeleccionado))
 			repositoriosLista.add(repoSeleccionado)
 	}
-	@Dependencies("repoSeleccionado")
 	def eliminarRepositorio(){
 		if(repositoriosLista.contains(repoSeleccionado))
 			repositoriosLista.remove(repoSeleccionado)
 	}
-	
 	def getRepositorios(){
+		val RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance	
+		val RepositorioPokeparada repositorioPokeparada = RepositorioPokeparada.instance
+		repositorioEspecie.description = "Repo Especie"
+		repositorioPokeparada.description = "Repo Pokeparada"
 		#[repositorioEspecie, repositorioPokeparada]
 	}
 	

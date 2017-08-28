@@ -4,8 +4,10 @@ import ar.edu.unsam.algo3.tp.model.json.JsonParserEspecie
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.Observable
 
-@Accessors 
+@Accessors
+@Observable
 class RepositorioEspecie extends Repositorio<Especie> {
 
 	JsonParserEspecie jsonParserEspecie
