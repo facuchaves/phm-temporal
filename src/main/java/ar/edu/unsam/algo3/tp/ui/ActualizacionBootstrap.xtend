@@ -12,6 +12,11 @@ import ar.edu.unsam.algo3.tp.ui.dao.RepositorioArea
 import java.util.List
 import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.geodds.Point
+import ar.edu.unsam.algo3.tp.ui.dao.RepositorioAcciones
+import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMasAltoObserver
+import ar.edu.unsam.algo3.tp.model.observer.RecompensaNivelDeterminadoObserver
+import ar.edu.unsam.algo3.tp.model.observer.NotificarSuperaNivelObserver
+import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMultiploDe5Observer
 
 class ActualizacionBootstrap extends CollectionBasedBootstrap {
 	
@@ -129,5 +134,16 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 			]
 		)
 		
+		
+		
+		//************************************************* ACCIONES ***************************************
+		
+		var RepositorioAcciones = RepositorioAcciones.instance
+			RepositorioAcciones.agregarAcciones(new NotificarNivelMasAltoObserver())
+			RepositorioAcciones.agregarAcciones(new NotificarNivelMultiploDe5Observer())
+			RepositorioAcciones.agregarAcciones(new NotificarSuperaNivelObserver())
+			RepositorioAcciones.agregarAcciones(new RecompensaNivelDeterminadoObserver())
+		
+//		#[notificarNivelmasAlto, notificarNivelMultiplo, notificarSuperaNivel, recompensaNivelDeterminado]
 	}
 }

@@ -8,6 +8,7 @@ import ar.edu.unsam.algo3.tp.model.observer.NotificarSuperaNivelObserver
 import ar.edu.unsam.algo3.tp.model.observer.RecompensaNivelDeterminadoObserver
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import ar.edu.unsam.algo3.tp.ui.dao.RepositorioAcciones
 
 @Accessors
 @Observable
@@ -28,11 +29,7 @@ class AgregarAccionesModelo {
 	}
 	
 	def getAcciones() {
-		var notificarNivelmasAlto = new NotificarNivelMasAltoObserver()
-		var notificarNivelMultiplo = new NotificarNivelMultiploDe5Observer()
-		var notificarSuperaNivel = new NotificarSuperaNivelObserver()
-		var recompensaNivelDeterminado = new RecompensaNivelDeterminadoObserver()
-		#[notificarNivelmasAlto, notificarNivelMultiplo, notificarSuperaNivel, recompensaNivelDeterminado]
+		RepositorioAcciones.instance.acciones
 	}
 	
 	def void addAccion() {
