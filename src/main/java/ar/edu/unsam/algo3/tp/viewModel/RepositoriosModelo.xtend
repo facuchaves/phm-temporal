@@ -21,14 +21,11 @@ class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
 	}
 	@Dependencies("repositoriosLista")
 	def getRepositoriosLista(){
-//		if(repositoriosLista != null)
-			repositoriosLista//.map[repo | repo.toString]
-//		else
-//			""
+		repositoriosLista
 	}
 	@Dependencies("repositoriosLista", "repoSeleccionado")
 	def setRepositoriosLista(){
-		repositoriosLista.add(repoSeleccionado)
+		repositoriosLista.add(getRepoSeleccionado)
 	}
 	@Dependencies("repoSeleccionado")
 	def getRepositorioSeleccionado(){
