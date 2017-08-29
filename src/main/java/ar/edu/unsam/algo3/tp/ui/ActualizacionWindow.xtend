@@ -42,8 +42,8 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 		var Panel leftPanel = new Panel(bottomPanel).layout = new HorizontalLayout()
 		
 		new Label(leftPanel).text = "Repositorios: "
-		var tablaRepos = new Table<Repositorio<Entidad>>(leftPanel,
-			typeof(Repositorio<Entidad>)) => [
+		var tablaRepos = new Table<Repositorio>(leftPanel,
+			typeof(Repositorio)) => [
 			items <=> "repositoriosLista"
 			numberVisibleRows = 10
 			value <=> "repoSeleccionado.description"
