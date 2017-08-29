@@ -46,7 +46,6 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 			typeof(Repositorio)) => [
 			items <=> "repositoriosLista"
 			numberVisibleRows = 10
-			value <=> "repoSeleccionado.description"
 		]
 		
 		new Column<Repositorio>(tablaRepos) => [
@@ -61,7 +60,7 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
         	allowNull = false
 			width = 200
 			val itemsProperty = items <=> "repositorios"
-			itemsProperty.adapter = new PropertyAdapter(typeof(RepositoriosModelo), "repositorios.description")
+			itemsProperty.adapter = new PropertyAdapter(typeof(Repositorio), "description")
 			value <=> "repoSeleccionado"
         ]
         

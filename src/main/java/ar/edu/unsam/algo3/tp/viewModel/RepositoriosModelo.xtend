@@ -7,14 +7,12 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Dependencies
 import org.uqbar.commons.model.annotations.Observable
-import ar.edu.unsam.algo3.tp.ui.ActualizacionBootstrap
 import ar.edu.unsam.algo3.tp.ui.utils.ModelWithListAndSelect
 import ar.edu.unsam.algo3.tp.model.Entidad
 
 @Accessors
 @Observable
 class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
-	var ActualizacionBootstrap boot = new ActualizacionBootstrap
 	var List<Repositorio<Entidad>> repositoriosLista
 	var Repositorio<Entidad> repoSeleccionado
 	var String nuevoNombreRepo
@@ -23,19 +21,26 @@ class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
 	}
 	@Dependencies("repositoriosLista")
 	def getRepositoriosLista(){
-		repositoriosLista.map[repo | repo.toString]
+//		if(repositoriosLista != null)
+			repositoriosLista//.map[repo | repo.toString]
+//		else
+//			""
+	}
+	@Dependencies("repositoriosLista", "repoSeleccionado")
+	def setRepositoriosLista(){
+		repositoriosLista.add(repoSeleccionado)
 	}
 	@Dependencies("repoSeleccionado")
 	def getRepositorioSeleccionado(){
 		repoSeleccionado
 	}
 	def agregarRepositorio(){
-		if(!repositoriosLista.contains(repoSeleccionado))
-			repositoriosLista.add(repoSeleccionado)
+		if(!repositoriosLista.contains(getRepoSeleccionado))
+			repositoriosLista.add(getRepoSeleccionado)
 	}
 	def eliminarRepositorio(){
-		if(repositoriosLista.contains(repoSeleccionado))
-			repositoriosLista.remove(repoSeleccionado)
+		if(repositoriosLista.contains(getRepoSeleccionado))
+			repositoriosLista.remove(getRepoSeleccionado)
 	}
 	def getRepositorios(){
 		val RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance	
