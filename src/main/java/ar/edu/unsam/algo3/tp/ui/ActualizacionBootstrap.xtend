@@ -17,6 +17,7 @@ import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMasAltoObserver
 import ar.edu.unsam.algo3.tp.model.observer.RecompensaNivelDeterminadoObserver
 import ar.edu.unsam.algo3.tp.model.observer.NotificarSuperaNivelObserver
 import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMultiploDe5Observer
+import ar.edu.unsam.algo3.tp.ui.dao.RepositorioRepositorio
 
 class ActualizacionBootstrap extends CollectionBasedBootstrap {
 	
@@ -30,6 +31,7 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 	 */
 	override run() {
 //		Repositorio Especie
+
 		var RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance
 		repositorioEspecie.agregarTipo(new Tipo("hierba"))
 		repositorioEspecie.agregarTipo(new Tipo("veneno"))
@@ -104,8 +106,10 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 		
 		repositorioEspecie.description = "Repo Especie"
 		repositorioPokeparada.description = "Repo Pokeparada"
+		var RepositorioRepositorio = RepositorioRepositorio.instance
+		RepositorioRepositorio.agregarRepos(repositorioPokeparada)
+		RepositorioRepositorio.agregarRepos(repositorioEspecie)
 		
-		var List<Repositorio> repositorios = #[repositorioPokeparada, repositorioEspecie]
 		
 		/*************************************************** POBLAR AREA *******************************************************************/
 		
@@ -145,5 +149,11 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 			RepositorioAcciones.agregarAcciones(new RecompensaNivelDeterminadoObserver())
 		
 //		#[notificarNivelmasAlto, notificarNivelMultiplo, notificarSuperaNivel, recompensaNivelDeterminado]
+
+
+
 	}
+	
+	
+	
 }

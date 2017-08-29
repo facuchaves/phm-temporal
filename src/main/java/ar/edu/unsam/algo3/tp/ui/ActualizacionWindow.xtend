@@ -27,44 +27,44 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 	override createFormPanel(Panel mainPanel) {
 		this.title = "Actualizacion"
 		mainPanel.layout = new VerticalLayout
-		
+
 		var Panel horiPanel = new Panel(mainPanel).layout = new HorizontalLayout
-		
+
 		new Label(horiPanel).text = "Descripción : "
 		new TextBox(horiPanel) => [
-			value <=> "repositorioSeleccionado"
+			value <=> "actualizacion.nombreComando"
 			width = 100
 		]
-		
-		///Agrego el panel de abajo
+
+		// /Agrego el panel de abajo
 		var Panel bottomPanel = new Panel(mainPanel).layout = new HorizontalLayout()
-		
+
 		var Panel leftPanel = new Panel(bottomPanel).layout = new HorizontalLayout()
-		
+
 		new Label(leftPanel).text = "Repositorios: "
-		var tablaRepos = new Table<Repositorio>(leftPanel,
-			typeof(Repositorio)) => [
-			items <=> "repositoriosLista"
+		var tablaRepos = new Table<Repositorio>(leftPanel, typeof(Repositorio)) => [
+			items <=> "repositoriosCommando"
 			numberVisibleRows = 10
+			value <=> "repoSeleccionadoTabla"
 		]
-		
+
 		new Column<Repositorio>(tablaRepos) => [
 			fixedSize = 240
 			title = "Repositorios"
 			bindContentsToProperty("description")
 		]
-		
-        var Panel rightPanel = new Panel(bottomPanel).layout = new VerticalLayout
-        
-        new Selector(rightPanel) => [
-        	allowNull = false
+
+		var Panel rightPanel = new Panel(bottomPanel).layout = new VerticalLayout
+
+		new Selector(rightPanel) => [
+			allowNull = false
 			width = 200
 			val itemsProperty = items <=> "repositorios"
 			itemsProperty.adapter = new PropertyAdapter(typeof(Repositorio), "description")
 			value <=> "repoSeleccionado"
-        ]
-        
-        var Panel underRightPanel = new Panel(rightPanel).layout = new HorizontalLayout()
+		]
+
+		var Panel underRightPanel = new Panel(rightPanel).layout = new HorizontalLayout()
 		new Button(underRightPanel) => [
 			caption = "Agregar Repositorio"
 			onClick(|this.modelObject.agregarRepositorio())
@@ -74,14 +74,14 @@ class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 			onClick[]
 			onClick[|this.modelObject.eliminarRepositorio()]
 		]
-		
+
 //		var Panel underPanel = new Panel(mainPanel).layout = new HorizontalLayout()
 	}
-	
+
 	override protected void addActions(Panel actions) {
 		new Button(actions) => [
 			caption = "Aceptar"
-			onClick [| this.modelObject.agregarRepositorio this.accept]
+			onClick [|this.modelObject.agregarComando this.accept]
 			setAsDefault
 			disableOnError
 		]
