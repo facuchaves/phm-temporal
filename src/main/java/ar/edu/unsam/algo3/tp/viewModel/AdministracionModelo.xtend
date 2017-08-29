@@ -10,10 +10,13 @@ import org.uqbar.commons.model.annotations.Observable
 class AdministracionModelo {
 
 	var Integer flagDependencies = 0
-	RepositorioProcesos repoProcesos = RepositorioProcesos.instance
 	var Command procesoSeleccionado
 
 	new() {		
+	}
+	
+	def getRepoProcesos() {
+		RepositorioProcesos.instance
 	}
 	
 	//FIXME Ver como arreglarlo
@@ -38,9 +41,9 @@ class AdministracionModelo {
 	/**
 	 * Ejecuta el proceso seleccionado
 	 */
+	 @Dependencies("procesoSeleccionado")
 	def ejecutarProcesoSeleccionado(){
 		procesoSeleccionado.execute
-		actualizaFlagDependencies
 	}
 
 }
