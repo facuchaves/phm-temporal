@@ -19,6 +19,8 @@ import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
+import ar.edu.unsam.algo3.tp.model.command.ComandoMultiple
+import ar.edu.unsam.algo3.tp.viewModel.MultipleModelo
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -93,6 +95,10 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 			caption = "Actualizar"
 			onClick([|this.actualizar()])
 		]
+		new Button(rightPanel) => [
+			caption = "Multiple"
+			onClick([|this.multiple()])
+		]
 
 	}
 
@@ -116,6 +122,12 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	def actualizar() {
 		openDialog(new ActualizacionWindow(this, new RepositoriosModelo))
 	}
+		/**
+	 * Abre el dialog de multiple
+	 */
+	def multiple() {
+		openDialog(new MultipleWindow(this, new MultipleModelo))
+	}
 	
 	/**
 	 * Abre el dialog de editar poblar area
@@ -129,6 +141,13 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	 */
 	dispatch def abrirEditar(AgregarAcciones proceso) {
 		openDialog(new EditarAccionesWindow(this,  new AgregarAccionesModelo(proceso)))
+	}
+	
+	/**
+	 * Abre el dialog de Multiple
+	 */
+	dispatch def abrirEditar(ComandoMultiple proceso) {
+		openDialog(new EditarMultipleWindow(this,  new MultipleModelo(proceso)))
 	}
 
 	/**
