@@ -1,6 +1,5 @@
 package ar.edu.unsam.algo3.tp.ui.dao
 
-import ar.edu.unsam.algo3.tp.model.observer.CustomObserver
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unsam.algo3.tp.model.Repositorio

@@ -14,7 +14,7 @@ import ar.edu.unsam.algo3.tp.ui.dao.RepositorioRepositorio
 
 @Accessors
 @Observable
-class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
+class RepositoriosModelo {
 	var Repositorio<Entidad> repoSeleccionado
 	var Actualizacion actualizacion = new Actualizacion()
 	var Repositorio<Entidad> repoSeleccionadoTabla
@@ -48,14 +48,6 @@ class RepositoriosModelo extends ModelWithListAndSelect<Repositorio<Entidad>> {
 
 	def getRepositorios() {
 		RepositorioRepositorio.instance.acciones
-	}
-
-	override getList() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override doOnAccept() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
 	def agregarComando(){

@@ -3,13 +3,11 @@ package ar.edu.unsam.algo3.tp.ui
 import ar.edu.unsam.algo3.tp.model.Especie
 import ar.edu.unsam.algo3.tp.model.Item
 import ar.edu.unsam.algo3.tp.model.Pokeparada
-import ar.edu.unsam.algo3.tp.model.Repositorio
 import ar.edu.unsam.algo3.tp.model.RepositorioEspecie
 import ar.edu.unsam.algo3.tp.model.RepositorioPokeparada
 import ar.edu.unsam.algo3.tp.model.Tipo
 import ar.edu.unsam.algo3.tp.model.command.Rectangulo
 import ar.edu.unsam.algo3.tp.ui.dao.RepositorioArea
-import java.util.List
 import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 import org.uqbar.geodds.Point
 import ar.edu.unsam.algo3.tp.ui.dao.RepositorioAcciones
@@ -18,20 +16,21 @@ import ar.edu.unsam.algo3.tp.model.observer.RecompensaNivelDeterminadoObserver
 import ar.edu.unsam.algo3.tp.model.observer.NotificarSuperaNivelObserver
 import ar.edu.unsam.algo3.tp.model.observer.NotificarNivelMultiploDe5Observer
 import ar.edu.unsam.algo3.tp.ui.dao.RepositorioRepositorio
+import com.eclipsesource.json.JsonObject
+import ar.edu.unsam.algo3.tp.model.json.JsonParserPokeparada
+import ar.edu.unsam.algo3.tp.model.json.JsonParserEspecie
+import com.eclipsesource.json.Json
+import ar.edu.unsam.algo3.tp.model.serviciosExternos.JsonService
+import com.eclipsesource.json.JsonArray
 
 class ActualizacionBootstrap extends CollectionBasedBootstrap {
 	
 	/**
 	 * Inicialización del juego de datos del repositorio
-	 * 
-	 * Nota: en ejemplos anteriores estaba en el método init
-	 * del repo, esto acoplaba innecesariamente el juego de datos
-	 * con su repositorio
-	 * 
 	 */
 	override run() {
+		
 //		Repositorio Especie
-
 		var RepositorioEspecie repositorioEspecie = RepositorioEspecie.instance
 		repositorioEspecie.agregarTipo(new Tipo("hierba"))
 		repositorioEspecie.agregarTipo(new Tipo("veneno"))
@@ -66,11 +65,6 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 			velocidad = 8
 		]
 		
-		repositorioEspecie.create(bulbasaur)
-		repositorioEspecie.create(ivysaur)
-		repositorioEspecie.create(pikachu)
-		
-		
 //		Repositorio Pokeparada
 		var repositorioPokeparada = RepositorioPokeparada.instance
 		repositorioPokeparada.description = "Repo Especie"
@@ -99,6 +93,50 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 			nombre = "Pokeparada JardinBotanico" 
 			items => [new Item(1,"pokebola") new Item(1,"superaball") new Item(1,"poción")]
 		]
+		
+		var JsonParserPokeparada jsonParserPokeparada = new JsonParserPokeparada
+		var JsonParserEspecie jsonParserEspecie = new JsonParserEspecie
+		
+		var JsonObject pokeparadaUNSAMJson {
+			Json.object()
+			.add("x", -34.572224)
+			.add("y", -58.535651)
+			.add("nombre","Pokeparada UNSAM")
+			.add("itemsDisponibles" , Json.array().asArray.add("pokebola").add("ultraball").add("superpoción"))
+		}
+		var JsonObject pokeparadaObeliscoJson { 
+			Json.object()
+			.add("x", -34.603759)
+			.add("y", -58.381586)
+			.add("nombre", "Pokeparada obelisco")
+			.add("itemsDisponibles" , Json.array().asArray.add("pokebola").add( "superball").add("poción"))	
+		} 
+		var JsonObject bulbasaurJson {
+			Json.object()
+			.add("numero",  1)
+			.add("nombre", "Bulbasaur")
+			.add("puntosAtaqueBase",10)
+			.add("puntosSaludBase",15)
+			.add("descripcion", "A Bulbasaur es fácil verle echándose una siesta al sol.")
+			.add("tipos" , Json.array().asArray.add("hierba").add("veneno"))
+			.add("velocidad",7)
+			.add("evolucion",2)
+		}
+		var JsonObject ivysaurJson {
+			Json.object()
+			.add("numero",  2)
+			.add("nombre", "Ivysaur")
+			.add("puntosAtaqueBase",15)
+			.add("puntosSaludBase",20)
+			.add("descripcion", "Este Pokémon lleva un bulbo en el lomo.")
+			.add("tipos" , Json.array().asArray.add("hierba").add("veneno"))
+			.add("velocidad",8)
+			.add("evolucion",3)
+		}
+		
+		repositorioEspecie.create(bulbasaur)
+		repositorioEspecie.create(ivysaur)
+		repositorioEspecie.create(pikachu)
 		repositorioPokeparada.create(pokeparadaUNSAM)
 		repositorioPokeparada.create(pokeparadaObelisco)
 		repositorioPokeparada.create(pokeparadaDOT)
@@ -106,10 +144,13 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 		
 		repositorioEspecie.description = "Repo Especie"
 		repositorioPokeparada.description = "Repo Pokeparada"
+		
+		repositorioEspecie.jsonParserEspecie = jsonParserEspecie
+		repositorioPokeparada.jsonParserPokeparada = jsonParserPokeparada
+				
 		var RepositorioRepositorio = RepositorioRepositorio.instance
 		RepositorioRepositorio.agregarRepos(repositorioPokeparada)
 		RepositorioRepositorio.agregarRepos(repositorioEspecie)
-		
 		
 		/*************************************************** POBLAR AREA *******************************************************************/
 		
@@ -154,6 +195,10 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 
 	}
 	
-	
+	private def String getStringJson(JsonObject... jsonObjects){
+		val JsonArray pokeparadasArray = Json.array().asArray
+		jsonObjects.forEach[ jsonObject | pokeparadasArray.add(jsonObject) ]
+		pokeparadasArray.toString
+	}
 	
 }

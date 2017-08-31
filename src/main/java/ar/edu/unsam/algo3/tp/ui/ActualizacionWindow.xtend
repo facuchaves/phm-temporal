@@ -1,6 +1,5 @@
 package ar.edu.unsam.algo3.tp.ui
 
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Button
@@ -16,7 +15,6 @@ import org.uqbar.arena.widgets.tables.Table
 import ar.edu.unsam.algo3.tp.model.Repositorio
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.bindings.PropertyAdapter
-import ar.edu.unsam.algo3.tp.model.Entidad
 
 class ActualizacionWindow extends TransactionalDialog<RepositoriosModelo> {
 

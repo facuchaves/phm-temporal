@@ -3,6 +3,7 @@ package ar.edu.unsam.algo3.tp.model.command
 import ar.edu.unsam.algo3.tp.model.Repositorio
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unsam.algo3.tp.model.json.JsonParserRepo
 
 @Accessors
 class Actualizacion extends Command{

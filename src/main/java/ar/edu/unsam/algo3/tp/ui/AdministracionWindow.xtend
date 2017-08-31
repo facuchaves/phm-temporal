@@ -144,6 +144,13 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	}
 	
 	/**
+	 * Abre el dialog de actualizar repositorios
+	 */
+	dispatch def abrirEditar(RepositoriosModelo proceso) {
+		openDialog(new EditarActualizacionWindow(this,  new RepositoriosModelo))
+	}
+	
+	/**
 	 * Abre el dialog de Multiple
 	 */
 	dispatch def abrirEditar(ComandoMultiple proceso) {

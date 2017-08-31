@@ -9,7 +9,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.geodds.Point
 
-@Accessors class JsonParserPokeparada {
+@Accessors class JsonParserPokeparada extends JsonParserRepo {
 	
 	new() {
 	}
