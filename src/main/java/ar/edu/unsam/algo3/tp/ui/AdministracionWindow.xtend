@@ -1,11 +1,14 @@
 package ar.edu.unsam.algo3.tp.ui
 
 import ar.edu.unsam.algo3.tp.model.command.AgregarAcciones
+import ar.edu.unsam.algo3.tp.model.command.ComandoMultiple
 import ar.edu.unsam.algo3.tp.model.command.Command
 import ar.edu.unsam.algo3.tp.model.command.PoblarArea
 import ar.edu.unsam.algo3.tp.viewModel.AdministracionModelo
 import ar.edu.unsam.algo3.tp.viewModel.AgregarAccionesModelo
-import ar.edu.unsam.algo3.tp.viewModel.EditarPoblarAreaModelo
+import ar.edu.unsam.algo3.tp.viewModel.MultipleModelo
+import ar.edu.unsam.algo3.tp.viewModel.PoblarAreaModelo
+import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.layout.VerticalLayout
@@ -18,9 +21,6 @@ import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import ar.edu.unsam.algo3.tp.viewModel.RepositoriosModelo
-import ar.edu.unsam.algo3.tp.model.command.ComandoMultiple
-import ar.edu.unsam.algo3.tp.viewModel.MultipleModelo
 
 class AdministracionWindow extends Window<AdministracionModelo> {
 
@@ -113,7 +113,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	 * Abre el dialog de poblar area
 	 */
 	def poblarArea() {
-		openDialog(new PoblarAreaWindows(this))
+		openDialog(new PoblarAreaWindows(this , new PoblarAreaModelo() ))
 	}
 	
 	/**
@@ -133,7 +133,7 @@ class AdministracionWindow extends Window<AdministracionModelo> {
 	 * Abre el dialog de editar poblar area
 	 */
 	dispatch def abrirEditar(PoblarArea proceso) {
-		openDialog(new EditarPoblarAreaWindows( this ,  new EditarPoblarAreaModelo(proceso) ) )
+		openDialog(new EditarPoblarAreaWindows( this ,  new PoblarAreaModelo(proceso) ) )
 	}
 	
 	/**

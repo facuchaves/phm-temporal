@@ -12,6 +12,7 @@ abstract class Command {
 	var LocalDateTime ultimaEjecucion
 	
 	def void execute() {
+		println("Se ejecuta comando " + nombreComando)
 		this.ultimaEjecucion = LocalDateTime.now
   	}
  	

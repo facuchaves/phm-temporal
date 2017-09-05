@@ -4,6 +4,7 @@ import ar.edu.unsam.algo3.tp.model.Especie
 import ar.edu.unsam.algo3.tp.model.Genero
 import ar.edu.unsam.algo3.tp.model.Pokemon
 import ar.edu.unsam.algo3.tp.model.RepositorioPokemon
+import java.time.LocalDateTime
 import java.util.HashSet
 import java.util.List
 import java.util.Random
@@ -21,21 +22,15 @@ class PoblarArea extends Command {
  	val double MAX_DENSIDAD = 5.0
  	
 	String descripcion
-	// Área geográfica: Área rectangular que representa la zona a poblar.
-	Rectangulo rectangulo
+	Rectangulo rectangulo // Área geográfica: Área rectangular que representa la zona a poblar.
+	Set<Especie> especies = new HashSet() // Especies: Determina de qué especies serán los pokémons creados.
+	int nivelMinimo // Nivel mínimo y máximo: Los pokémons creados tendrán un nivel dentro de este rango.
+	int nivelMaximo
+	double densidad// Densidad: Cantidad de pokémons a crear por km2.
 	
-	// Especies: Determina de qué especies serán los pokémons creados.
-	Set<Especie> especies = new HashSet()
-	
-	// Nivel mínimo y máximo: Los pokémons creados tendrán un nivel dentro de este rango.
-	 int nivelMinimo
-	 int nivelMaximo
-
-	// Densidad: Cantidad de pokémons a crear por km2.
-	double densidad
-	
-	override getNombreComando() {
-		descripcion
+	new(){
+		//FIXME SACAR ESTO ES SOLO PARA VER QUE BINDEE BIEN ESTO
+		ultimaEjecucion = LocalDateTime.now
 	}
 	
 	override execute() {
@@ -61,6 +56,10 @@ class PoblarArea extends Command {
 
 	}
 	
+	override getNombreComando() {
+		descripcion
+	}
+	
 	def getGeneroAleatorio() {
 		
 		val random = new Random()
@@ -80,6 +79,28 @@ class PoblarArea extends Command {
 	override toString() {
 		nombreComando
 	}
+	
+	def public void setDescripcion(String _descripcion){
+		validarDescripcion(_descripcion)
+		descripcion = _descripcion
+	}
+	
+	def public void setNivelMaximo(int _nivelMaximo){
+		validarNivelMaximo(_nivelMaximo)
+		nivelMaximo = _nivelMaximo
+	}
+	
+	def public void setNivelMinimo(int _nivelMinimo){
+		validarNivelMinimo(_nivelMinimo)
+		nivelMinimo = _nivelMinimo
+	}
+	
+	def public void setDensidad(double _densidad){
+		validarDensidad(_densidad)
+		densidad = _densidad
+	}
+	
+	/********************************************* VALIDACIONES *********************************************************************/
 	
 	def validarDescripcion(String _descripcion){
 		if( _descripcion != null && _descripcion.length > MAX_LENGTH_DESCRIPTION ){
@@ -115,26 +136,6 @@ class PoblarArea extends Command {
 		if( especies == null || especies.isEmpty){
 			throw new UserException( "Debe tener por lo menos una especie")
 		}
-	}
-	
-	def public void setDescripcion(String _descripcion){
-		validarDescripcion(_descripcion)
-		descripcion = _descripcion
-	}
-	
-	def public void setNivelMaximo(int _nivelMaximo){
-		validarNivelMaximo(_nivelMaximo)
-		nivelMaximo = _nivelMaximo
-	}
-	
-	def public void setNivelMinimo(int _nivelMinimo){
-		validarNivelMinimo(_nivelMinimo)
-		nivelMinimo = _nivelMinimo
-	}
-	
-	def public void setDensidad(double _densidad){
-		validarDensidad(_densidad)
-		densidad = _densidad
 	}
 	
 	def public void validar(){

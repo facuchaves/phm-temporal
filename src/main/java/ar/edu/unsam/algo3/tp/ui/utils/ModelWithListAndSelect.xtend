@@ -4,11 +4,10 @@ import java.util.List
 import java.util.Set
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
-import ar.edu.unsam.algo3.tp.viewModel.GeneralViewModel
 
 @Observable
 @Accessors
-abstract class ModelWithListAndSelect<T> extends GeneralViewModel{
+abstract class ModelWithListAndSelect<T> {
 	
 	T itemToAdd
 	T itemToDelete
