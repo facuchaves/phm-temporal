@@ -2,10 +2,11 @@ package ar.edu.unsam.algo3.tp.model;
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.Entity
 import org.uqbar.geodds.Point
 
 @Accessors
-class Pokemon implements Entidad{
+class Pokemon extends Entity implements Entidad{
 	int experiencia = 0
 	Especie especie
 	Point ubicacion
@@ -154,9 +155,9 @@ class Pokemon implements Entidad{
 	override validar() {
 	}
 	
-	override getId() {
-		return 0
-	}
+//	override getId() {
+//		return 0
+//	}
 	
 	override setId(int id) {
 	}

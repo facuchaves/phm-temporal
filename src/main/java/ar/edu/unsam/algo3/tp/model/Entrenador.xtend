@@ -321,6 +321,10 @@ class Entrenador implements Entidad{
 	
 	def cantidadObservers(){
 		observers.size
-	}	
+	}
+	
+	def getPokemonPorNombre(String nombrePokemon){
+		return equipo.filter[pokemon|nombrePokemon.equals(pokemon.nombre)].get(0)
+	}
 
 }

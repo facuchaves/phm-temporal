@@ -4,7 +4,7 @@ interface Entidad {
 	
 	def void validar()
 
-	def int getId()
+	def Integer getId()
 
 	def void setId(int id)
 	

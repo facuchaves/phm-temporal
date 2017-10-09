@@ -17,6 +17,33 @@ class RepositorioEspecie extends Repositorio<Especie> {
 	List<Tipo> tipos = new ArrayList()
 	
 	private new() {
+		
+		agregarTipo(new Tipo("Hierba"))
+		agregarTipo(new Tipo("Veneno"))
+		agregarTipo(new Tipo("Electricidad"))
+		agregarTipo(new Tipo("Fuego"))
+		
+		create( new Especie() =>[
+			numero = 1
+			nombre = "Electrico"
+			descripcion = "Electrico"
+			puntosAtaque = 10
+			puntosSalud = 100
+			velocidad = 5
+			it.tipos = newArrayList( getTipoByNombre("Electrico") )
+		])
+		
+		create( new Especie() =>[
+			numero = 2
+			nombre = "Fuego"
+			descripcion = "Fuego"
+			puntosAtaque = 20
+			puntosSalud = 200
+			velocidad = 5
+			it.tipos = newArrayList( getTipoByNombre("Fuego") )
+		])
+		
+		
 	}
 
 	public static def getInstance() {
@@ -30,7 +57,7 @@ class RepositorioEspecie extends Repositorio<Especie> {
 	 * El valor de búsqueda debe coincidir exactamente con su número o parcialmente con el nombre o descripción.
 	 */
 	override criterioDeBusquedaPorValor(Especie especie, String valor) {
-		valor.trim.replaceFirst("^0+(?!$)", "").equals(especie.id.toString) ||
+//		valor.trim.replaceFirst("^0+(?!$)", "").equals(especie.id.toString) ||
 			especie.nombre.toLowerCase.contains(valor.toLowerCase) ||
 			especie.descripcion.toLowerCase.contains(valor.toLowerCase)
 	}

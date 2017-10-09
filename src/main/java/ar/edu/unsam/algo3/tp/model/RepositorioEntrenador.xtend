@@ -11,6 +11,10 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	@Accessors List<Entrenador> entrenadores = new ArrayList()
 	
 	private new() {
+		create( new Entrenador() => [
+			nombre = "Ash"
+			equipo = newArrayList( RepositorioPokemon.instance.search("Pikachu").get(0) , RepositorioPokemon.instance.search("Charmander").get(0) )
+		])
 	}
 
 	public static def getInstance() {
@@ -41,7 +45,8 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	override searchPorCriterioUnico(Entrenador objeto) {
 	}
 	
-	override criterioDeBusquedaPorValor(Entrenador objeto, String string) {
+	override criterioDeBusquedaPorValor(Entrenador entrenador, String nombre) {
+		nombre.equals( entrenador.nombre )
 	}
 	
 	override pisarObjetos(Entrenador objetoEncontrado, Entrenador objetoNuevo) {

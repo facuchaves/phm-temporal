@@ -7,7 +7,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Especie implements Entidad {
 	
-	int id
+	Integer id
 	int numero
 	String nombre
 	String descripcion
@@ -91,6 +91,10 @@ class Especie implements Entidad {
 	
 	override toString() {
 		nombre
+	}
+	
+	override setId(int id) {
+//		this.id = id
 	}
 	
 }
