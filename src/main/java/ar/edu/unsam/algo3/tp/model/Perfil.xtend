@@ -28,7 +28,9 @@ abstract class Perfil {
 }
 
 class Criador extends Perfil {
-
+	
+	val nombre = "Criador";
+	
 	override accionPorEvolucionarPokemon(Entrenador entrenador, Pokemon pokemonQueSubioDeNivel) {
 		
 		entrenador.sumarExperiencia(200 + ( pokemonQueSubioDeNivel.experiencia * 0.2 ).intValue )
@@ -47,7 +49,9 @@ class Criador extends Perfil {
 }
 
 class Coleccionista extends Perfil {
-
+	
+	val nombre = "Coleccionista";
+	
 	override accionPorCapturarPokemon(Entrenador entrenador, Pokemon pokemon) {
 		
 		entrenador.sumarExperiencia(500)
@@ -85,7 +89,9 @@ class Coleccionista extends Perfil {
 
 
 class Luchador extends Perfil {
-
+	
+	val nombre = "Luchador";
+	
 	override accionPorGanarCombate(Entrenador entrenador, Entrenador entrenadorRival) {
 
 		if (entrenadorRival.nivel > entrenador.nivel) {
