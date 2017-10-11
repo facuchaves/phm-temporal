@@ -2,6 +2,7 @@ package ar.edu.unsam.algo3.tp.model
 
 import ar.edu.unsam.algo3.tp.model.exception.CapturarExcepcion
 import ar.edu.unsam.algo3.tp.model.observer.CustomObserver
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
@@ -25,7 +26,7 @@ class Entrenador implements Entidad{
 	List<Especie> especiesAtrapadas = new ArrayList
 	int cantidadCombatesGanados = 0
 	int cantidadPokemonesEvolucionados = 0
-	TablaNiveles tablaNiveles = new TablaNiveles
+	@JsonIgnore TablaNiveles tablaNiveles = new TablaNiveles
 	String nombre
 	
 	@Accessors List<Entrenador> amigos

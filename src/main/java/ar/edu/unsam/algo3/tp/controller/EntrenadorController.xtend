@@ -23,6 +23,17 @@ class EntrenadorController {
 
 	}
 
+	
+	@Get("/entrenador/logeado")
+	def Result entrenadorLogeado() {
+		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(entrenador.toJson)
+		
+	}
+	
+
 	def static void main(String[] args) {
 		XTRest.start(9000, EntrenadorController)
 	}

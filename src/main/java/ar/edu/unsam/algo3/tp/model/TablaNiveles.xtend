@@ -2,8 +2,9 @@ package ar.edu.unsam.algo3.tp.model
 
 import java.util.HashMap
 import java.util.Map
+import java.io.Serializable
 
-class TablaNiveles {
+class TablaNiveles implements Serializable{
 	
 	var Map<Integer, Integer> niveles = new HashMap
 
