@@ -38,6 +38,16 @@ class EntrenadorController {
 		XTRest.start(9000, EntrenadorController)
 	}
 
+	@Get("/entrenador/ubicacion")
+	def Result ubicacionActual(){
+		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		try{
+			ok(entrenador.ubicacion.toJson)
+		}catch(Exception E){
+			badRequest("No se pudo obtener la ubicacion.")
+		}
+	}
+
 	@Put("/entrenador/moverseArriba")
 	def Result moverseArriba() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
@@ -88,5 +98,7 @@ class EntrenadorController {
 		}
 
 	}
+	
+	
 
 }
