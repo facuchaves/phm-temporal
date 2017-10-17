@@ -26,11 +26,11 @@ class PokeparadaTest extends TestHelper {
 
 	Especie especie
 
-	Pokebola superball = new Pokebola(0, 0)
-	Pokebola pokebola = new Pokebola(0, 0)
+	Pokebola superball = new Pokebola(0, 0,"pokebola")
+	Pokebola pokebola = new Pokebola(0, 0,"pokebola")
 
-	Pocion posion = new Pocion(50, 20)
-	Pocion superPosion = new Pocion(100, 50)
+	Pocion posion = new Pocion(50, 20,"Pocion")
+	Pocion superPosion = new Pocion(100, 50,"SuperPosion")
 
 	@Before
 	def void init() {

@@ -19,9 +19,9 @@ class ItemTest extends TestHelper {
 
 	Especie especie
 
-	Pocion pocion = new Pocion(50,20)
-	Pocion superPosion = new Pocion(100,50)
-	MaxPocion maxPocion = new MaxPocion(150)
+	Pocion pocion = new Pocion(50,20,"Pocion")
+	Pocion superPosion = new Pocion(100,50,"SuperPocion")
+	MaxPocion maxPocion = new MaxPocion(150,"MaxPocion")
 	
 	IngredienteDecorator hierro = new IngredienteValorFijoDecorator(10,5)
 	IngredienteDecorator calcio = new IngredienteValorFijoDecorator(15,10)

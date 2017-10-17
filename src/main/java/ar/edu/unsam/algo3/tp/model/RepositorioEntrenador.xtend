@@ -1,6 +1,7 @@
 package ar.edu.unsam.algo3.tp.model
 
 import java.util.ArrayList
+import java.util.HashMap
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.geodds.Point
@@ -16,6 +17,12 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 			nombre = "Ash"
 			ubicacion = new Point(-34.572219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Pikachu").get(0) , RepositorioPokemon.instance.search("Charmander").get(0) )
+			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )
+			perfil = new Luchador()
+			items = new HashMap
+			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
+			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
+			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 		])
 	}
 

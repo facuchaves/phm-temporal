@@ -27,6 +27,14 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 200
 			genero = Genero.MASCULINO
 		])
+		
+		create(new Pokemon() => [
+			nombre = "Charizard"
+			especie = RepositorioEspecie.instance.search("Fuego").get(0)
+			puntosDeSalud = 1500
+			experiencia = 200000
+			genero = Genero.MASCULINO
+		])
 
 	}
 

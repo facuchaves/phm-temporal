@@ -6,7 +6,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
-class Item {
+class Item implements Entidad{
 	val int precio //= 80
 	String nombre
 	
@@ -18,15 +18,29 @@ class Item {
 		this.precio = precio
 		this.nombre = nombre
 	}
+	
+	override validar() {
+	}
+	
+	override getId() {
+	}
+	
+	override setId(int id) {
+	}
+	
+	override toString() {
+		nombre
+	}
+	
 }
 
 @Accessors
 class Pokebola extends Item{
 	double probabilidadExtraDeAtrapar
 	
-	new(int precio , double probabilidadExtraDeAtrapar) {
+	new(int precio , double probabilidadExtraDeAtrapar, String nombre) {
 		
-		super(precio)
+		super(precio,nombre)
 		this.probabilidadExtraDeAtrapar = probabilidadExtraDeAtrapar 
 		
 	}
@@ -42,12 +56,12 @@ interface PocionI{
 class Pocion extends Item implements PocionI{
 	int puntosDeSaludQueCura
 	
-	new( int precio){
-		super(precio)
+	new( int precio,String nombre){
+		super(precio,nombre)
 	}
 	
-	new( int precio , int puntosDeSaludQueCura ){
-		super(precio)
+	new( int precio , int puntosDeSaludQueCura , String nombre){
+		super(precio,nombre)
 		this.puntosDeSaludQueCura = puntosDeSaludQueCura
 	}
 	
@@ -64,8 +78,8 @@ class Pocion extends Item implements PocionI{
 @Accessors
 class MaxPocion extends Pocion{
 	
-	new( int precio ){
-		super(precio)
+	new( int precio ,String nombre){
+		super(precio,nombre)
 	}
 	
 	override curar(Pokemon pokemon){

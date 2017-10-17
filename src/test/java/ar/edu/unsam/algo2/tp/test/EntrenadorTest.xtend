@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*
 
 class EntrenadorTest extends TestHelper {
 	
-	Pocion pocion = new Pocion(50,20)
+	Pocion pocion = new Pocion(50,20,"Pocion")
 	
 	Pokemon pokemon
 
@@ -49,7 +49,7 @@ class EntrenadorTest extends TestHelper {
 
 		var Especie especie = new Especie
 		
-		val superBallTest = new Pokebola(10, 30)
+		val superBallTest = new Pokebola(10, 30,"superbola")
 
 		especie.velocidad = 10
 
@@ -254,7 +254,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Coleccionista
 
-		val pokebola = new Pokebola(0, 0)
+		val pokebola = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem(pokebola)
 
@@ -273,7 +273,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Coleccionista
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -291,7 +291,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Coleccionista
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -309,7 +309,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Coleccionista
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -327,7 +327,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Criador
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -344,7 +344,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Luchador
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -361,7 +361,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Luchador
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -379,7 +379,7 @@ class EntrenadorTest extends TestHelper {
 		
 		entrenador.perfil = new Luchador
 
-		entrenador.capturar(pokemon, new Pokebola(0, 0))
+		entrenador.capturar(pokemon, new Pokebola(0, 0,"pokebola"))
 
 	}
 
@@ -388,7 +388,7 @@ class EntrenadorTest extends TestHelper {
 
 		pokemon.ubicacion = new Point(1, 1)
 
-		entrenador.capturar(pokemon, new Pokebola(0, 0))
+		entrenador.capturar(pokemon, new Pokebola(0, 0,"pokebola"))
 
 	}
 
@@ -411,7 +411,7 @@ class EntrenadorTest extends TestHelper {
 
 		}
 		
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
@@ -437,7 +437,7 @@ class EntrenadorTest extends TestHelper {
 
 		}
 
-		val pokebolas = new Pokebola(0, 0)
+		val pokebolas = new Pokebola(0, 0,"pokebola")
 
 		entrenador.agregarItem((pokebolas))
 
