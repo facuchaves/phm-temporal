@@ -51,16 +51,16 @@ class Entrenador implements Entidad{
 		this.ubicacion = point
 	}
 	def void moverseArriba(){
-		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y + 0.0001)
+		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y + 1)
 	}
 	def void moverseAbajo(){
-		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y - 0.0001)
+		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y - 1)
 	}
 	def void moverseIzquerda(){
-		this.ubicacion = new Point(this.ubicacion.x - 0.0001, this.ubicacion.y)
+		this.ubicacion = new Point(this.ubicacion.x - 1, this.ubicacion.y)
 	}
 	def void moverseDerecha(){
-		this.ubicacion = new Point(this.ubicacion.x + 0.0001, this.ubicacion.y)
+		this.ubicacion = new Point(this.ubicacion.x + 1, this.ubicacion.y)
 	}
 	
 

@@ -5,9 +5,10 @@ import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
+import org.uqbar.xtrest.api.annotation.Post
+import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
-import org.uqbar.xtrest.api.annotation.Put
 
 @Controller
 class EntrenadorController {
@@ -54,7 +55,7 @@ class EntrenadorController {
 		response.contentType = ContentType.APPLICATION_JSON
 		try {
 			entrenador.moverseArriba()
-			ok()
+			ok('{ "status" : "OK" }')
 		} catch (Exception E) {
 			internalServerError(E.message)
 		}
