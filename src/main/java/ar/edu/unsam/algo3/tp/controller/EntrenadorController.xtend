@@ -13,6 +13,33 @@ class EntrenadorController {
 	
 	extension JSONUtils = new JSONUtils
 	
+	@Get("/entrenador/inventario")
+	def Result inventario() {
+		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(entrenador.items.toJson)
+		
+	}
+	
+	@Get("/entrenador/deposito")
+	def Result deposito() {
+		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(entrenador.deposito.toJson)
+		
+	}
+	
+	@Get("/entrenador/pokemones")
+	def Result pokemones() {
+		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(entrenador.equipo.toJson)
+		
+	}
+	
 	@Get("/entrenador/pokemon/:name")
 	def Result pokemon() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)

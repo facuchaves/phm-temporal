@@ -1,5 +1,7 @@
 package ar.edu.unsam.algo3.tp.model
 
+import org.eclipse.xtend.lib.annotations.Accessors
+
 abstract class Perfil {
 
 	/*
@@ -26,7 +28,7 @@ abstract class Perfil {
 	def boolean esExperto(Entrenador entrenador);
 
 }
-
+@Accessors
 class Criador extends Perfil {
 	
 	val nombre = "Criador";
@@ -47,7 +49,7 @@ class Criador extends Perfil {
 	}
 
 }
-
+@Accessors
 class Coleccionista extends Perfil {
 	
 	val nombre = "Coleccionista";
@@ -87,7 +89,7 @@ class Coleccionista extends Perfil {
 
 }
 
-
+@Accessors
 class Luchador extends Perfil {
 	
 	val nombre = "Luchador";

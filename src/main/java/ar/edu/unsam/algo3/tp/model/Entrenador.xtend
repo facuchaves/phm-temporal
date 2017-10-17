@@ -325,7 +325,7 @@ class Entrenador implements Entidad{
 	}
 	
 	def getPokemonPorNombre(String nombrePokemon){
-		return equipo.filter[pokemon|nombrePokemon.equals(pokemon.nombre)].get(0)
+		return (equipo + deposito).filter[pokemon|nombrePokemon.equals(pokemon.nombre)].get(0)
 	}
 
 }
