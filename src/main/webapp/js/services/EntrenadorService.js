@@ -12,5 +12,23 @@ class EntrenadorService{
         this.$http.get('http://localhost:9000/entrenador/ubicacion').then(callback)
     }
 
+    mover(direccion, callback){
+        switch(direccion) {
+            case "arriba":
+                this.$http.put('http://localhost:9000/entrenador/moverseArriba').then(callback)
+                break;
+            case "abajo":
+                this.$http.put('http://localhost:9000/entrenador/moverseAbajo').then(callback)
+                break;
+            case "izquierda":
+                this.$http.put('http://localhost:9000/entrenador/moverseIzquierda').then(callback)
+                break;
+            case "derecha":
+                this.$http.put('http://localhost:9000/entrenador/moverseDerecha').then(callback)
+                break;
+        } 
+    }
+
+   
 
 }

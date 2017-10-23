@@ -13,7 +13,7 @@ class Entrenador {
     }
     
     static asEntrenador(jsonEntrenador) {
-		return angular.extend(new Entrenador(), jsonEntrenador)
+		  return angular.extend(new Entrenador(), jsonEntrenador)
     }
     
 }

@@ -1,6 +1,6 @@
 const routes = ($stateProvider, $urlRouterProvider) => {
     
-      $urlRouterProvider.otherwise("/")
+      $urlRouterProvider.otherwise("/mundo")
     
       $stateProvider
     

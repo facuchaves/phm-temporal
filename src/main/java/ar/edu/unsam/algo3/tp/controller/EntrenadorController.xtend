@@ -5,7 +5,6 @@ import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.XTRest
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
-import org.uqbar.xtrest.api.annotation.Post
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
@@ -127,6 +126,16 @@ class EntrenadorController {
 
 	}
 	
+//	@Get("/entrenador/oponentes")
+//	def Result oponentesCerca() {
+////		val List<Entrenador> oponentes = RepositorioOponentes.instance.obtenerOponentes
+////		
+////		
+////		response.contentType = ContentType.APPLICATION_JSON
+//		ok("ok")
+//		
+//	}
 	
 
+	
 }

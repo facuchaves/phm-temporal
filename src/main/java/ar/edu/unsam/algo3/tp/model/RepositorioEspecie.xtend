@@ -22,6 +22,7 @@ class RepositorioEspecie extends Repositorio<Especie> {
 		agregarTipo(new Tipo("Veneno"))
 		agregarTipo(new Tipo("Electricidad"))
 		agregarTipo(new Tipo("Fuego"))
+		agregarTipo(new Tipo("Normal"))
 		
 		create( new Especie() =>[
 			numero = 1
@@ -41,6 +42,16 @@ class RepositorioEspecie extends Repositorio<Especie> {
 			puntosSalud = 200
 			velocidad = 5
 			it.tipos = newArrayList( getTipoByNombre("Fuego") )
+		])
+		
+		create( new Especie() =>[
+			numero = 3
+			nombre = "Normal"
+			descripcion = "Normal"
+			puntosAtaque = 30
+			puntosSalud = 400
+			velocidad = 5
+			it.tipos = newArrayList( getTipoByNombre("Normal") )
 		])
 		
 		

@@ -1,10 +1,12 @@
 class MundoController{
 
     constructor(OponenteService,EntrenadorService){
-       this.oponentes = OponenteService.oponentes
+       this.OponenteService = OponenteService
        this.EntrenadorService = EntrenadorService
+       this.entrenador = new Entrenador()
+       
        this.getEntrenador()
-        this.entrenador = new Entrenador()
+      // this.obtenerOponentes()
     }
 
     alertarEstado(){
@@ -13,11 +15,20 @@ class MundoController{
 
     getEntrenador(){
         this.EntrenadorService.findEntrenador((response)=>{
-           entrenador.asEntrenador(response.data)
+           this.entrenador = Entrenador.asEntrenador(response.data)
         })
     }
     getUbicacion(){
-       // return this.entrenador.nombre  
+        return this.entrenador.ubicacion 
+       
     }
+
+    moverEntrenador(direccion){
+        this.EntrenadorService.mover(direccion, (response)=>{
+            this.getEntrenador()
+        })
+    }
+
+   
 
 }

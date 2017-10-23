@@ -35,7 +35,31 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 200000
 			genero = Genero.MASCULINO
 		])
-
+		
+		create(new Pokemon() => [
+			nombre = "PAKAPAKA"
+			especie = RepositorioEspecie.instance.search("Electrico").get(0)
+			puntosDeSalud = 250
+			experiencia = 11000
+			genero = Genero.FEMENINO
+			
+		])
+		create(new Pokemon() => [
+			nombre = "Snorlax"
+			especie = RepositorioEspecie.instance.search("Normal").get(0)
+			puntosDeSalud = 500
+			experiencia = 11000
+			genero = Genero.FEMENINO
+			
+		])
+		create(new Pokemon() => [
+			nombre = "Meowth"
+			especie = RepositorioEspecie.instance.search("Normal").get(0)
+			puntosDeSalud = 500
+			experiencia = 210000
+			genero = Genero.MASCULINO
+			
+		])
 	}
 
 	public static def getInstance() {
