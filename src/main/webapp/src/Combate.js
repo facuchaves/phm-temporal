@@ -1,4 +1,4 @@
-class Pokemon {
+class Combate {
     constructor() {
         this.tablaNiveles = new TablaNiveles();
         this.experiencia = 1;

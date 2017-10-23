@@ -10,6 +10,7 @@ class Pokemon {
 		this.puntosDeSalud = 1;
 		this.puntosSaludMaximo = 1;
 	}
+	
 
 	getNivel() {
 		return parseInt((Math.pow(100 * (2 * this.experiencia + 25), 0.5) + 50) / 100);
@@ -74,4 +75,9 @@ class Pokemon {
 	getImgPath() {
 		return "img/pokemones/" + this.nombre.toLowerCase() + ".png";
 	}
+
+
+	static asPokemon(jsonPokemon) {
+		return angular.extend(new Pokemon("fuego"), jsonPokemon)
+  }
 }

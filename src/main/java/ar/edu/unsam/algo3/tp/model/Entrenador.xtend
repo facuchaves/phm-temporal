@@ -28,6 +28,7 @@ class Entrenador implements Entidad{
 	int cantidadPokemonesEvolucionados = 0
 	@JsonIgnore TablaNiveles tablaNiveles = new TablaNiveles
 	String nombre
+	String imagenEntrenador
 	
 	@Accessors List<Entrenador> amigos
 	List<Entrenador> amigosPendientes

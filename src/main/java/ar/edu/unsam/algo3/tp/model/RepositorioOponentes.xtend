@@ -16,7 +16,7 @@ class RepositorioOponentes  {
 		
 			
 		entrenadores.add( new Entrenador() => [
-			nombre = "Cacho"
+			nombre = "Ash Ketchum"
 			ubicacion = new Point(-34.572219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Pipo").get(0) )
 			dinero = 100
@@ -26,6 +26,7 @@ class RepositorioOponentes  {
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			imagenEntrenador="ash.jpg"
 		])
 		entrenadores.add( new Entrenador() => [
 			nombre = "Gary Oak"
@@ -38,6 +39,7 @@ class RepositorioOponentes  {
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			imagenEntrenador="garyOak.jpg"
 		])
 		entrenadores.add( new Entrenador() => [
 			nombre = "Misty La Colo"
@@ -50,6 +52,7 @@ class RepositorioOponentes  {
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			imagenEntrenador="misty.png"
 ])
 		
 	}

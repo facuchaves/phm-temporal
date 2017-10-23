@@ -138,5 +138,16 @@ class EntrenadorController {
 		}
 
 	}
+	@Get("/entrenador/pokemonSalvaje")
+	def Result pokemonSalvajeCerca() {
+		val pokemonSalvaje = RepositorioEntrenador.instance.pokemonSalvajeCercanos()
+		try {
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(pokemonSalvaje.toJson)
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
 
 }

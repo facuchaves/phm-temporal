@@ -64,4 +64,7 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	def oponentesCercanos(){
 		new RepositorioOponentes().obtenerOponentes
 	}
+	def pokemonSalvajeCercanos(){
+		 RepositorioPokemon.instance.obtenerSalvajes
+	}
 }

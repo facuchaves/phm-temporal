@@ -32,5 +32,7 @@ class EntrenadorService{
     findOponentes(callback){
         this.$http.get('http://localhost:9000/entrenador/oponentes').then(callback)
     }
-
+    findPokemonesSalvajes(callback){
+        this.$http.get('http://localhost:9000/entrenador/pokemonSalvaje').then(callback)
+    }
 }

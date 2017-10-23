@@ -9,6 +9,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 	static var RepositorioPokemon instance
 
 	@Accessors List<Pokemon> pokemones = new ArrayList()
+	@Accessors List<Pokemon> pokemonSalvaje = new ArrayList()
 
 	private new() {
 
@@ -60,6 +61,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			genero = Genero.MASCULINO
 			
 		])
+		agregarSalvajes()
 	}
 
 	public static def getInstance() {
@@ -92,5 +94,34 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 
 	override pisarObjetos(Pokemon objetoEncontrado, Pokemon objetoNuevo) {
 	}
+	def agregarSalvajes(){
+		pokemonSalvaje.add( new Pokemon() => [
+			nombre = "Charmander"
+			especie = RepositorioEspecie.instance.search("Fuego").get(0)
+			puntosDeSalud = 50
+			experiencia = 2000
+			genero = Genero.FEMENINO
+			])
+
+		pokemonSalvaje.add(new Pokemon() => [
+			nombre = "Pikachu"
+			especie = RepositorioEspecie.instance.search("Electrico").get(0)
+			puntosDeSalud = 150
+			experiencia = 200
+			genero = Genero.MASCULINO
+		])
+		
+		pokemonSalvaje.add(new Pokemon() => [
+			nombre = "Charizard"
+			especie = RepositorioEspecie.instance.search("Fuego").get(0)
+			puntosDeSalud = 1500
+			experiencia = 200000
+			genero = Genero.MASCULINO
+		])
+	}
+	def obtenerSalvajes(){
+		pokemonSalvaje
+	}
+	
 
 }
