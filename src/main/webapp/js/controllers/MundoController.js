@@ -4,9 +4,10 @@ class MundoController{
        this.OponenteService = OponenteService
        this.EntrenadorService = EntrenadorService
        this.entrenador = new Entrenador()
-       
+       this.oponentes = []
        this.getEntrenador()
-      // this.obtenerOponentes()
+       this.getOponentes()
+      
     }
 
     alertarEstado(){
@@ -22,13 +23,16 @@ class MundoController{
         return this.entrenador.ubicacion 
        
     }
-
     moverEntrenador(direccion){
         this.EntrenadorService.mover(direccion, (response)=>{
             this.getEntrenador()
         })
     }
-
+    getOponentes(){
+        this.EntrenadorService.findOponentes((response)=>{
+            this.oponentes= _.map(response.data,Entrenador.asEntrenador)
+        })
+    }
    
 
 }

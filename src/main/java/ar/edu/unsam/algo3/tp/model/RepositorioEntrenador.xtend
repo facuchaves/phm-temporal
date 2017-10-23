@@ -17,6 +17,7 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 			nombre = "Ash"
 			ubicacion = new Point(-34.572219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Pikachu").get(0) , RepositorioPokemon.instance.search("Charmander").get(0) )
+			dinero=120
 			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )
 			perfil = new Luchador()
 			items = new HashMap
@@ -60,5 +61,7 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	
 	override pisarObjetos(Entrenador objetoEncontrado, Entrenador objetoNuevo) {
 	}
-	
+	def oponentesCercanos(){
+		new RepositorioOponentes().obtenerOponentes
+	}
 }

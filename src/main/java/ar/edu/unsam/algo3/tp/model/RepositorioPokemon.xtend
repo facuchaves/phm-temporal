@@ -37,7 +37,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 		])
 		
 		create(new Pokemon() => [
-			nombre = "PAKAPAKA"
+			nombre = "Pipo"
 			especie = RepositorioEspecie.instance.search("Electrico").get(0)
 			puntosDeSalud = 250
 			experiencia = 11000

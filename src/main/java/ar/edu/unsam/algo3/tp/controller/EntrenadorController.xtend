@@ -8,39 +8,42 @@ import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
+import ar.edu.unsam.algo3.tp.model.RepositorioOponentes
+import ar.edu.unsam.algo3.tp.model.Entrenador
+import java.util.List
 
 @Controller
 class EntrenadorController {
 
 	extension JSONUtils = new JSONUtils
-	
+
 	@Get("/entrenador/inventario")
 	def Result inventario() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
-		
+
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(entrenador.items.toJson)
-		
+
 	}
-	
+
 	@Get("/entrenador/deposito")
 	def Result deposito() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
-		
+
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(entrenador.deposito.toJson)
-		
+
 	}
-	
+
 	@Get("/entrenador/pokemones")
 	def Result pokemones() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
-		
+
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(entrenador.equipo.toJson)
-		
+
 	}
-	
+
 	@Get("/entrenador/pokemon/:name")
 	def Result pokemon() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
@@ -50,27 +53,25 @@ class EntrenadorController {
 
 	}
 
-	
 	@Get("/entrenador/logeado")
 	def Result entrenadorLogeado() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
-		
+
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(entrenador.toJson)
-		
+
 	}
-	
 
 	def static void main(String[] args) {
 		XTRest.start(9000, EntrenadorController)
 	}
 
 	@Get("/entrenador/ubicacion")
-	def Result ubicacionActual(){
+	def Result ubicacionActual() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
-		try{
+		try {
 			ok(entrenador.ubicacion.toJson)
-		}catch(Exception E){
+		} catch (Exception E) {
 			badRequest("No se pudo obtener la ubicacion.")
 		}
 	}
@@ -125,17 +126,17 @@ class EntrenadorController {
 		}
 
 	}
-	
-//	@Get("/entrenador/oponentes")
-//	def Result oponentesCerca() {
-////		val List<Entrenador> oponentes = RepositorioOponentes.instance.obtenerOponentes
-////		
-////		
-////		response.contentType = ContentType.APPLICATION_JSON
-//		ok("ok")
-//		
-//	}
-	
 
-	
+	@Get("/entrenador/oponentes")
+	def Result oponentesCerca() {
+		val oponentes = RepositorioEntrenador.instance.oponentesCercanos()
+		try {
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(oponentes.toJson)
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
+
 }

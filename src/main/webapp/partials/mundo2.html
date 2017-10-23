@@ -45,9 +45,9 @@
                             </thead>
                             <tbody  >
                                 <tr ng-repeat=" oponente in mundoCtrl.oponentes">
-                                    <td>{{oponente.nombre}}<img ng-src="{{oponente.imagenEntrenador}}" class="imagenTabla img-fluid rounded-circle" /></td>
-                                    <td>{{oponente.pokemon}} {{oponente.nivelpk}} <img ng-src="{{oponente.imagenPokemon}}" class="imagenTabla img-fluid rounded-circle" /> </td>
-                                    <td>{{oponente.apuesta}}</td>
+                                    <td>{{oponente.nombre}}<img  class="imagenTabla img-fluid rounded-circle" /></td>
+                                    <td>{{oponente.equipo[0].nombre}}  <img  class="imagenTabla img-fluid rounded-circle" /> </td>
+                                    <td>{{oponente.dinero}}</td>
                                     <td class="icono-celda">
                                         <i class="fa fa-group" aria-hidden="true"></i>
                                     </td>
