@@ -62,7 +62,7 @@ class MundoController{
      notificarPelea(mensaje) {
          this.mensajes.pop()
          this.mensajes.push(mensaje)
-         
+         $('#exampleModal').modal();
     }
 
     atrapar(pokemon){
@@ -75,9 +75,9 @@ class MundoController{
     }
 
     notificarAtrapado(mensaje){
-        this.atrapado.pop()
-        this.atrapado.push(mensaje)
-       
+        this.mensajes.pop()
+        this.mensajes.push(mensaje)
+        $('#exampleModal').modal();
     }
 
     curar(pokeparada){
