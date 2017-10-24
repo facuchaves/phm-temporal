@@ -1,16 +1,15 @@
 class MundoController{
 
     constructor(OponenteService,EntrenadorService){
-       this.OponenteService = OponenteService
        this.EntrenadorService = EntrenadorService
-       this.entrenador = new Entrenador()
+       this.entrenador = new Entrenador
        this.oponentes = []
        this.pokemonesSalvaje = []
        this.pokeparadas = []
        this.getEntrenador()
        this.getOponentes()
-        this.getPokemonesSalvajes()
-        this.getPokeparadas()
+       this.getPokemonesSalvajes()
+       this.getPokeparadas()
     }
 
     alertarEstado(){
@@ -46,6 +45,15 @@ class MundoController{
     getPokeparadas(){
         this.EntrenadorService.findPokeparadas((response)=>{
             this.pokeparadas=_.map(response.data, Pokeparada.asPokeparada)
+        })
+    }
+
+    pelear(oponente){
+       
+        this.EntrenadorService.pelear(oponente,(response)=>{
+            alert(response.toString)
+            this.getEntrenador()
+            this.getOponentes()
         })
     }
 

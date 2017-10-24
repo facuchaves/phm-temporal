@@ -50,6 +50,42 @@ class Combate {
 		
 	}
 	
+	def String combatirRespuesta(){
+		
+		if( entrenador.getDistancia(entrenadorRival.ubicacion) > 0.005 ){
+			throw new CombateExcepcion("Error combatiendo, esta a mas de 5 metros de distancia")
+		}
+			
+		var gana = random <= chancesEntrenadorPropioCombate / (chancesEntrenadorPropioCombate + chancesEntrenadorRivalCombate)
+		
+		if( gana ){
+			
+			entrenador.aumentarCombatesGanados
+			
+			entrenador.ganarDinero(apuesta)
+			
+			entrenador.ganarExperiencia(300)
+			
+			entrenador.accionPostCombate(entrenadorRival)
+			
+			pokemon.sumarExperiencia( (pokemonRival.experiencia * 0.1).intValue )
+			
+			var danioRecibido = pokemon.puntosSaludMaximo * ( pokemon.puntosAtaque / ( pokemon.puntosAtaque + pokemonRival.puntosAtaque ))
+			
+			pokemon.restarPuntosDeSalud( danioRecibido.intValue )
+			
+			"VICTORIA"
+		}else {
+			
+			entrenador.perderDinero(apuesta)
+			
+			pokemon.puntosDeSalud = 0
+			
+			"DERROTA"
+		}
+		
+	}
+	
 	def getChancesEntrenadorPropioCombate() {
 		
 		calcularChancesCombate(entrenador, pokemon , pokemonRival )

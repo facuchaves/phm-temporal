@@ -11,11 +11,15 @@ import org.uqbar.xtrest.json.JSONUtils
 import ar.edu.unsam.algo3.tp.model.RepositorioOponentes
 import ar.edu.unsam.algo3.tp.model.Entrenador
 import java.util.List
+import org.uqbar.xtrest.api.annotation.Body
+import ar.edu.unsam.algo3.tp.model.Pokemon
+import ar.edu.unsam.algo3.tp.model.Combate
 
 @Controller
 class EntrenadorController {
 
 	extension JSONUtils = new JSONUtils
+	var Entrenador jugador = RepositorioEntrenador.instance.search("Ash").get(0)
 
 	@Get("/entrenador/inventario")
 	def Result inventario() {
@@ -60,10 +64,6 @@ class EntrenadorController {
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(entrenador.toJson)
 
-	}
-
-	def static void main(String[] args) {
-		XTRest.start(9000, EntrenadorController)
 	}
 
 	@Get("/entrenador/ubicacion")
@@ -138,6 +138,7 @@ class EntrenadorController {
 		}
 
 	}
+
 	@Get("/entrenador/pokemonSalvaje")
 	def Result pokemonSalvajeCerca() {
 		val pokemonSalvaje = RepositorioEntrenador.instance.pokemonSalvajeCercanos()
@@ -149,7 +150,8 @@ class EntrenadorController {
 		}
 
 	}
-		@Get("/entrenador/pokeparadas")
+
+	@Get("/entrenador/pokeparadas")
 	def Result pokeparadasCerca() {
 		val pokeparadas = RepositorioEntrenador.instance.pokeparadasCercanas()
 		try {
@@ -161,4 +163,27 @@ class EntrenadorController {
 
 	}
 
+	@Get("/pelearHoy/:id")
+	def Result pelearHoy(@Body String body) {
+
+		var Entrenador enemigo = new RepositorioOponentes().obtenerEnemigo(id.replace("_", " "))
+		try {
+			var Combate combate = new Combate()
+			combate.entrenadorRival = enemigo
+			combate.entrenador = jugador
+			combate.pokemonRival = enemigo.equipo.get(0)
+			combate.pokemon = jugador.equipo.get(0)
+			combate.apuesta = enemigo.dinero
+			var gano = combate.combatirRespuesta()
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(gano)
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
+
+	def static void main(String[] args) {
+		XTRest.start(9000, EntrenadorController)
+	}
 }

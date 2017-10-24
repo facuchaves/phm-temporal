@@ -63,6 +63,10 @@ class RepositorioOponentes  {
 		this.entrenadores
 	}
 	
+	def obtenerEnemigo(String nombre){
+		this.entrenadores.filter[E | E.nombre.equals(nombre)].get(0)
+	}
+	
 	
 	
 }

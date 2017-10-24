@@ -38,4 +38,11 @@ class EntrenadorService{
     findPokeparadas(callback){
         this.$http.get('http://localhost:9000/entrenador/pokeparadas').then(callback)
     }
+    replaceAll(str, find, replace) {
+       return str.replace(new RegExp(find, 'g'), replace);
+   }
+    pelear(oponente, callback){
+        this.$http.get('http://localhost:9000/pelearHoy/' +this.replaceAll(oponente.nombre, ' ', '_'), oponente ).then(callback)
+    }
+
 }
