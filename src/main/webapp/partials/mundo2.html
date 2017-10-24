@@ -46,7 +46,7 @@
                             <tbody  >
                                 <tr ng-repeat=" oponente in mundoCtrl.oponentes">
                                     <td>{{oponente.nombre}}<img ng-src="img/entrenadores/{{oponente.imagenEntrenador}}" class="imagenTabla img-fluid rounded-circle" /></td>
-                                    <td>{{oponente.equipo[0].nombre}}  <img  class="imagenTabla img-fluid rounded-circle"   />  </td>
+                                    <td>{{oponente.equipo[0].nombre}}  <img  class="imagenTabla img-fluid rounded-circle" ng-src="/img/pokemones/{{oponente.equipo[0].nombreFamilia}}.png"   />  </td>
                                     <td>{{oponente.dinero}}</td>
                                     <td class="icono-celda">
                                         <i class="fa fa-group" aria-hidden="true" ng-click="mundoCtrl.pelear(oponente)"></i>
@@ -75,7 +75,7 @@
                             </thead>
                             <tbody >
                                 <tr ng-repeat="pokemon in mundoCtrl.pokemonesSalvaje">
-                                    <td>{{pokemon.nombre}} <img ng-src="{{pokemon.imagen}}" class="imagenTabla img-fluid rounded-circle" /></td>
+                                    <td>{{pokemon.nombre}} <img ng-src="/img/pokemones/{{pokemon.nombreFamilia}}.png" class="imagenTabla img-fluid rounded-circle" /></td>
                                     <td>{{pokemon.getNivel()}}</td>
                                     <td class="icono-celda">
                                         <img src="img/pokebolas/pokebola.png" ng-click="mundoCtrl.atrapar(pokemon)" alt="pokebola" class="imagenTabla">
