@@ -3,6 +3,7 @@ package ar.edu.unsam.algo3.tp.model
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.geodds.Point
 
 class RepositorioPokemon extends Repositorio<Pokemon> {
 
@@ -101,6 +102,8 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 50
 			experiencia = 2000
 			genero = Genero.FEMENINO
+			ubicacion = new Point(-34.572219, -58.534893)
+			
 			])
 
 		pokemonSalvaje.add(new Pokemon() => [
@@ -109,6 +112,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 150
 			experiencia = 200
 			genero = Genero.MASCULINO
+			ubicacion = new Point(-34.572219, -58.534893)
 		])
 		
 		pokemonSalvaje.add(new Pokemon() => [
@@ -117,6 +121,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 1500
 			experiencia = 200000
 			genero = Genero.MASCULINO
+			ubicacion =  new Point(-34.572219, -58.534893)
 		])
 	}
 	def obtenerSalvajes(){

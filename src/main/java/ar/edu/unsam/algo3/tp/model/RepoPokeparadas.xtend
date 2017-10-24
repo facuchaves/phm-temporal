@@ -1,4 +1,4 @@
-package ar.edu.unsam.algo3.tp.model
+package ar.edu.unsam.algo3.tp.model;
 
 import ar.edu.unsam.algo3.tp.model.json.JsonParserPokeparada
 import java.util.ArrayList
@@ -9,14 +9,14 @@ import org.uqbar.geodds.Point
 
 @Accessors
 @Observable
-class RepositorioPokeparada extends Repositorio<Pokeparada> {
+class RepoPokeparadas extends Repositorio<Pokeparada> {
 
 	@Accessors JsonParserPokeparada jsonParserPokeparada
 
-	static var RepositorioPokeparada instance
+	
 	var List<Pokeparada> pokeparadas = newArrayList
 
-	private new() {
+	 new() {
 		pokeparadas.add(new Pokeparada() => [
 			id = 1
 			nombre = "UNSAM"
@@ -32,15 +32,8 @@ class RepositorioPokeparada extends Repositorio<Pokeparada> {
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 		])
 	}
-
-	public static def getInstance() {
-		if (instance == null) {
-			instance = new RepositorioPokeparada
-		}
-		return instance
-	}
-
-	/*
+	
+		/*
 	 * El valor de búsqueda debe coincidir parcialmente con su nombre 
 	 * o exactamente con el nombre de alguno de sus ítems disponibles.
 	 */
@@ -92,6 +85,4 @@ class RepositorioPokeparada extends Repositorio<Pokeparada> {
 	def obtenerPokeparadas() {
 		pokeparadas
 	}
-
-}
-
+	}

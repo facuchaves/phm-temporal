@@ -48,7 +48,6 @@ class Pokeparada implements Entidad {
 	def curacion(Entrenador entrenador) {
 
 		validarDistancia(entrenador)
-
 		entrenador.todosLosPokemones.forEach[pokemon|pokemon.puntosDeSalud = pokemon.puntosSaludMaximo]
 
 	}
