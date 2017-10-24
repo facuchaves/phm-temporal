@@ -31,7 +31,7 @@ class RepositorioEspecie extends Repositorio<Especie> {
 			puntosAtaque = 10
 			puntosSalud = 100
 			velocidad = 5
-			it.tipos = newArrayList( getTipoByNombre("Electrico") )
+			it.tipos = newArrayList( getTipoByNombre("Electricidad") )
 		])
 		
 		create( new Especie() =>[
