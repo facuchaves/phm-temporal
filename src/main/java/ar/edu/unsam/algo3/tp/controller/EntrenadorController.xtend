@@ -14,12 +14,18 @@ import java.util.List
 import org.uqbar.xtrest.api.annotation.Body
 import ar.edu.unsam.algo3.tp.model.Pokemon
 import ar.edu.unsam.algo3.tp.model.Combate
+import ar.edu.unsam.algo3.tp.model.RepositorioPokemon
+import ar.edu.unsam.algo3.tp.model.Pokebola
+import ar.edu.unsam.algo3.tp.model.RepositorioPokeparada
+
+import ar.edu.unsam.algo3.tp.model.RepoPokeparadas
 
 @Controller
 class EntrenadorController {
 
 	extension JSONUtils = new JSONUtils
 	var Entrenador jugador = RepositorioEntrenador.instance.search("Ash").get(0)
+	var pokeparada = new RepoPokeparadas().pokeparadas
 
 	@Get("/entrenador/inventario")
 	def Result inventario() {
@@ -176,7 +182,42 @@ class EntrenadorController {
 			combate.apuesta = enemigo.dinero
 			var gano = combate.combatirRespuesta()
 			response.contentType = ContentType.APPLICATION_JSON
-			ok(gano)
+			ok('{ "status" : "' + gano + '" }')
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
+
+	@Put("/entrenador/atrapar/:nombre")
+	def Result atraparPokemon(@Body String body) {
+		val pokebolas = new Pokebola(0, 0, "pokebola")
+		jugador.agregarItem(pokebolas)
+		var respuesta = jugador.capturarRespuesta(RepositorioPokemon.instance.pokemonSalvaje.filter [ p |
+			p.nombre.equals(nombre)
+		].get(0), pokebolas)
+		if (respuesta.equals("ATRAPADO")) {
+			RepositorioPokemon.instance.pokemonSalvaje.remove(RepositorioPokemon.instance.pokemonSalvaje.filter [ p |
+				p.nombre.equals(nombre)
+			].get(0))
+		}
+		try {
+			response.contentType = ContentType.APPLICATION_JSON
+			ok('{ "status" : "' + respuesta + '"}')
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
+
+	@Put("/entrenador/curar/:id")
+	def Result curarEquipo() {
+		try {
+
+			var pokeparada1 = pokeparada.filter[p|p.id.equals(Integer.parseInt(id))].get(0)
+			pokeparada1.curacion(jugador)
+			response.contentType = ContentType.APPLICATION_JSON
+			ok('{ "status" : "EQUIPO CURADO"}')
 		} catch (Exception E) {
 			internalServerError(E.message)
 		}

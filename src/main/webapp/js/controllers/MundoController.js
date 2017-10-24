@@ -10,6 +10,8 @@ class MundoController{
        this.getOponentes()
        this.getPokemonesSalvajes()
        this.getPokeparadas()
+       this.mensajes=[]
+       this.atrapado=[]
     }
 
     alertarEstado(){
@@ -51,10 +53,37 @@ class MundoController{
     pelear(oponente){
        
         this.EntrenadorService.pelear(oponente,(response)=>{
-            alert(response.toString)
+           var data = response.data
+           this.notificarPelea(data.status)
             this.getEntrenador()
-            this.getOponentes()
+            //this.getOponentes()
         })
     }
+     notificarPelea(mensaje) {
+         this.mensajes.pop()
+         this.mensajes.push(mensaje)
+         
+    }
 
+    atrapar(pokemon){
+        this.EntrenadorService.atrapar(pokemon,(response)=>{
+            var data = response.data
+            this.notificarAtrapado(data.status)
+            this.getEntrenador()
+            this.getPokemonesSalvajes()
+         })
+    }
+
+    notificarAtrapado(mensaje){
+        this.atrapado.pop()
+        this.atrapado.push(mensaje)
+       
+    }
+
+    curar(pokeparada){
+        this.EntrenadorService.curar(pokeparada,(response)=>{
+          this.notificarAtrapado(response.data.status)
+         })
+    }
+    
 }

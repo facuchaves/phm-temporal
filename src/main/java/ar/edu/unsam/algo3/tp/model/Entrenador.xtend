@@ -102,6 +102,43 @@ class Entrenador implements Entidad{
 			
 	}
 	
+	def String capturarRespuesta(Pokemon pokemon, Pokebola pokebola) {
+		
+		//Si esta a mas de 10 metros o no tiene pokebolas
+		if( this.ubicacion.distance(pokemon.ubicacion) > 0.01 ){
+			throw new CapturarExcepcion("Esta a mas de 10 metros")
+		}
+		if( !tieneItem(pokebola) ){
+			throw new CapturarExcepcion("No tiene pokebolas")
+		}
+			
+		quitarItem(pokebola)
+		
+		var loAtrapa = random <= getChancesDeAtrapar(pokebola) / (getChancesDeAtrapar(pokebola) + pokemon.chancesEscapar) 	
+		
+		if ( loAtrapa ){
+			
+			if( !especiesAtrapadas.contains(pokemon.especie) ){
+				
+				perfil.accionPorCapturarPokemon(this,pokemon)
+			
+			} else{
+			
+				especiesAtrapadas.add(pokemon.especie)	
+			
+			}
+			
+			agregarPokemon(pokemon)
+			
+			sumarExperiencia(100)
+			
+			"ATRAPADO"
+		} else{
+			"SE ESCAPO"
+		}
+			
+	}
+	
 	def double getChancesDeAtrapar(Pokebola pokebola){
 		
 		var double chancesDeAtrapar = nivel 

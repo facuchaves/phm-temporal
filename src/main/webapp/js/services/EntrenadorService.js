@@ -45,4 +45,11 @@ class EntrenadorService{
         this.$http.get('http://localhost:9000/pelearHoy/' +this.replaceAll(oponente.nombre, ' ', '_'), oponente ).then(callback)
     }
 
+    atrapar(pokemon,callback){
+        this.$http.put('http://localhost:9000/entrenador/atrapar/' +this.replaceAll(pokemon.nombre, ' ', '_'), pokemon ).then(callback)
+    }
+    curar(pokeparada,callback){
+        this.$http.put('http://localhost:9000/entrenador/curar/' +pokeparada.id, pokeparada ).then(callback)
+    }
+    
 }

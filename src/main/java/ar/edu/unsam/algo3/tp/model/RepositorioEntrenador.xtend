@@ -11,19 +11,35 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	static var RepositorioEntrenador instance
 
 	@Accessors List<Entrenador> entrenadores = new ArrayList()
-	
+	@Accessors List<Pokeparada> pokeparadas = newArrayList
+
 	private new() {
-		create( new Entrenador() => [
+		create(new Entrenador() => [
 			nombre = "Ash"
 			ubicacion = new Point(-34.572219, -58.534893)
-			equipo = newArrayList( RepositorioPokemon.instance.search("Pikachu").get(0) , RepositorioPokemon.instance.search("Charmander").get(0) )
-			dinero=120
-			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )
+			equipo = newArrayList(RepositorioPokemon.instance.search("Pikachu").get(0),
+				RepositorioPokemon.instance.search("Charmander").get(0))
+			dinero = 120
+			deposito = newArrayList(RepositorioPokemon.instance.search("Charizard").get(0))
 			perfil = new Luchador()
 			items = new HashMap
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+		])
+		pokeparadas.add(new Pokeparada() => [
+			id = 1
+			nombre = "UNSAM"
+			ubicacion = new Point(-34.572219, -58.534893)
+			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
+			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+		])
+		pokeparadas.add(new Pokeparada() => [
+			id = 2
+			nombre = "PUPO"
+			ubicacion = new Point(-34.572219, -57.534893)
+			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 		])
 	}
 
@@ -34,40 +50,45 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 		return instance
 	}
 
-	def agregarEntrenador(Entrenador entrenador ){
+	def agregarEntrenador(Entrenador entrenador) {
 		entrenadores.add(entrenador)
 	}
-	
-	def obtenerEntrenador(int index){
+
+	def obtenerEntrenador(int index) {
 		entrenadores.get(index)
 	}
-	
-	def clear(){
+
+	def clear() {
 		entrenadores.clear
 	}
-	
+
 	override parsearObjetos(String json) {
 	}
 
 	override getJson() {
 	}
-	
+
 	override searchPorCriterioUnico(Entrenador objeto) {
 	}
-	
+
 	override criterioDeBusquedaPorValor(Entrenador entrenador, String nombre) {
-		nombre.equals( entrenador.nombre )
+		nombre.equals(entrenador.nombre)
 	}
-	
+
 	override pisarObjetos(Entrenador objetoEncontrado, Entrenador objetoNuevo) {
 	}
-	def oponentesCercanos(){
+
+	def oponentesCercanos() {
 		new RepositorioOponentes().obtenerOponentes
 	}
-	def pokemonSalvajeCercanos(){
-		 RepositorioPokemon.instance.obtenerSalvajes
+
+	def pokemonSalvajeCercanos() {
+		RepositorioPokemon.instance.obtenerSalvajes
 	}
-	def pokeparadasCercanas(){
-		RepositorioPokeparada.instance.obtenerPokeparadas()
+
+	def pokeparadasCercanas() {
+
+		pokeparadas
 	}
+
 }
