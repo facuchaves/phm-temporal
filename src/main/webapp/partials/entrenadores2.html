@@ -81,10 +81,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in pokemonCtrl.items" >
+                                        <!--<tr ng-repeat="item in pokemonCtrl.items" >
                                             <td>{{item.nombre}} <img src="{{item.getImgPath()}}" class="imagenTabla img-fluid rounded-circle"
                                                 /></td>
                                             <td>{{item.cantidad}}</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td>Pokebola <img src="img/pokebolas/pokebola.png" class="imagenTabla img-fluid rounded-circle"
+                                                /></td>
+                                            <td>12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultrabola <img src="img/pokebolas/ultrabola.png" class="imagenTabla img-fluid rounded-circle"
+                                                /> </td>
+                                            <td>15</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -124,7 +134,7 @@
 
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action"><b>Especie : </b> {{pokemonCtrl.pokemon.especie.nombre}} </a>
-                            <a href="#" class="list-group-item list-group-item-action"><b>Tipo : </b> {{pokemonCtrl.pokemon.especie.tipo.nombre}} </a>
+                            <a href="#" class="list-group-item list-group-item-action"><b>Tipo : </b> {{pokemonCtrl.getTipo()}} </a>
                             <a href="#" class="list-group-item list-group-item-action"><b>Nombre : </b> {{pokemonCtrl.pokemon.nombre}} </a>
                             <a href="#" class="list-group-item list-group-item-action list-group-item-success"><b>Nivel :</b> {{pokemonCtrl.pokemon.nivel}} <i class="fa fa-sort-up" aria-hidden="true"></i> </a>
                             <a href="#" class="list-group-item list-group-item-action"><b>Genero : </b> {{pokemonCtrl.pokemon.genero}} </a>

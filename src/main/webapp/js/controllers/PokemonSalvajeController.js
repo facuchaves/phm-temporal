@@ -79,4 +79,10 @@ class PokemonSalvajeController {
       return "list-group-item-danger";
     }
   }
+
+  getTipo(){
+    console.log("pasa");
+    return this.pokemon.especie.tipos[0].nombre;
+  }
+
 }
