@@ -1,7 +1,10 @@
 class Pokeparada{
-    constructor(nombre){
-        this.nombre = nombre;
+    constructor(){
+        
     }
+    static asPokeparada(jsonPokeparada) {
+        return angular.extend(new Pokeparada(), jsonPokeparada)
+  }
 }
 class PokeparadaService{
     constructor(){

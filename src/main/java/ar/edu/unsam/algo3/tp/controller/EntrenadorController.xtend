@@ -149,5 +149,16 @@ class EntrenadorController {
 		}
 
 	}
+		@Get("/entrenador/pokeparadas")
+	def Result pokeparadasCerca() {
+		val pokeparadas = RepositorioEntrenador.instance.pokeparadasCercanas()
+		try {
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(pokeparadas.toJson)
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+
+	}
 
 }

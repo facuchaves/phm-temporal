@@ -35,4 +35,7 @@ class EntrenadorService{
     findPokemonesSalvajes(callback){
         this.$http.get('http://localhost:9000/entrenador/pokemonSalvaje').then(callback)
     }
+    findPokeparadas(callback){
+        this.$http.get('http://localhost:9000/entrenador/pokeparadas').then(callback)
+    }
 }

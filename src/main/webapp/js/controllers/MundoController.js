@@ -6,9 +6,11 @@ class MundoController{
        this.entrenador = new Entrenador()
        this.oponentes = []
        this.pokemonesSalvaje = []
+       this.pokeparadas = []
        this.getEntrenador()
        this.getOponentes()
-      this.getPokemonesSalvajes()
+        this.getPokemonesSalvajes()
+        this.getPokeparadas()
     }
 
     alertarEstado(){
@@ -38,6 +40,12 @@ class MundoController{
     getPokemonesSalvajes(){
         this.EntrenadorService.findPokemonesSalvajes((response)=>{
             this.pokemonesSalvaje=_.map(response.data, Pokemon.asPokemon)
+        })
+    }
+
+    getPokeparadas(){
+        this.EntrenadorService.findPokeparadas((response)=>{
+            this.pokeparadas=_.map(response.data, Pokeparada.asPokeparada)
         })
     }
 
