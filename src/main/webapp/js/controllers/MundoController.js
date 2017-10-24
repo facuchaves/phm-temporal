@@ -68,9 +68,9 @@ class MundoController{
     atrapar(pokemon){
         this.EntrenadorService.atrapar(pokemon,(response)=>{
             var data = response.data
-            this.notificarAtrapado(data.status)
             this.getEntrenador()
             this.getPokemonesSalvajes()
+            this.notificarAtrapado(data.status)
          })
     }
 

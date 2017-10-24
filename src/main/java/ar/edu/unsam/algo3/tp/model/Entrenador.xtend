@@ -211,7 +211,7 @@ class Entrenador implements Entidad{
 			this.deposito.add(pokemon)
 		}
 		
-		pokemon.entrenador =  this
+		//pokemon.entrenador =  this
 		
 	}
 	

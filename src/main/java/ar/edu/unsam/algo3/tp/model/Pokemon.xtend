@@ -14,6 +14,7 @@ class Pokemon extends Entity implements Entidad{
 	String nombre
 	Genero genero
 	Entrenador entrenador
+	String nombreFamilia
 		
 	def double getDistancia(Point otroPunto) {
 		ubicacion.distance(otroPunto)

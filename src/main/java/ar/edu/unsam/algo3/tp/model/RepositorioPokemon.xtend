@@ -20,6 +20,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 50
 			experiencia = 2000
 			genero = Genero.FEMENINO
+			nombreFamilia= "charmander"
 			])
 
 		create(new Pokemon() => [
@@ -28,6 +29,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 150
 			experiencia = 200
 			genero = Genero.MASCULINO
+			nombreFamilia = "pikachu"
 		])
 		
 		create(new Pokemon() => [
@@ -36,6 +38,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 1500
 			experiencia = 200000
 			genero = Genero.MASCULINO
+			nombreFamilia="charizard"
 		])
 		
 		create(new Pokemon() => [
@@ -44,6 +47,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 250
 			experiencia = 11000
 			genero = Genero.FEMENINO
+			nombreFamilia="pikachu"
 			
 		])
 		create(new Pokemon() => [
@@ -52,7 +56,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 500
 			experiencia = 11000
 			genero = Genero.FEMENINO
-			
+			nombreFamilia="snorlax"
 		])
 		create(new Pokemon() => [
 			nombre = "Meowth"
@@ -60,7 +64,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 500
 			experiencia = 210000
 			genero = Genero.MASCULINO
-			
+			nombreFamilia="meowth"
 		])
 		agregarSalvajes()
 	}
@@ -97,36 +101,43 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 	}
 	def agregarSalvajes(){
 		pokemonSalvaje.add( new Pokemon() => [
-			nombre = "Charmander"
+			nombre = "Charmi"
 			especie = RepositorioEspecie.instance.search("Fuego").get(0)
 			puntosDeSalud = 50
 			experiencia = 2000
 			genero = Genero.FEMENINO
 			ubicacion = new Point(-34.572219, -58.534893)
-			
+			nombreFamilia="charmander"
 			])
 
 		pokemonSalvaje.add(new Pokemon() => [
-			nombre = "Pikachu"
+			nombre = "Piki"
 			especie = RepositorioEspecie.instance.search("Electrico").get(0)
 			puntosDeSalud = 150
 			experiencia = 200
 			genero = Genero.MASCULINO
 			ubicacion = new Point(-34.572219, -58.534893)
+			nombreFamilia="pikachu"
 		])
 		
 		pokemonSalvaje.add(new Pokemon() => [
-			nombre = "Charizard"
+			nombre = "Chari"
 			especie = RepositorioEspecie.instance.search("Fuego").get(0)
 			puntosDeSalud = 1500
 			experiencia = 200000
 			genero = Genero.MASCULINO
 			ubicacion =  new Point(-34.572219, -58.534893)
+			nombreFamilia="charizard"
 		])
 	}
 	def obtenerSalvajes(){
 		pokemonSalvaje
 	}
 	
+	def eliminarSalvaje(String nombre){
+		pokemonSalvaje.remove(RepositorioPokemon.instance.pokemonSalvaje.filter [ p |
+				p.nombre.equals(nombre)
+			].get(0))
+	}
 
 }

@@ -197,9 +197,8 @@ class EntrenadorController {
 			p.nombre.equals(nombre)
 		].get(0), pokebolas)
 		if (respuesta.equals("ATRAPADO")) {
-			RepositorioPokemon.instance.pokemonSalvaje.remove(RepositorioPokemon.instance.pokemonSalvaje.filter [ p |
-				p.nombre.equals(nombre)
-			].get(0))
+			RepositorioPokemon.instance.eliminarSalvaje(nombre)
+			
 		}
 		try {
 			response.contentType = ContentType.APPLICATION_JSON
