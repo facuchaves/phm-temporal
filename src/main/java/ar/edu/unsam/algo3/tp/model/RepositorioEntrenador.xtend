@@ -16,7 +16,7 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	private new() {
 		create(new Entrenador() => [
 			nombre = "Ash"
-			ubicacion = new Point(-34.572219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534893)
 			equipo = newArrayList(RepositorioPokemon.instance.search("Pikachu").get(0),
 				RepositorioPokemon.instance.search("Charmander").get(0))
 			dinero = 120
@@ -27,20 +27,7 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 		])
-		pokeparadas.add(new Pokeparada() => [
-			id = 1
-			nombre = "UNSAM"
-			ubicacion = new Point(-34.572219, -58.534893)
-			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
-			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
-		])
-		pokeparadas.add(new Pokeparada() => [
-			id = 2
-			nombre = "PUPO"
-			ubicacion = new Point(-34.572219, -57.534893)
-			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
-			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
-		])
+		
 	}
 
 	public static def getInstance() {
@@ -78,17 +65,17 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 	override pisarObjetos(Entrenador objetoEncontrado, Entrenador objetoNuevo) {
 	}
 
-	def oponentesCercanos() {
-		new RepositorioOponentes().obtenerOponentes
+	def oponentesCercanos(Entrenador entrenador) {
+		new RepositorioOponentes().obtenerOponentes(entrenador)
 	}
 
-	def pokemonSalvajeCercanos() {
-		RepositorioPokemon.instance.obtenerSalvajes
+	def pokemonSalvajeCercanos(Entrenador entrenador) {
+		RepositorioPokemon.instance.obtenerSalvajes(entrenador)
 	}
 
-	def pokeparadasCercanas() {
+	def obtenerPokeparadasCercanas(Entrenador entrenador) {
 
-		pokeparadas
+		new RepositorioCercanos().obtenerPokeparadasCercanas(entrenador)
 	}
 
 }

@@ -29,6 +29,7 @@ class Entrenador implements Entidad{
 	@JsonIgnore TablaNiveles tablaNiveles = new TablaNiveles
 	String nombre
 	String imagenEntrenador
+	Pokemon pokemonElegido
 	
 	@Accessors List<Entrenador> amigos
 	List<Entrenador> amigosPendientes
@@ -52,16 +53,16 @@ class Entrenador implements Entidad{
 		this.ubicacion = point
 	}
 	def void moverseArriba(){
-		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y + 1)
+		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y + 0.001)
 	}
 	def void moverseAbajo(){
-		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y - 1)
+		this.ubicacion = new Point(this.ubicacion.x, this.ubicacion.y - 0.001)
 	}
 	def void moverseIzquerda(){
-		this.ubicacion = new Point(this.ubicacion.x - 1, this.ubicacion.y)
+		this.ubicacion = new Point(this.ubicacion.x - 0.001, this.ubicacion.y)
 	}
 	def void moverseDerecha(){
-		this.ubicacion = new Point(this.ubicacion.x + 1, this.ubicacion.y)
+		this.ubicacion = new Point(this.ubicacion.x + 0.001, this.ubicacion.y)
 	}
 	
 
@@ -213,6 +214,12 @@ class Entrenador implements Entidad{
 		
 		//pokemon.entrenador =  this
 		
+	}
+	
+	def seleccionarPokemon(Pokemon pokemon){
+		if( this.equipo.contains(pokemon) && pokemon.especie.getPuntosSalud>0){
+			pokemonElegido = pokemon
+		}
 	}
 	
 	def ganarDinero(double dineroGanado){
@@ -376,7 +383,7 @@ class Entrenador implements Entidad{
 	}
 	
 	def getPokemonPorNombre(String nombrePokemon){
-		return (equipo + deposito).filter[pokemon|nombrePokemon.equals(pokemon.nombre)].get(0)
+		return equipo.filter[p|p.nombre.equals(nombrePokemon)].toList.get(0)
 	}
 
 }

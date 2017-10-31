@@ -3,6 +3,7 @@ class MundoController{
     constructor(OponenteService,EntrenadorService){
        this.EntrenadorService = EntrenadorService
        this.entrenador = new Entrenador
+       this.oponenteSeleccionado= new Entrenador
        this.oponentes = []
        this.pokemonesSalvaje = []
        this.pokeparadas = []
@@ -12,6 +13,7 @@ class MundoController{
        this.getPokeparadas()
        this.mensajes=[]
        this.atrapado=[]
+       this.poke=null
     }
 
     alertarEstado(){
@@ -30,11 +32,14 @@ class MundoController{
     moverEntrenador(direccion){
         this.EntrenadorService.mover(direccion, (response)=>{
             this.getEntrenador()
+            this.getOponentes()
+            this.getPokemonesSalvajes()
+            this.getPokeparadas()
         })
     }
     getOponentes(){
         this.EntrenadorService.findOponentes((response)=>{
-            this.oponentes= _.map(response.data,Entrenador.asEntrenador)
+           this.oponentes= _.map(response.data,Entrenador.asEntrenador)
         })
     }
    
@@ -50,20 +55,55 @@ class MundoController{
         })
     }
 
-    pelear(oponente){
-       
-        this.EntrenadorService.pelear(oponente,(response)=>{
-           var data = response.data
-           this.notificarPelea(data.status)
-            this.getEntrenador()
-            //this.getOponentes()
+    seleccionarOponente(oponente){
+        this.oponenteSeleccionado= oponente
+        $('#equipoModal').modal();
+    }
+
+
+    pelear(pokemon){
+        this.EntrenadorService.seleccionarPokemon(pokemon,(response)=>{
+            this.EntrenadorService.pelear(this.oponenteSeleccionado,(response)=>{
+                var data = response.data
+                this.notificarPelea(data.status)
+                 this.getEntrenador()
+                 this.getOponentes()
+             })
+            
         })
+
     }
      notificarPelea(mensaje) {
          this.mensajes.pop()
          this.mensajes.push(mensaje)
          $('#exampleModal').modal();
     }
+
+    // elegirPokemon(poke){  
+    //     this.EntrenadorService.elegirPokemon(poke,(response)=>{
+    //         var data = response.data
+    //         this.notificarPokElegido(data.status)
+    //         this.getEntrenador()
+    //     })
+    // }
+    // notificarPokElegido(mensaje) {
+    //     this.mensajes.pop()
+    //     this.mensajes.push(mensaje)
+    //     $('#exampleModal').modal();
+    // }
+
+    // obtenerEquipo(poke){  
+    //     this.EntrenadorService.elegirPokemon(poke,(response)=>{
+    //         var data = response.data
+    //         this.notificarPokElegido(data.status)
+    //         this.getEntrenador()
+    //     })
+    // }
+    // mostrarEquipo(mensaje) {
+    //     this.mensajes.pop()
+    //     this.mensajes.push(mensaje)
+    //     $('#exampleModal').modal();
+    // }
 
     atrapar(pokemon){
         this.EntrenadorService.atrapar(pokemon,(response)=>{

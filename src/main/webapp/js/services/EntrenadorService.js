@@ -41,10 +41,15 @@ class EntrenadorService{
     replaceAll(str, find, replace) {
        return str.replace(new RegExp(find, 'g'), replace);
    }
+   seleccionarPokemon(pokemon,callback){
+        this.$http.get('http://localhost:9000/elegirPokemon/' +this.replaceAll(pokemon.nombre, ' ', '_') ).then(callback)
+   }
     pelear(oponente, callback){
         this.$http.get('http://localhost:9000/pelearHoy/' +this.replaceAll(oponente.nombre, ' ', '_'), oponente ).then(callback)
     }
-
+    elegirPokemon(poke, callback){
+        this.$http.get('http://localhost:9000/entrenador/poke').then(callback)
+    }
     atrapar(pokemon,callback){
         this.$http.put('http://localhost:9000/entrenador/atrapar/' +this.replaceAll(pokemon.nombre, ' ', '_'), pokemon ).then(callback)
     }
@@ -52,4 +57,6 @@ class EntrenadorService{
         this.$http.put('http://localhost:9000/entrenador/curar/' +pokeparada.id, pokeparada ).then(callback)
     }
     
+
+
 }
