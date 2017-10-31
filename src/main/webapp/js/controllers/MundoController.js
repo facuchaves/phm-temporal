@@ -12,6 +12,7 @@ class MundoController{
        this.getPokeparadas()
        this.mensajes=[]
        this.atrapado=[]
+       this.poke=null
     }
 
     alertarEstado(){
@@ -63,6 +64,19 @@ class MundoController{
          this.mensajes.pop()
          this.mensajes.push(mensaje)
          $('#exampleModal').modal();
+    }
+
+    elegirPokemon(poke){  
+        this.EntrenadorService.elegirPokemon(poke,(response)=>{
+            var data = response.data
+            this.notificarPokElegido(data.status)
+            this.getEntrenador()
+        })
+    }
+    notificarPokElegido(mensaje) {
+        this.mensajes.pop()
+        this.mensajes.push(mensaje)
+        $('#exampleModal').modal();
     }
 
     atrapar(pokemon){

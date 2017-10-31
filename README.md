@@ -4,4 +4,13 @@
 
 # Enunciado Entrega 1
 
-https://docs.google.com/document/d/1P5YGt4x4ROf9JkuT_jq-03VbgKh0r-14WWYGABJgf38/edit
+###### https://docs.google.com/document/d/1P5YGt4x4ROf9JkuT_jq-03VbgKh0r-14WWYGABJgf38/edit
+
+<img src="https://k60.kn3.net/1/2/E/1/E/5/78F.jpg" height="100%" width="100%"/>
+
+## Alumnos:
+
+- Marcos Parisi
+- Facundo Lopez Chaves
+- José Gerstner Javid
+

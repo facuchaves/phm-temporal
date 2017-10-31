@@ -29,6 +29,7 @@ class Entrenador implements Entidad{
 	@JsonIgnore TablaNiveles tablaNiveles = new TablaNiveles
 	String nombre
 	String imagenEntrenador
+	Pokemon pokemonElegido
 	
 	@Accessors List<Entrenador> amigos
 	List<Entrenador> amigosPendientes
@@ -213,6 +214,12 @@ class Entrenador implements Entidad{
 		
 		//pokemon.entrenador =  this
 		
+	}
+	
+	def seleccionarPokemon(Pokemon pokemon){
+		if( this.equipo.contains(pokemon) && pokemon.especie.getPuntosSalud>0){
+			pokemonElegido = pokemon
+		}
 	}
 	
 	def ganarDinero(double dineroGanado){

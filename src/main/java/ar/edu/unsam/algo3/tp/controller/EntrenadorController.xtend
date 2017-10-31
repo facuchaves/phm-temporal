@@ -168,7 +168,7 @@ class EntrenadorController {
 		}
 
 	}
-
+	
 	@Get("/pelearHoy/:id")
 	def Result pelearHoy(@Body String body) {
 
@@ -178,7 +178,7 @@ class EntrenadorController {
 			combate.entrenadorRival = enemigo
 			combate.entrenador = jugador
 			combate.pokemonRival = enemigo.equipo.get(0)
-			combate.pokemon = jugador.equipo.get(0)
+			combate.pokemon = jugador.pokemonElegido
 			combate.apuesta = enemigo.dinero
 			var gano = combate.combatirRespuesta()
 			response.contentType = ContentType.APPLICATION_JSON
@@ -187,6 +187,19 @@ class EntrenadorController {
 			internalServerError(E.message)
 		}
 
+	}
+	
+	@Get("/elegirPokemon/:poke")
+	def Result elegirPokemon(@Body String body){
+		try{
+			jugador.setPokemonElegido(jugador.getPokemonPorNombre(poke))
+			
+			response.contentType = ContentType.APPLICATION_JSON
+			ok('{ "status" : "' + jugador.getPokemonPorNombre(poke).toJson + '" elegido" }')
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+		
 	}
 
 	@Put("/entrenador/atrapar/:nombre")
