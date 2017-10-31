@@ -79,12 +79,10 @@ class MundoController{
          this.mensajes.pop()
          this.mensajes.push(mensaje)
 
-
         
          $('#combateAlert').alert()
-       //  $('#exampleModal').modal();
+        //$('#exampleModal').modal();
         //$('#combateAlert').fadeOut(100);
-
     }
 
     // elegirPokemon(poke){  
@@ -123,8 +121,9 @@ class MundoController{
     }
 
     notificarAtrapado(mensaje){
-        this.atrapado.pop()
-        this.atrapado.push(mensaje)
+        this.mensajes.pop()
+        this.mensajes.push(mensaje)
+        $('#exampleModal').modal();
     }
 
     curar(pokeparada){

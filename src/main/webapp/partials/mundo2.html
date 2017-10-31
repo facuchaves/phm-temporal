@@ -49,7 +49,7 @@
                                     <td>{{oponente.equipo[0].nombre}}  <img  class="imagenTabla img-fluid rounded-circle" ng-src="/img/pokemones/{{oponente.equipo[0].nombreFamilia}}.png"   />  </td>
                                     <td>{{oponente.dinero}}</td>
                                     <td class="icono-celda">
-                                        <a> <i class="fa fa-group" aria-hidden="true" ng-click="mundoCtrl.pelear(oponente)"></i> </a>
+                                        <a> <i class="fa fa-group" aria-hidden="true" ng-click="mundoCtrl.seleccionarOponente(oponente)"></i> </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -62,7 +62,7 @@
             </div>
         </div>
         
-        <div ng-class="{'alert alert-danger animate-repeat':mensaje=='DERROTA', 'alert alert-success animate-repeat':mensaje=='VICTORIA'}"  ng-repeat="mensaje in mundoCtrl.mensajes">{{mensaje}}</div>
+        
 
         <br>
         <div class="row">
@@ -142,3 +142,33 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="equipoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Equipo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <table class="table table-hover table-bordered table-sm tabla-general">
+                                    <tr ng-repeat="pokemon in mundoCtrl.entrenador.equipo">
+                                        <td>{{pokemon.nombre}}</td>
+                                        <td class="icono-celda">
+                                            <a><i class="fa fa-plus-circle pokeparada" aria-hidden="true" ng-click="mundoCtrl.pelear(pokemon)"></i></a>
+                                        </td>
+                                    </tr>
+                                   </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+         
+        </div>
+    </div>
+</div>
+
