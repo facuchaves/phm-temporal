@@ -126,7 +126,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div ng-class="{'alert alert-danger animate-repeat':mensaje=='DERROTA', 'alert alert-success animate-repeat':mensaje=='VICTORIA','alert alert-danger animate-repeat':mensaje=='SE ESCAPO', 'alert alert-success animate-repeat':mensaje=='ATRAPADO', 'alert alert-success animate-repeat':mensaje=='EQUIPO CURADO'}"  ng-repeat="mensaje in mundoCtrl.mensajes">{{mensaje}}</div>
+                <div ng-class="{
+                 'alert alert-danger animate-repeat':mensaje=='DERROTA',
+                 'alert alert-success animate-repeat':mensaje=='VICTORIA',
+                 'alert alert-danger animate-repeat':mensaje=='SE ESCAPO',
+                 'alert alert-success animate-repeat':mensaje=='ATRAPADO',
+                 'alert alert-success animate-repeat':mensaje=='EQUIPO CURADO'
+                }"  ng-repeat="mensaje in mundoCtrl.mensajes">{{mensaje}}</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

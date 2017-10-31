@@ -56,7 +56,7 @@ class Pokemon extends Entity implements Entidad{
 	
 	def restarPuntosDeSalud(int puntosDeSaludPerdidos){
 		
-		puntosDeSalud += puntosDeSaludPerdidos
+		puntosDeSalud -= puntosDeSaludPerdidos
 			
 	}
 
