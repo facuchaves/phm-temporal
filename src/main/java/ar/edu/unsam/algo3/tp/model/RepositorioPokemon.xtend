@@ -21,7 +21,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 2000
 			genero = Genero.FEMENINO
 			nombreFamilia= "charmander"
-			ubicacion = new Point(-34.570219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534896)
 			])
 
 		create(new Pokemon() => [
@@ -31,7 +31,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 200
 			genero = Genero.MASCULINO
 			nombreFamilia = "pikachu"
-			ubicacion = new Point(-34.570219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534895)
 		])
 		
 		create(new Pokemon() => [
@@ -137,7 +137,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 		])
 	}
 	def obtenerSalvajes(Entrenador entrenador){
-		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)<0.01].toList
+		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)<10].toList
 	}
 	
 	def eliminarSalvaje(String nombre){

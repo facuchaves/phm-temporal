@@ -106,7 +106,7 @@ class Entrenador implements Entidad{
 	def String capturarRespuesta(Pokemon pokemon, Pokebola pokebola) {
 		
 		//Si esta a mas de 10 metros o no tiene pokebolas
-		if( this.ubicacion.distance(pokemon.ubicacion) > 0.01 ){
+		if( this.ubicacion.distance(pokemon.ubicacion) > 10 ){
 			throw new CapturarExcepcion("Esta a mas de 10 metros")
 		}
 		if( !tieneItem(pokebola) ){

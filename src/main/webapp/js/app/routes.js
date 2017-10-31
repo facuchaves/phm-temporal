@@ -6,12 +6,12 @@ const routes = ($stateProvider, $urlRouterProvider) => {
     
         .state('mundo', {
           url: "/mundo",
-          templateUrl: "partials/mundo2.html",
+          templateUrl: "partials/mundo.html",
           controller: "MundoController as mundoCtrl"
         })
         .state('entrenador', {
           url: "/entrenador",
-          templateUrl: "partials/entrenadores2.html",
+          templateUrl: "partials/entrenadores.html",
           controller: "EntrenadoresController as entrenadoresCtrl"
         })
     }

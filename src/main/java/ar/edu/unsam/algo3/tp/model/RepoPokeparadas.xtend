@@ -20,7 +20,7 @@ class RepoPokeparadas extends Repositorio<Pokeparada> {
 		pokeparadas.add(new Pokeparada() => [
 			id = 1
 			nombre = "UNSAM"
-			ubicacion = new Point(-34.572219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534894)
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
 		])

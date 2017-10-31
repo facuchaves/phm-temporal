@@ -17,7 +17,7 @@ class RepositorioCercanos  {
 		pokeparadas.add(new Pokeparada() => [
 			id = 1
 			nombre = "UNSAM"
-			ubicacion = new Point(-34.572219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534893)
 			agregarItem(new Pocion(10,10,"Pocion"))
 			agregarItem(new Pokebola(10,10,"Pokebola"))
 		])
@@ -96,7 +96,7 @@ class RepositorioCercanos  {
 	}
 	
 	def obtenerPokeparadasCercanas(Entrenador entrenador){
-		this.pokeparadas.filter[p|p.distancia(entrenador.ubicacion)< 10].toList
+		this.pokeparadas.filter[p|p.distancia(entrenador.ubicacion) < 10].toList
 	}
 	
 	def obtenerSalvajesCercanos(Entrenador entrenador){
