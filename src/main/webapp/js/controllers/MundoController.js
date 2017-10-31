@@ -3,6 +3,7 @@ class MundoController{
     constructor(OponenteService,EntrenadorService){
        this.EntrenadorService = EntrenadorService
        this.entrenador = new Entrenador
+       this.oponenteSeleccionado= new Entrenador
        this.oponentes = []
        this.pokemonesSalvaje = []
        this.pokeparadas = []
@@ -54,14 +55,23 @@ class MundoController{
         })
     }
 
-    pelear(oponente){
-       
-        this.EntrenadorService.pelear(oponente,(response)=>{
-           var data = response.data
-           this.notificarPelea(data.status)
-            this.getEntrenador()
-            //this.getOponentes()
+    seleccionarOponente(oponente){
+        this.oponenteSeleccionado= oponente
+        $('#equipoModal').modal();
+    }
+
+
+    pelear(pokemon){
+        this.EntrenadorService.seleccionarPokemon(pokemon,(response)=>{
+            this.EntrenadorService.pelear(this.oponenteSeleccionado,(response)=>{
+                var data = response.data
+                this.notificarPelea(data.status)
+                 this.getEntrenador()
+                 this.getOponentes()
+             })
+            
         })
+
     }
      notificarPelea(mensaje) {
          this.mensajes.pop()

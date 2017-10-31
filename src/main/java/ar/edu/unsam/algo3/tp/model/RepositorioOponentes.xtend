@@ -17,7 +17,7 @@ class RepositorioOponentes  {
 			
 		entrenadores.add( new Entrenador() => [
 			nombre = "Ash Ketchum"
-			ubicacion = new Point(-34.571219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Pipo").get(0) )
 			dinero = 100
 			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )

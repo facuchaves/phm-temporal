@@ -21,6 +21,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 2000
 			genero = Genero.FEMENINO
 			nombreFamilia= "charmander"
+			ubicacion = new Point(-34.570219, -58.534893)
 			])
 
 		create(new Pokemon() => [
@@ -30,6 +31,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 200
 			genero = Genero.MASCULINO
 			nombreFamilia = "pikachu"
+			ubicacion = new Point(-34.570219, -58.534893)
 		])
 		
 		create(new Pokemon() => [
@@ -39,6 +41,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 200000
 			genero = Genero.MASCULINO
 			nombreFamilia="charizard"
+			ubicacion = new Point(-34.570219, -58.534893)
 		])
 		
 		create(new Pokemon() => [
@@ -48,6 +51,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 11000
 			genero = Genero.FEMENINO
 			nombreFamilia="pikachu"
+			ubicacion = new Point(-34.570219, -58.534893)
 			
 		])
 		create(new Pokemon() => [
@@ -57,6 +61,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 11000
 			genero = Genero.FEMENINO
 			nombreFamilia="snorlax"
+			ubicacion = new Point(-34.570219, -58.534893)
 		])
 		create(new Pokemon() => [
 			nombre = "Meowth"
@@ -65,6 +70,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 210000
 			genero = Genero.MASCULINO
 			nombreFamilia="meowth"
+			ubicacion = new Point(-34.570219, -58.534893)
 		])
 		agregarSalvajes()
 	}

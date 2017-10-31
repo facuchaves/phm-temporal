@@ -170,6 +170,16 @@ class EntrenadorController {
 
 	}
 
+	@Get("/elegirPokemon/:poke")
+	def Result elegirPokemon() {
+		try {
+			jugador.setPokemonElegido(jugador.getPokemonPorNombre(poke.replace("_", " ")))
+			response.contentType = ContentType.APPLICATION_JSON
+			ok('{ "status" : "' + jugador.getPokemonPorNombre(poke).nombre + ' elegido" }')
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
+	}
 	@Get("/pelearHoy/:id")
 	def Result pelearHoy(@Body String body) {
 
@@ -193,16 +203,6 @@ class EntrenadorController {
 
 	}
 
-	@Put("/elegirPokemon/:poke")
-	def Result elegirPokemon(@Body String body) {
-		try {
-			jugador.setPokemonElegido(jugador.getPokemonPorNombre(poke))
-			response.contentType = ContentType.APPLICATION_JSON
-			ok('{ "status" : "' + jugador.getPokemonPorNombre(poke).toJson + '" elegido" }')
-		} catch (Exception E) {
-			internalServerError(E.message)
-		}
-	}
 
 	@Get("/entrenador/team")
 	def obtenerEquipo(@Body String body) {
