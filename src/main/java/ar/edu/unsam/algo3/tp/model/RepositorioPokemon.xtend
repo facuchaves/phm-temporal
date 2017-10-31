@@ -21,7 +21,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			experiencia = 2000
 			genero = Genero.FEMENINO
 			nombreFamilia= "charmander"
-			ubicacion = new Point(-34.570219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534892)
 			])
 
 		create(new Pokemon() => [
