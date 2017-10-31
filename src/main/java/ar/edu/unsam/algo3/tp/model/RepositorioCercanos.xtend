@@ -96,11 +96,11 @@ class RepositorioCercanos  {
 	}
 	
 	def obtenerPokeparadasCercanas(Entrenador entrenador){
-		this.pokeparadas.filter[p|p.distancia(entrenador.ubicacion)<10].toList
+		this.pokeparadas.filter[p|p.distancia(entrenador.ubicacion)< 10].toList
 	}
 	
 	def obtenerSalvajesCercanos(Entrenador entrenador){
-		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)<10].toList
+		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)< 10].toList
 	}
 	
 	def eliminarSalvaje(String nombre){

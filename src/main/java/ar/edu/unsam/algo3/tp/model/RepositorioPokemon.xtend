@@ -137,7 +137,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 		])
 	}
 	def obtenerSalvajes(Entrenador entrenador){
-		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)<10].toList
+		pokemonSalvaje.filter[p|p.ubicacion.distance(entrenador.ubicacion)<0.01].toList
 	}
 	
 	def eliminarSalvaje(String nombre){

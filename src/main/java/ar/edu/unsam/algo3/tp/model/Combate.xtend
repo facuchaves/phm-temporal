@@ -18,7 +18,7 @@ class Combate {
 	
 	def combatir(){
 		
-		if( entrenador.getDistancia(entrenadorRival.ubicacion) > 0.005 ){
+		if( entrenador.getDistancia(entrenadorRival.ubicacion) > 5 ){
 			throw new CombateExcepcion("Error combatiendo, esta a mas de 5 metros de distancia")
 		}
 			

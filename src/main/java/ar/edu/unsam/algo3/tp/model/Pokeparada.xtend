@@ -40,7 +40,7 @@ class Pokeparada implements Entidad {
 	}
 
 	def validarDistancia(Entrenador entrenador) {
-		if (ubicacion.distance(entrenador.ubicacion) > 0.01) {
+		if (ubicacion.distance(entrenador.ubicacion) > 10) {
 			throw new DistanciaExcepcion("Esta a mas de 10 metros de la pokeparada")
 		}
 	}
