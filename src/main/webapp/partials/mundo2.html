@@ -56,6 +56,9 @@
                         </table>
                     </div>
                 </div>
+               
+                    <div id="combateAlert" ng-class="{'alert alert-danger animate-repeat':mensaje=='DERROTA', 'alert alert-success animate-repeat':mensaje=='VICTORIA'}"  ng-repeat="mensaje in mundoCtrl.mensajes">{{mensaje}}</div>
+                  
             </div>
             <!--
             <div class="d-inline-block col-xs-12 col-md-6">

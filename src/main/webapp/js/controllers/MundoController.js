@@ -14,6 +14,7 @@ class MundoController{
        this.mensajes=[]
        this.atrapado=[]
        this.poke=null
+       $('#combateAlert').alert('close')
     }
 
     alertarEstado(){
@@ -64,6 +65,7 @@ class MundoController{
     pelear(pokemon){
         this.EntrenadorService.seleccionarPokemon(pokemon,(response)=>{
             this.EntrenadorService.pelear(this.oponenteSeleccionado,(response)=>{
+                $('#equipoModal').modal('hide')
                 var data = response.data
                 this.notificarPelea(data.status)
                  this.getEntrenador()
@@ -76,7 +78,11 @@ class MundoController{
      notificarPelea(mensaje) {
          this.mensajes.pop()
          this.mensajes.push(mensaje)
-         $('#exampleModal').modal();
+
+        
+         $('#combateAlert').alert()
+       //  $('#exampleModal').modal();
+        //$('#combateAlert').fadeOut(100);
     }
 
     // elegirPokemon(poke){  
