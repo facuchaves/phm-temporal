@@ -76,6 +76,7 @@ class EntrenadorController {
 	def Result ubicacionActual() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
 		try {
+
 			ok(entrenador.ubicacion.toJson)
 		} catch (Exception E) {
 			badRequest("No se pudo obtener la ubicacion.")
@@ -135,7 +136,7 @@ class EntrenadorController {
 
 	@Get("/entrenador/oponentes")
 	def Result oponentesCerca() {
-		val oponentes = RepositorioEntrenador.instance.oponentesCercanos()
+		val oponentes = RepositorioEntrenador.instance.oponentesCercanos(RepositorioEntrenador.instance.search("Ash").get(0))
 		try {
 			response.contentType = ContentType.APPLICATION_JSON
 			ok(oponentes.toJson)
@@ -147,7 +148,7 @@ class EntrenadorController {
 
 	@Get("/entrenador/pokemonSalvaje")
 	def Result pokemonSalvajeCerca() {
-		val pokemonSalvaje = RepositorioEntrenador.instance.pokemonSalvajeCercanos()
+		val pokemonSalvaje = RepositorioEntrenador.instance.pokemonSalvajeCercanos(RepositorioEntrenador.instance.search("Ash").get(0))
 		try {
 			response.contentType = ContentType.APPLICATION_JSON
 			ok(pokemonSalvaje.toJson)
@@ -159,7 +160,7 @@ class EntrenadorController {
 
 	@Get("/entrenador/pokeparadas")
 	def Result pokeparadasCerca() {
-		val pokeparadas = RepositorioEntrenador.instance.pokeparadasCercanas()
+		val pokeparadas = RepositorioEntrenador.instance.obtenerPokeparadasCercanas(RepositorioEntrenador.instance.search("Ash").get(0))
 		try {
 			response.contentType = ContentType.APPLICATION_JSON
 			ok(pokeparadas.toJson)
@@ -168,7 +169,7 @@ class EntrenadorController {
 		}
 
 	}
-	
+
 	@Get("/pelearHoy/:id")
 	def Result pelearHoy(@Body String body) {
 
@@ -179,7 +180,7 @@ class EntrenadorController {
 			combate.entrenador = jugador
 			combate.pokemonRival = enemigo.equipo.get(0)
 			combate.pokemon = jugador.pokemonElegido
-			if(jugador.pokemonElegido===null){
+			if (jugador.pokemonElegido === null) {
 				combate.pokemon = jugador.equipo.get(0)
 			}
 			combate.apuesta = enemigo.dinero
@@ -191,10 +192,10 @@ class EntrenadorController {
 		}
 
 	}
-	
+
 	@Put("/elegirPokemon/:poke")
-	def Result elegirPokemon(@Body String body){
-		try{
+	def Result elegirPokemon(@Body String body) {
+		try {
 			jugador.setPokemonElegido(jugador.getPokemonPorNombre(poke))
 			response.contentType = ContentType.APPLICATION_JSON
 			ok('{ "status" : "' + jugador.getPokemonPorNombre(poke).toJson + '" elegido" }')
@@ -202,12 +203,12 @@ class EntrenadorController {
 			internalServerError(E.message)
 		}
 	}
-	
+
 	@Get("/entrenador/team")
-	def obtenerEquipo(@Body String body){
-		try{
+	def obtenerEquipo(@Body String body) {
+		try {
 			response.contentType = ContentType.APPLICATION_JSON
-			ok(jugador.equipo.map(poke | poke.especie.nombre).toJson)
+			ok(jugador.equipo.map(poke|poke.especie.nombre).toJson)
 		} catch (Exception E) {
 			internalServerError(E.message)
 		}
@@ -222,7 +223,7 @@ class EntrenadorController {
 		].get(0), pokebolas)
 		if (respuesta.equals("ATRAPADO")) {
 			RepositorioPokemon.instance.eliminarSalvaje(nombre)
-			
+
 		}
 		try {
 			response.contentType = ContentType.APPLICATION_JSON

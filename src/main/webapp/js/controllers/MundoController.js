@@ -31,11 +31,14 @@ class MundoController{
     moverEntrenador(direccion){
         this.EntrenadorService.mover(direccion, (response)=>{
             this.getEntrenador()
+            this.getOponentes()
+            this.getPokemonesSalvajes()
+            this.getPokeparadas()
         })
     }
     getOponentes(){
         this.EntrenadorService.findOponentes((response)=>{
-            this.oponentes= _.map(response.data,Entrenador.asEntrenador)
+           this.oponentes= _.map(response.data,Entrenador.asEntrenador)
         })
     }
    

@@ -10,14 +10,14 @@ class RepositorioOponentes  {
 
 	
 
-	@Accessors List<Entrenador> entrenadores = new ArrayList()
+	@Accessors List<Entrenador> entrenadores = newArrayList()
 	
 	 new () {
 		
 			
 		entrenadores.add( new Entrenador() => [
 			nombre = "Ash Ketchum"
-			ubicacion = new Point(-34.572219, -58.534893)
+			ubicacion = new Point(-34.571219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Pipo").get(0) )
 			dinero = 100
 			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )
@@ -43,7 +43,7 @@ class RepositorioOponentes  {
 		])
 		entrenadores.add( new Entrenador() => [
 			nombre = "Misty La Colo"
-			ubicacion = new Point(-34.572219, -58.534893)
+			ubicacion = new Point(-34.573219, -58.534893)
 			equipo = newArrayList( RepositorioPokemon.instance.search("Meowth").get(0) )
 			dinero = 200
 			deposito = newArrayList( RepositorioPokemon.instance.search("Charizard").get(0) )
@@ -59,8 +59,9 @@ class RepositorioOponentes  {
 
 	
 	
-	def obtenerOponentes(){
-		this.entrenadores
+	def obtenerOponentes(Entrenador entrenador){
+		var List<Entrenador> retorno = this.entrenadores.filter[e|e.getDistancia(entrenador.ubicacion) < 10].toList
+		return retorno
 	}
 	
 	def obtenerEnemigo(String nombre){
