@@ -179,6 +179,9 @@ class EntrenadorController {
 			combate.entrenador = jugador
 			combate.pokemonRival = enemigo.equipo.get(0)
 			combate.pokemon = jugador.pokemonElegido
+			if(jugador.pokemonElegido===null){
+				combate.pokemon = jugador.equipo.get(0)
+			}
 			combate.apuesta = enemigo.dinero
 			var gano = combate.combatirRespuesta()
 			response.contentType = ContentType.APPLICATION_JSON
@@ -189,17 +192,25 @@ class EntrenadorController {
 
 	}
 	
-	@Get("/elegirPokemon/:poke")
+	@Put("/elegirPokemon/:poke")
 	def Result elegirPokemon(@Body String body){
 		try{
 			jugador.setPokemonElegido(jugador.getPokemonPorNombre(poke))
-			
 			response.contentType = ContentType.APPLICATION_JSON
 			ok('{ "status" : "' + jugador.getPokemonPorNombre(poke).toJson + '" elegido" }')
 		} catch (Exception E) {
 			internalServerError(E.message)
 		}
-		
+	}
+	
+	@Get("/entrenador/team")
+	def obtenerEquipo(@Body String body){
+		try{
+			response.contentType = ContentType.APPLICATION_JSON
+			ok(jugador.equipo.map(poke | poke.especie.nombre).toJson)
+		} catch (Exception E) {
+			internalServerError(E.message)
+		}
 	}
 
 	@Put("/entrenador/atrapar/:nombre")

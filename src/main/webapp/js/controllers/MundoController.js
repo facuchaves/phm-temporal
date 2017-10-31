@@ -66,18 +66,31 @@ class MundoController{
          $('#exampleModal').modal();
     }
 
-    elegirPokemon(poke){  
-        this.EntrenadorService.elegirPokemon(poke,(response)=>{
-            var data = response.data
-            this.notificarPokElegido(data.status)
-            this.getEntrenador()
-        })
-    }
-    notificarPokElegido(mensaje) {
-        this.mensajes.pop()
-        this.mensajes.push(mensaje)
-        $('#exampleModal').modal();
-    }
+    // elegirPokemon(poke){  
+    //     this.EntrenadorService.elegirPokemon(poke,(response)=>{
+    //         var data = response.data
+    //         this.notificarPokElegido(data.status)
+    //         this.getEntrenador()
+    //     })
+    // }
+    // notificarPokElegido(mensaje) {
+    //     this.mensajes.pop()
+    //     this.mensajes.push(mensaje)
+    //     $('#exampleModal').modal();
+    // }
+
+    // obtenerEquipo(poke){  
+    //     this.EntrenadorService.elegirPokemon(poke,(response)=>{
+    //         var data = response.data
+    //         this.notificarPokElegido(data.status)
+    //         this.getEntrenador()
+    //     })
+    // }
+    // mostrarEquipo(mensaje) {
+    //     this.mensajes.pop()
+    //     this.mensajes.push(mensaje)
+    //     $('#exampleModal').modal();
+    // }
 
     atrapar(pokemon){
         this.EntrenadorService.atrapar(pokemon,(response)=>{
