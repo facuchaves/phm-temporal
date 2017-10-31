@@ -13,8 +13,11 @@ class MundoController{
        this.getPokeparadas()
        this.mensajes=[]
        this.atrapado=[]
+       this.curado=[]
        this.poke=null
        $('#combateAlert').alert('close')
+       $('#atrapadoAlert').alert('close')
+       $('#curadoAlert').alert('close')
     }
 
     alertarEstado(){
@@ -121,15 +124,20 @@ class MundoController{
     }
 
     notificarAtrapado(mensaje){
-        this.mensajes.pop()
-        this.mensajes.push(mensaje)
-        $('#exampleModal').modal();
+        this.atrapado.pop()
+        this.atrapado.push(mensaje)
+        $('#atrapadoAlert').alert();
     }
 
     curar(pokeparada){
         this.EntrenadorService.curar(pokeparada,(response)=>{
-          this.notificarAtrapado(response.data.status)
+          this.notificarCurado(response.data.status)
          })
+    }
+    notificarCurado(mensaje){
+        this.curado.pop()
+        this.curado.push(mensaje)
+        $('#curadoAlert').alert();
     }
     
 }

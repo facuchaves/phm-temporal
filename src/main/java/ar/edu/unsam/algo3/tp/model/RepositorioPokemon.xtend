@@ -112,7 +112,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 50
 			experiencia = 2000
 			genero = Genero.FEMENINO
-			ubicacion = new Point(-34.472219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534893)
 			nombreFamilia="charmander"
 			])
 
@@ -122,7 +122,7 @@ class RepositorioPokemon extends Repositorio<Pokemon> {
 			puntosDeSalud = 150
 			experiencia = 200
 			genero = Genero.MASCULINO
-			ubicacion = new Point(-34.570219, -58.534893)
+			ubicacion = new Point(-34.486219, -58.534893)
 			nombreFamilia="pikachu"
 		])
 		
