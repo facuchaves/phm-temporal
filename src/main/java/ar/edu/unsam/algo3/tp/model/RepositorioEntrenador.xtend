@@ -25,7 +25,9 @@ class RepositorioEntrenador extends Repositorio<Entrenador> {
 			items = new HashMap
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
 			agregarItem(RepositorioItem.instance.search("Pocion").get(0))
-			agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			for ( var i = 0 ; i < 100 ; i ++ ){
+				agregarItem(RepositorioItem.instance.search("Pokebola").get(0))
+			}
 		])
 		
 	}

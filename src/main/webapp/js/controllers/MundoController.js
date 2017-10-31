@@ -123,8 +123,8 @@ class MundoController{
     }
 
     notificarAtrapado(mensaje){
-        this.mensajes.pop()
-        this.mensajes.push(mensaje)
+        this.atrapado.pop()
+        this.atrapado.push(mensaje)
     }
 
     curar(pokeparada){
