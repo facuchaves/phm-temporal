@@ -1,24 +1,25 @@
 package ar.edu.unsam.algo3.tp.controller
 
+import ar.edu.unsam.algo3.tp.model.Combate
+import ar.edu.unsam.algo3.tp.model.Entrenador
+import ar.edu.unsam.algo3.tp.model.Item
+import ar.edu.unsam.algo3.tp.model.ItemDto
+import ar.edu.unsam.algo3.tp.model.Pokebola
+import ar.edu.unsam.algo3.tp.model.RepoPokeparadas
 import ar.edu.unsam.algo3.tp.model.RepositorioEntrenador
+import ar.edu.unsam.algo3.tp.model.RepositorioItem
+import ar.edu.unsam.algo3.tp.model.RepositorioOponentes
+import ar.edu.unsam.algo3.tp.model.RepositorioPokemon
+import java.util.ArrayList
+import java.util.Map
 import org.uqbar.xtrest.api.Result
 import org.uqbar.xtrest.api.XTRest
+import org.uqbar.xtrest.api.annotation.Body
 import org.uqbar.xtrest.api.annotation.Controller
 import org.uqbar.xtrest.api.annotation.Get
 import org.uqbar.xtrest.api.annotation.Put
 import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
-import ar.edu.unsam.algo3.tp.model.RepositorioOponentes
-import ar.edu.unsam.algo3.tp.model.Entrenador
-import java.util.List
-import org.uqbar.xtrest.api.annotation.Body
-import ar.edu.unsam.algo3.tp.model.Pokemon
-import ar.edu.unsam.algo3.tp.model.Combate
-import ar.edu.unsam.algo3.tp.model.RepositorioPokemon
-import ar.edu.unsam.algo3.tp.model.Pokebola
-import ar.edu.unsam.algo3.tp.model.RepositorioPokeparada
-
-import ar.edu.unsam.algo3.tp.model.RepoPokeparadas
 
 @Controller
 class EntrenadorController {
@@ -30,9 +31,17 @@ class EntrenadorController {
 	@Get("/entrenador/inventario")
 	def Result inventario() {
 		val entrenador = RepositorioEntrenador.instance.search("Ash").get(0)
+		var list = new ArrayList()
+		
+		for (Map.Entry<Item, Integer> item : entrenador.items.entrySet()){
+		    list.add( new ItemDto() => [
+		    	nombre = item.key.nombre
+		    	cantidad = item.value
+		    ] );
+		}
 
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(entrenador.items.toJson)
+		ok(list.toJson)
 
 	}
 
@@ -216,11 +225,14 @@ class EntrenadorController {
 
 	@Put("/entrenador/atrapar/:nombre")
 	def Result atraparPokemon(@Body String body) {
-		val pokebolas = new Pokebola(0, 0, "pokebola")
-		jugador.agregarItem(pokebolas)
+		val Pokebola pokebola = RepositorioItem.instance.search("Pokebola").get(0) as Pokebola
+		if ( !jugador.tieneItem( pokebola ) ){
+			response.contentType = ContentType.APPLICATION_JSON
+			ok('{ "status" : " No tiene mas pokebolas "}')
+		}
 		var respuesta = jugador.capturarRespuesta(RepositorioPokemon.instance.pokemonSalvaje.filter [ p |
 			p.nombre.equals(nombre)
-		].get(0), pokebolas)
+		].get(0), pokebola ) 
 		if (respuesta.equals("ATRAPADO")) {
 			RepositorioPokemon.instance.eliminarSalvaje(nombre)
 
