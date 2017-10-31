@@ -76,7 +76,6 @@ class MundoController{
      notificarPelea(mensaje) {
          this.mensajes.pop()
          this.mensajes.push(mensaje)
-         $('#exampleModal').modal();
     }
 
     // elegirPokemon(poke){  
@@ -117,7 +116,6 @@ class MundoController{
     notificarAtrapado(mensaje){
         this.mensajes.pop()
         this.mensajes.push(mensaje)
-        $('#exampleModal').modal();
     }
 
     curar(pokeparada){
