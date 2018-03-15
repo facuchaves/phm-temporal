@@ -37,7 +37,7 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 		repositorioEspecie.agregarTipo(new Tipo("electricidad"))
 		repositorioEspecie.agregarTipo(new Tipo("fuego"))
 		var bulbasaur = new Especie() => [
-			numero = 1
+			numero = 10
 			nombre = "Bulbasaur"
 			puntosAtaque = 10
 			puntosSalud = 15
@@ -46,7 +46,7 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 			velocidad = 7
 		]
 		var ivysaur = new Especie() => [
-			numero = 2
+			numero = 20
 			nombre = "Ivysaur"
 			puntosAtaque = 15
 			puntosSalud = 20
@@ -56,7 +56,7 @@ class ActualizacionBootstrap extends CollectionBasedBootstrap {
 		]
 		
 		var pikachu = new Especie() => [
-			numero = 3
+			numero = 30
 			nombre = "Pikachu"
 			puntosAtaque = 25
 			puntosSalud = 30
