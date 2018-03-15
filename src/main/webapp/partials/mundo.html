@@ -93,6 +93,7 @@
                         </table>
                     </div>
                 </div>
+                <div id="atrapadoAlert" ng-class="{'alert alert-danger animate-repeat':mensaje=='SE ESCAPO', 'alert alert-success animate-repeat':mensaje=='ATRAPADO'}"  ng-repeat="mensaje in mundoCtrl.atrapado">{{mensaje}}</div>
             </div>
            
             <div class="col-xs-12 col-md-6 d-inline-block">
@@ -117,9 +118,10 @@
                         </table>
                     </div>
                 </div>
+                <div id="curadoAlert" class="alert alert-success animate-repeat"  ng-repeat="mensaje in mundoCtrl.curado">{{mensaje}}</div>
+
             </div>
         </div>
-        <div ng-class="{'alert alert-danger animate-repeat':mensaje=='SE ESCAPO', 'alert alert-success animate-repeat':mensaje=='ATRAPADO', 'alert alert-success animate-repeat':mensaje=='EQUIPO CURADO'}"  ng-repeat="mensaje in mundoCtrl.atrapado">{{mensaje}}</div>
     </div> 
 </div>
 
